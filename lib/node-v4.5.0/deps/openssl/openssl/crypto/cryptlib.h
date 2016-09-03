@@ -75,6 +75,11 @@
 # include <openssl/err.h>
 # include <openssl/opensslconf.h>
 
+#ifdef IOT_SEC_ARCHI_EVAL
+extern int total_evp_encrypted_bytes;
+extern int total_evp_decrypted_bytes;
+#endif
+
 #ifdef  __cplusplus
 extern "C" {
 #endif

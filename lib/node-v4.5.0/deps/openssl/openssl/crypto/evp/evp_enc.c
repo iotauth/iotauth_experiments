@@ -69,11 +69,28 @@
 #endif
 #include "evp_locl.h"
 
-#ifdef OPENSSL_FIPS
-# define M_do_cipher(ctx, out, in, inl) FIPS_cipher(ctx, out, in, inl)
-#else
-# define M_do_cipher(ctx, out, in, inl) ctx->cipher->do_cipher(ctx, out, in, inl)
+int M_do_cipher(EVP_CIPHER_CTX *ctx, unsigned char *out, const unsigned char *in, int inl)
+{
+#ifdef IOT_SEC_ARCHI_EVAL
+    fprintf(stderr, "IOT| M_do_cipher: ");
+    fprintf(stderr, "%s ", EVP_CIPHER_name(ctx->cipher));
+    if (ctx->encrypt) {
+        fprintf(stderr, " Encrypted Len: Current: %d, ", inl);
+        total_evp_encrypted_bytes += inl;
+        fprintf(stderr, "Total: %d\n", total_evp_encrypted_bytes);
+    }
+    else {
+        fprintf(stderr, " Decrypted Len: Current: %d, ", inl);
+        total_evp_decrypted_bytes += inl;
+        fprintf(stderr, "Total: %d\n", total_evp_decrypted_bytes);
+    }
 #endif
+#ifdef OPENSSL_FIPS
+    return FIPS_cipher(ctx, out, in, inl);
+#else
+    return ctx->cipher->do_cipher(ctx, out, in, inl);
+#endif
+}
 
 const char EVP_version[] = "EVP" OPENSSL_VERSION_PTEXT;
 

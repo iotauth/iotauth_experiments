@@ -224,6 +224,20 @@ int EVP_CIPHER_CTX_block_size(const EVP_CIPHER_CTX *ctx)
 int EVP_Cipher(EVP_CIPHER_CTX *ctx, unsigned char *out,
                const unsigned char *in, unsigned int inl)
 {
+#ifdef IOT_SEC_ARCHI_EVAL
+    fprintf(stderr, "IOT| EVP_Cipher: ");
+    fprintf(stderr, "%s ", EVP_CIPHER_name(ctx->cipher));
+    if (ctx->encrypt) {
+        fprintf(stderr, " Encrypted Len: Current: %d, ", inl);
+        total_evp_encrypted_bytes += inl;
+        fprintf(stderr, "Total: %d\n", total_evp_encrypted_bytes);
+    }
+    else {
+        fprintf(stderr, " Decrypted Len: Current: %d, ", inl);
+        total_evp_decrypted_bytes += inl;
+        fprintf(stderr, "Total: %d\n", total_evp_decrypted_bytes);
+    }
+#endif
     return ctx->cipher->do_cipher(ctx, out, in, inl);
 }
 
