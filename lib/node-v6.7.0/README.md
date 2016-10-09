@@ -1,3 +1,34 @@
+============================= Hokeun's Instructions =============================
+
+* Additional configuration option to enable logging in OpenSSL
+  --iot-sec-archi-eval : this adds #define in c code IOT_SEC_ARCHI_EVAL
+
+* Considerations: 
+  1) Always build WITHOUT npm to avoid overwriting currently installed npm with
+     an older version of npm.
+  2) For logging, turn on openssl-no-asm to avoid using assembly.
+
+* Configuration command for logging
+  ./configure --openssl-no-asm --iot-sec-archi-eval --debug --without-npm
+  
+* Configuration command for normal operation
+  ./configure --without-npm
+
+* Build and install
+  make install
+
+* List of modified files
+  - README.md
+  - configure
+  - deps/openssl/openssl/crypto/cryptlib.h
+  - deps/openssl/openssl/crypto/cryptlib.c
+  - deps/openssl/openssl/crypto/evp/evp_enc.c
+  - deps/openssl/openssl/crypto/evp/evp_lib.c
+  - deps/openssl/openssl/crypto/evp/m_sha1.c
+  - deps/openssl/openssl/crypto/rsa/rsa_crpt.c
+
+========================== End of Hokeun's Instructions =========================
+
 # Node.js
 
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/nodejs/node?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/29/badge)](https://bestpractices.coreinfrastructure.org/projects/29)
