@@ -1,0 +1,34 @@
+
+******* For Proposed ********
+
+******* Use two Auths *******
+Client with Auth101, Server with Auth102
+
+******* For resource-constrained Client ********
+// sent packet (to server) or (to auth)
+(tcp.dstport == 22100) || (tcp.dstport == 21900)
+// received packet (from server) or (from auth)
+(tcp.srcport == 22100) || (tcp.srcport == 21900)
+
+******* For resource-constrained Server ********
+// sent packet (to client) or (to auth)
+(tcp.srcport == 22100) || (tcp.dstport == 22900)
+// received packet (from client) or (from auth)
+(tcp.dstport == 22100) || (tcp.srcport == 22900)
+
+
+
+******* For SSL/TLS ********
+
+******* For resource-constrained Client ********
+// sent packet (to server) or (to auth)
+tcp.dstport == 21100
+// received packet (from server) or (from auth)
+tcp.srcport == 21100
+
+******* For resource-constrained Server ********
+// sent packet (to server) or (to auth)
+tcp.srcport == 21100
+// received packet (from server) or (from auth)
+tcp.dstport == 21100
+

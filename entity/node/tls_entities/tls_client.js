@@ -148,7 +148,7 @@ function commandInterpreter() {
                 }
             }
             var repeater = function() {
-                initComm(serverPortBase + idx);
+                initComm(serverPortBase/* + idx*/);
                 setTimeout(repeater2, 1000);
             }
             repeater();
