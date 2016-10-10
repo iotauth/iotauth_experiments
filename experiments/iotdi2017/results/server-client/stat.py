@@ -17,7 +17,7 @@ def print_crypto_stat(file_path):
         	rsa_enc = int(line.rsplit()[-1])
         if rsa_dec == 0 and 'RSA_decrypt(public/private):' in line:
         	rsa_dec = int(line.rsplit()[-1])
-        if aes_bytes == 0 and 'IOT| EVP_Cipher: AES-128-CBC' in line:
+        if aes_bytes == 0 and ('IOT| EVP_Cipher: AES-128-CBC' in line or 'IOT| M_do_cipher: AES-128-CBC' in line):
         	aes_bytes = int(line.rsplit()[-1])
         if sha_bytes == 0 and 'final256: Total Digested:' in line:
         	sha_bytes = int(line.rsplit()[-1])
