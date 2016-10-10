@@ -35,4 +35,12 @@ tcp.dstport == 22100
 
 node tls_client.js 2> 16_client.txt
 node tls_server.js 2> 16_server.txt
-tcpdump -i lo0 -s 0 -B 524288 -w 16.pcap
+tshark -i lo0 -w 16.pcap
+
+
+node client.js 2> 64_client.txt
+node server.js configs/net2/server.config 2> 16_server.txt
+tshark -i lo0 -w 16.pcap
+
+mv *.txt ../../../../iotauth_experiments/experiments/iotdi2017/results/server-client/TCP/one/
+

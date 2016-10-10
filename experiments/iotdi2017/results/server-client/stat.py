@@ -28,19 +28,14 @@ def print_crypto_stat(file_path):
     print sha_bytes
     print ''
 
-def recursive_dir_walk(root, list_files):
+def recursive_dir_walk(root):
     for dir_name, dir_names, file_names in os.walk(root):
-        # print path to all subdirectories first.
-        for sub_dirname in dir_names:
-        	recursive_dir_walk(os.path.join(dir_name, sub_dirname), True)
-        if list_files:
-    	    # print path to all filenames.
-    	    for file_name in file_names:
-    	    	file_path = os.path.join(dir_name, file_name)
-    	        print(file_path)
-    	        if file_path.endswith('.pcap'):
-    	        	os.system('./pcap_stat.sh ' + file_path)
-    	        elif file_path.endswith('.txt'):
-    	        	print_crypto_stat(file_path)
+	    for file_name in file_names:
+	    	file_path = os.path.join(dir_name, file_name)
+	        print(file_path)
+	        if file_path.endswith('.pcap'):
+	        	os.system('./pcap_stat.sh ' + file_path)
+	        elif file_path.endswith('.txt'):
+	        	print_crypto_stat(file_path)
 
-recursive_dir_walk('.', False)
+recursive_dir_walk('.')

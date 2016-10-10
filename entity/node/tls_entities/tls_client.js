@@ -144,6 +144,7 @@ function commandInterpreter() {
                 finComm();
                 idx++;
                 if (idx < serverCount) {
+                    console.log('round ' + (idx + 1));
                     setTimeout(repeater, 1000);
                 }
             }
