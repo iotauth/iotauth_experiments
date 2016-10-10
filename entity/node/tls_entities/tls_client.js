@@ -137,7 +137,7 @@ function commandInterpreter() {
             var serverCount = parseInt(message);
             console.log('start experiments for ' + serverCount + ' servers');
             var idx = 0;
-            var serverPortBase = 21100;
+            var serverPortBase = 22100;
             var repeater;
             var repeater2;
             var repeater2 = function() {

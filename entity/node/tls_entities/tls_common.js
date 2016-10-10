@@ -21,7 +21,7 @@
 "use strict";
 
 // global variables
-exports.SERVER_PORT = 21100;
+exports.SERVER_PORT = 22100;
 exports.PUBLISHER_PORT = 21100;
 
 exports.commState = {

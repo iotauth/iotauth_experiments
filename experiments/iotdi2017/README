@@ -22,13 +22,17 @@ Client with Auth101, Server with Auth102
 
 ******* For resource-constrained Client ********
 // sent packet (to server) or (to auth)
-tcp.dstport == 21100
+tcp.dstport == 22100
 // received packet (from server) or (from auth)
-tcp.srcport == 21100
+tcp.srcport == 22100
 
 ******* For resource-constrained Server ********
 // sent packet (to server) or (to auth)
-tcp.srcport == 21100
+tcp.srcport == 22100
 // received packet (from server) or (from auth)
-tcp.dstport == 21100
+tcp.dstport == 22100
 
+
+node tls_client.js 2> 16_client.txt
+node tls_server.js 2> 16_server.txt
+tcpdump -i lo0 -s 0 -B 524288 -w 16.pcap
