@@ -38,4 +38,10 @@ def recursive_dir_walk(root):
 	        elif file_path.endswith('.txt'):
 	        	print_crypto_stat(file_path)
 
-recursive_dir_walk('.')
+root = '.'
+if len(sys.argv) > 1:
+    root = sys.argv[1]
+
+print 'starting directory: ' + root
+
+recursive_dir_walk(root)

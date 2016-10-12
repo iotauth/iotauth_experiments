@@ -160,5 +160,11 @@ function commandInterpreter() {
     }
 };
 
+if (process.argv.length > 2) {
+    var argCommand = process.argv[2];
+    if (argCommand == 'exp2') {
+        initComm(common.SERVER_PORT);
+    }
+}
 
 process.stdin.on('readable', commandInterpreter);

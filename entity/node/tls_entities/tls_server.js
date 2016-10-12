@@ -34,13 +34,14 @@ var options = {
     // This is necessary only if the client uses the self-signed certificate.
     ca: [ fs.readFileSync('credentials/CACert.pem') ]
 };
-
+var sockets = [];
 var server = tls.createServer(options, function(socket) {
     console.log('server connected',
         socket.authorized ? 'authorized' : 'unauthorized');
     if (!socket.authorized) {
         console.log('Connection not authorized: ' + socket.authroizationError)
     }
+    sockets.push(socket);
     //socket.write("welcome!\n");
     socket.setEncoding('utf8');
     socket.on('data', function(data) {
@@ -52,6 +53,48 @@ var server = tls.createServer(options, function(socket) {
     //socket.pipe(socket);
 });
 
+function commandInterpreter() {
+    console.log('TLS_Server prompt>');
+    var chunk = process.stdin.read();
+    if (chunk != null) {
+        var input = chunk.toString().trim();
+        var idx = input.indexOf(' ');
+        var command;
+        var message = undefined;
+
+        if (idx < 0) {
+            command = input;
+        }
+        else {
+            command = input.slice(0, idx);
+            message = input.slice(idx + 1);
+        }
+
+        if (command == 'send') {
+            console.log('send command');
+            if (message == undefined) {
+                console.log('no message!');
+                return;
+            }
+            for (var i = 0; i < sockets.length; i++) {
+                sockets[i].write(message);
+            }
+        }
+        else if (command == 'sendFile') {
+            console.log('sendFile command');
+            console.error('============ sendFile command ===========');
+            var fileData = fs.readFileSync('../data_examples/data.bin');
+            console.log('file data length: ' + fileData.length);
+            for (var i = 0; i < sockets.length; i++) {
+                sockets[i].write(fileData);
+            }
+        }
+        else {
+            console.log('unrecognized command: ' + command);
+        }
+    }
+};
+
 var SERVER_PORT = common.SERVER_PORT;
 if (process.argv.length > 2) {
     SERVER_PORT = parseInt(process.argv[2]);
@@ -60,3 +103,5 @@ if (process.argv.length > 2) {
 server.listen(SERVER_PORT, function() {
     console.log('server bound on port ' + SERVER_PORT);
 });
+
+process.stdin.on('readable', commandInterpreter);
