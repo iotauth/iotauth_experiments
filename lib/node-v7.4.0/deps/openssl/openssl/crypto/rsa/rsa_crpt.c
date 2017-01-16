@@ -67,6 +67,13 @@
 # include <openssl/engine.h>
 #endif
 
+#ifdef IOT_SEC_ARCHI_EVAL
+static int rsa_public_encrypt_count = 0;
+static int rsa_private_encrypt_count = 0;
+static int rsa_private_decrypt_count = 0;
+static int rsa_public_decrypt_count = 0;
+#endif
+
 int RSA_size(const RSA *r)
 {
     return (BN_num_bytes(r->n));
@@ -75,6 +82,10 @@ int RSA_size(const RSA *r)
 int RSA_public_encrypt(int flen, const unsigned char *from, unsigned char *to,
                        RSA *rsa, int padding)
 {
+#ifdef IOT_SEC_ARCHI_EVAL
+    fprintf(stderr, "IOT| RSA_public_encrypt: Len: %d, Count: %d,", flen, ++rsa_public_encrypt_count);
+    fprintf(stderr, " RSA_encrypt(public/private): Count: %d\n", rsa_public_encrypt_count + rsa_private_encrypt_count);
+#endif
 #ifdef OPENSSL_FIPS
     if (FIPS_mode() && !(rsa->meth->flags & RSA_FLAG_FIPS_METHOD)
         && !(rsa->flags & RSA_FLAG_NON_FIPS_ALLOW)) {
@@ -88,6 +99,10 @@ int RSA_public_encrypt(int flen, const unsigned char *from, unsigned char *to,
 int RSA_private_encrypt(int flen, const unsigned char *from,
                         unsigned char *to, RSA *rsa, int padding)
 {
+#ifdef IOT_SEC_ARCHI_EVAL
+    fprintf(stderr, "IOT| RSA_private_encrypt: Len: %d, Count: %d,", flen, ++rsa_private_encrypt_count);
+    fprintf(stderr, " RSA_encrypt(public/private): Count: %d\n", rsa_public_encrypt_count + rsa_private_encrypt_count);
+#endif
 #ifdef OPENSSL_FIPS
     if (FIPS_mode() && !(rsa->meth->flags & RSA_FLAG_FIPS_METHOD)
         && !(rsa->flags & RSA_FLAG_NON_FIPS_ALLOW)) {
@@ -101,6 +116,10 @@ int RSA_private_encrypt(int flen, const unsigned char *from,
 int RSA_private_decrypt(int flen, const unsigned char *from,
                         unsigned char *to, RSA *rsa, int padding)
 {
+#ifdef IOT_SEC_ARCHI_EVAL
+    fprintf(stderr, "IOT| RSA_private_decrypt: Len: %d, Count: %d,", flen, ++rsa_private_decrypt_count);
+    fprintf(stderr, " RSA_decrypt(public/private): Count: %d\n", rsa_public_decrypt_count + rsa_private_decrypt_count);
+#endif
 #ifdef OPENSSL_FIPS
     if (FIPS_mode() && !(rsa->meth->flags & RSA_FLAG_FIPS_METHOD)
         && !(rsa->flags & RSA_FLAG_NON_FIPS_ALLOW)) {
@@ -114,6 +133,10 @@ int RSA_private_decrypt(int flen, const unsigned char *from,
 int RSA_public_decrypt(int flen, const unsigned char *from, unsigned char *to,
                        RSA *rsa, int padding)
 {
+#ifdef IOT_SEC_ARCHI_EVAL
+    fprintf(stderr, "IOT| RSA_public_decrypt: Len: %d, Count: %d,", flen, ++rsa_public_decrypt_count);
+    fprintf(stderr, " RSA_decrypt(public/private): Count: %d\n", rsa_public_decrypt_count + rsa_private_decrypt_count);
+#endif
 #ifdef OPENSSL_FIPS
     if (FIPS_mode() && !(rsa->meth->flags & RSA_FLAG_FIPS_METHOD)
         && !(rsa->flags & RSA_FLAG_NON_FIPS_ALLOW)) {
