@@ -1,3 +1,4 @@
+=========== Server-Client experiment manual ===========
 
 ******* For Proposed ********
 
@@ -82,4 +83,89 @@ tshark -i lo0 -w 16.pcap
 
 mv *.txt ../../../../iotauth_experiments/experiments/iotdi2017/results/server-client/TCP/one/
 
+=======================================================
 
+========= Publish-Subscribe experiment manual =========
+
+******* For SSL/TLS ********
+node tls_server.js 2> 16_setup.txt
+tshark -i lo0 -w 16_setup.pcap
+./repeat_tls_client.py 16
+
+CTRL+C
+tshark -i lo0 -w 16_publish.pcap
+tls_server> sendFile
+
+Later, open 16_setup.txt and cut second part and save it as 16_publish.txt
+
+******** For Proposed ********
+
+****** Proposed ******
+*** Updated ***
+node server.js configs/net2/server.config 2> 16_setup.txt
+tshark -i lo0 -w 16_setup.pcap
+server> skReqSub 1
+./repeat_client.py 16 keyId
+
+CTRL+C
+tshark -i lo0 -w 16_publish.pcap
+server> sendFile
+
+Later, open 16_setup.txt and cut second part and save it as 16_publish.txt
+
+*** Permanent ***
+node server.js configs/net2/rcServer.config 2> 16_setup.txt
+tshark -i lo0 -w 16_setup.pcap
+server> skReqSub 1
+./repeat_client.py 16 keyId 22300
+server> skReqSub 1
+
+CTRL+C
+tshark -i lo0 -w 16_publish.pcap
+server> sendFile
+
+****** Broker ******
+*** Updated ***
+node client.js configs/net1/client.config 2> 16_setup.txt
+tshark -i lo0 -w 16_setup.pcap
+client> skReqPub 1
+client> mqtt
+
+CTRL+C
+tshark -i lo0 -w 16_publish.pcap
+client> spubFile
+
+	* NO NEED to run server (subscriber) for experiments, but to check if the server really receives the messages (sanity check)
+	* Run the server registered with Auth101
+	node server.js configs/net1/server.config
+	server> skReqSub
+	server> mqtt
+
+*** Permanent ***
+node client.js configs/net1/rcClient.config 2> 16_setup.txt
+tshark -i lo0 -w 16_setup.pcap
+client> skReqPub 1
+client> mqtt
+
+****** Broadcast ******
+*** Updated ***
+node client.js configs/net1/udpClient.config 2> 16_setup.txt
+tshark -i lo0 -w 16_setup.pcap
+client> skReqPub 1
+client> initBc
+
+CTRL+C
+tshark -i lo0 -w 16_publish.pcap
+client> spubFile
+
+	* NO NEED to run server (receiver) for experiments, but to check if the server really receives the messages (sanity check)
+	* Run the server registered with Auth101
+	node server configs/net1/udpServer.config
+	server> skReqSub
+	server> bcSub
+
+*** Permanent ***
+node client.js configs/net1/rcUdpClient.config 2> 16_setup.txt
+tshark -i lo0 -w 16_setup.pcap
+client> skReqPub 1
+client> initBc
