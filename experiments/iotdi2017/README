@@ -17,7 +17,6 @@ Client with Auth101, Server with Auth102
 (tcp.dstport == 22100) || (tcp.srcport == 22900)
 
 
-
 ******* For SSL/TLS ********
 
 ******* For resource-constrained Client ********
@@ -37,10 +36,50 @@ node tls_client.js 2> 16_client.txt
 node tls_server.js 2> 16_server.txt
 tshark -i lo0 -w 16.pcap
 
+tls_client> exp1 16
 
-node client.js 2> 64_client.txt
+******** For Proposed ********
+
+******** server-client ********
+
+****** updated ******
+node client.js configs/net1/client.config 2> 16_client.txt
 node server.js configs/net2/server.config 2> 16_server.txt
 tshark -i lo0 -w 16.pcap
 
+*** one cached key ***
+client> exp1 16 [22400 for UDP]
+
+*** unlimited cached keys ***
+Auth1> reset sk
+client> skReq 16
+server> skReq 16
+client> exp1 16 [22400 for UDP]
+
+****** permanent ******
+node client.js configs/net1/rcClient.config 2> 16_client.txt
+node server.js configs/net2/rcServer.config 2> 16_server.txt
+tshark -i lo0 -w 16.pcap
+
+*** one cached key ***
+client> exp1 16 22300 [22600 for RC-UDP]
+
+*** unlimited cached keys ***
+Auth1> reset sk
+client> skReq 16
+server> skReq 16
+client> exp1 16 22300 [22600 for RC-UDP]
+
+******** UDP ********
+node client.js configs/net1/udpClient.config 2> 16_client.txt
+node server.js configs/net2/udpServer.config 2> 16_server.txt
+tshark -i lo0 -w 16.pcap
+
+****** permanent ******
+node client.js configs/net1/rcUdpClient.config 2> 16_client.txt
+node server.js configs/net2/rcUdpServer.config 2> 16_server.txt
+tshark -i lo0 -w 16.pcap
+
 mv *.txt ../../../../iotauth_experiments/experiments/iotdi2017/results/server-client/TCP/one/
+
 
