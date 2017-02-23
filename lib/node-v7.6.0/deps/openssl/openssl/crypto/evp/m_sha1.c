@@ -68,6 +68,10 @@
 #  include <openssl/rsa.h>
 # endif
 
+#ifdef IOT_SEC_ARCHI_EVAL
+static size_t total_sha256_digested = 0;
+#endif
+
 static int init(EVP_MD_CTX *ctx)
 {
     return SHA1_Init(ctx->md_data);
@@ -122,11 +126,17 @@ static int init256(EVP_MD_CTX *ctx)
  */
 static int update256(EVP_MD_CTX *ctx, const void *data, size_t count)
 {
+#ifdef IOT_SEC_ARCHI_EVAL
+    total_sha256_digested += count;
+#endif
     return SHA256_Update(ctx->md_data, data, count);
 }
 
 static int final256(EVP_MD_CTX *ctx, unsigned char *md)
 {
+#ifdef IOT_SEC_ARCHI_EVAL
+    fprintf(stderr, "final256: Total Digested: %zu\n", total_sha256_digested);
+#endif
     return SHA256_Final(md, ctx->md_data);
 }
 

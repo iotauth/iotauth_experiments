@@ -117,6 +117,11 @@
 #include "cryptlib.h"
 #include <openssl/safestack.h>
 
+#ifdef IOT_SEC_ARCHI_EVAL
+int total_evp_encrypted_bytes = 0;
+int total_evp_decrypted_bytes = 0;
+#endif
+
 #if defined(OPENSSL_SYS_WIN32) || defined(OPENSSL_SYS_WIN16)
 static double SSLeay_MSVC5_hack = 0.0; /* and for VC1.5 */
 #endif

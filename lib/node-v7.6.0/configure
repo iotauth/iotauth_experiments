@@ -480,6 +480,11 @@ parser.add_option('-C',
     dest='compile_commands_json',
     help=optparse.SUPPRESS_HELP)
 
+parser.add_option('--iot-sec-archi-eval',
+    action='store_true',
+    dest='iot_sec_archi_eval',
+    help='enable codes for evaluation of IoT security network architecture by Hokeun Kim')
+
 (options, args) = parser.parse_args()
 
 # Expand ~ in the install prefix now, it gets written to multiple files.
@@ -904,6 +909,9 @@ def configure_node(o):
     o['variables']['coverage'] = 'true'
   else:
     o['variables']['coverage'] = 'false'
+
+  if options.iot_sec_archi_eval:
+    o['defines'] += ['IOT_SEC_ARCHI_EVAL']
 
 def configure_library(lib, output):
   shared_lib = 'shared_' + lib
