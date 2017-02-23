@@ -1,0 +1,728 @@
+{
+  "source": "doc/api/url.md",
+  "modules": [
+    {
+      "textRaw": "URL",
+      "name": "url",
+      "stability": 2,
+      "stabilityText": "Stable",
+      "desc": "<p>The <code>url</code> module provides utilities for URL resolution and parsing. It can be\naccessed using:</p>\n<pre><code class=\"lang-js\">const url = require(&#39;url&#39;);\n</code></pre>\n",
+      "modules": [
+        {
+          "textRaw": "URL Strings and URL Objects",
+          "name": "url_strings_and_url_objects",
+          "desc": "<p>A URL string is a structured string containing multiple meaningful components.\nWhen parsed, a URL object is returned containing properties for each of these\ncomponents.</p>\n<p>The following details each of the components of a parsed URL. The example\n<code>&#39;http://user:pass@host.com:8080/p/a/t/h?query=string#hash&#39;</code> is used to\nillustrate each.</p>\n<pre><code class=\"lang-txt\">┌─────────────────────────────────────────────────────────────────────────────┐\n│                                    href                                     │\n├──────────┬┬───────────┬─────────────────┬───────────────────────────┬───────┤\n│ protocol ││   auth    │      host       │           path            │ hash  │\n│          ││           ├──────────┬──────┼──────────┬────────────────┤       │\n│          ││           │ hostname │ port │ pathname │     search     │       │\n│          ││           │          │      │          ├─┬──────────────┤       │\n│          ││           │          │      │          │ │    query     │       │\n&quot;  http:   // user:pass @ host.com : 8080   /p/a/t/h  ?  query=string   #hash &quot;\n│          ││           │          │      │          │ │              │       │\n└──────────┴┴───────────┴──────────┴──────┴──────────┴─┴──────────────┴───────┘\n(all spaces in the &quot;&quot; line should be ignored -- they are purely for formatting)\n</code></pre>\n",
+          "properties": [
+            {
+              "textRaw": "urlObject.href",
+              "name": "href",
+              "desc": "<p>The <code>href</code> property is the full URL string that was parsed with both the\n<code>protocol</code> and <code>host</code> components converted to lower-case.</p>\n<p>For example: <code>&#39;http://user:pass@host.com:8080/p/a/t/h?query=string#hash&#39;</code></p>\n"
+            },
+            {
+              "textRaw": "urlObject.protocol",
+              "name": "protocol",
+              "desc": "<p>The <code>protocol</code> property identifies the URL&#39;s lower-cased protocol scheme.</p>\n<p>For example: <code>&#39;http:&#39;</code></p>\n"
+            },
+            {
+              "textRaw": "urlObject.slashes",
+              "name": "slashes",
+              "desc": "<p>The <code>slashes</code> property is a <code>boolean</code> with a value of <code>true</code> if two ASCII\nforward-slash characters (<code>/</code>) are required following the colon in the\n<code>protocol</code>.</p>\n"
+            },
+            {
+              "textRaw": "urlObject.host",
+              "name": "host",
+              "desc": "<p>The <code>host</code> property is the full lower-cased host portion of the URL, including\nthe <code>port</code> if specified.</p>\n<p>For example: <code>&#39;host.com:8080&#39;</code></p>\n"
+            },
+            {
+              "textRaw": "urlObject.auth",
+              "name": "auth",
+              "desc": "<p>The <code>auth</code> property is the username and password portion of the URL, also\nreferred to as &quot;userinfo&quot;. This string subset follows the <code>protocol</code> and\ndouble slashes (if present) and precedes the <code>host</code> component, delimited by an\nASCII &quot;at sign&quot; (<code>@</code>). The format of the string is <code>{username}[:{password}]</code>,\nwith the <code>[:{password}]</code> portion being optional.</p>\n<p>For example: <code>&#39;user:pass&#39;</code></p>\n"
+            },
+            {
+              "textRaw": "urlObject.hostname",
+              "name": "hostname",
+              "desc": "<p>The <code>hostname</code> property is the lower-cased host name portion of the <code>host</code>\ncomponent <em>without</em> the <code>port</code> included.</p>\n<p>For example: <code>&#39;host.com&#39;</code></p>\n"
+            },
+            {
+              "textRaw": "urlObject.port",
+              "name": "port",
+              "desc": "<p>The <code>port</code> property is the numeric port portion of the <code>host</code> component.</p>\n<p>For example: <code>&#39;8080&#39;</code></p>\n"
+            },
+            {
+              "textRaw": "urlObject.pathname",
+              "name": "pathname",
+              "desc": "<p>The <code>pathname</code> property consists of the entire path section of the URL. This\nis everything following the <code>host</code> (including the <code>port</code>) and before the start\nof the <code>query</code> or <code>hash</code> components, delimited by either the ASCII question\nmark (<code>?</code>) or hash (<code>#</code>) characters.</p>\n<p>For example <code>&#39;/p/a/t/h&#39;</code></p>\n<p>No decoding of the path string is performed.</p>\n"
+            },
+            {
+              "textRaw": "urlObject.search",
+              "name": "search",
+              "desc": "<p>The <code>search</code> property consists of the entire &quot;query string&quot; portion of the\nURL, including the leading ASCII question mark (<code>?</code>) character.</p>\n<p>For example: <code>&#39;?query=string&#39;</code></p>\n<p>No decoding of the query string is performed.</p>\n"
+            },
+            {
+              "textRaw": "urlObject.path",
+              "name": "path",
+              "desc": "<p>The <code>path</code> property is a concatenation of the <code>pathname</code> and <code>search</code>\ncomponents.</p>\n<p>For example: <code>&#39;/p/a/t/h?query=string&#39;</code></p>\n<p>No decoding of the <code>path</code> is performed.</p>\n"
+            },
+            {
+              "textRaw": "urlObject.query",
+              "name": "query",
+              "desc": "<p>The <code>query</code> property is either the query string without the leading ASCII\nquestion mark (<code>?</code>), or an object returned by the <a href=\"querystring.html\"><code>querystring</code></a> module&#39;s\n<code>parse()</code> method. Whether the <code>query</code> property is a string or object is\ndetermined by the <code>parseQueryString</code> argument passed to <code>url.parse()</code>.</p>\n<p>For example: <code>&#39;query=string&#39;</code> or <code>{&#39;query&#39;: &#39;string&#39;}</code></p>\n<p>If returned as a string, no decoding of the query string is performed. If\nreturned as an object, both keys and values are decoded.</p>\n"
+            },
+            {
+              "textRaw": "urlObject.hash",
+              "name": "hash",
+              "desc": "<p>The <code>hash</code> property consists of the &quot;fragment&quot; portion of the URL including\nthe leading ASCII hash (<code>#</code>) character.</p>\n<p>For example: <code>&#39;#hash&#39;</code></p>\n"
+            }
+          ],
+          "type": "module",
+          "displayName": "URL Strings and URL Objects"
+        },
+        {
+          "textRaw": "Escaped Characters",
+          "name": "escaped_characters",
+          "desc": "<p>URLs are only permitted to contain a certain range of characters. Spaces (<code>&#39; &#39;</code>)\nand the following characters will be automatically escaped in the\nproperties of URL objects:</p>\n<pre><code class=\"lang-txt\">&lt; &gt; &quot; ` \\r \\n \\t { } | \\ ^ &#39;\n</code></pre>\n<p>For example, the ASCII space character (<code>&#39; &#39;</code>) is encoded as <code>%20</code>. The ASCII\nforward slash (<code>/</code>) character is encoded as <code>%3C</code>.</p>\n",
+          "type": "module",
+          "displayName": "Escaped Characters"
+        },
+        {
+          "textRaw": "The WHATWG URL API",
+          "name": "the_whatwg_url_api",
+          "stability": 1,
+          "stabilityText": "Experimental",
+          "desc": "<p>The <code>url</code> module provides an <em>experimental</em> implementation of the\n<a href=\"https://url.spec.whatwg.org/\">WHATWG URL Standard</a> as an alternative to the existing <code>url.parse()</code> API.</p>\n<pre><code class=\"lang-js\">const URL = require(&#39;url&#39;).URL;\nconst myURL = new URL(&#39;https://example.org/foo&#39;);\n\nconsole.log(myURL.href);     // https://example.org/foo\nconsole.log(myURL.protocol); // https:\nconsole.log(myURL.hostname); // example.org\nconsole.log(myURL.pathname); // /foo\n</code></pre>\n<p><em>Note</em>: Using the <code>delete</code> keyword (e.g. <code>delete myURL.protocol</code>,\n<code>delete myURL.pathname</code>, etc) has no effect but will still return <code>true</code>.</p>\n",
+          "classes": [
+            {
+              "textRaw": "Class: URL",
+              "type": "class",
+              "name": "URL",
+              "modules": [
+                {
+                  "textRaw": "Constructor: new URL(input[, base])",
+                  "name": "constructor:_new_url(input[,_base])",
+                  "desc": "<ul>\n<li><code>input</code> {String} The input URL to parse</li>\n<li><code>base</code> {String | URL} The base URL to resolve against if the <code>input</code> is not\nabsolute.</li>\n</ul>\n<p>Creates a new <code>URL</code> object by parsing the <code>input</code> relative to the <code>base</code>. If\n<code>base</code> is passed as a string, it will be parsed equivalent to <code>new URL(base)</code>.</p>\n<pre><code class=\"lang-js\">const myURL = new URL(&#39;/foo&#39;, &#39;https://example.org/&#39;);\n  // https://example.org/foo\n</code></pre>\n<p>A <code>TypeError</code> will be thrown if the <code>input</code> or <code>base</code> are not valid URLs. Note\nthat an effort will be made to coerce the given values into strings. For\ninstance:</p>\n<pre><code class=\"lang-js\">const myURL = new URL({toString: () =&gt; &#39;https://example.org/&#39;});\n  // https://example.org/\n</code></pre>\n<p>Unicode characters appearing within the hostname of <code>input</code> will be\nautomatically converted to ASCII using the <a href=\"https://tools.ietf.org/html/rfc5891#section-4.4\">Punycode</a> algorithm.</p>\n<pre><code class=\"lang-js\">const myURL = new URL(&#39;https://你好你好&#39;);\n  // https://xn--6qqa088eba\n</code></pre>\n<p>Additional <a href=\"https://url.spec.whatwg.org/#example-url-parsing\">examples of parsed URLs</a> may be found in the WHATWG URL Standard.</p>\n",
+                  "type": "module",
+                  "displayName": "Constructor: new URL(input[, base])"
+                }
+              ],
+              "properties": [
+                {
+                  "textRaw": "url.hash",
+                  "name": "hash",
+                  "desc": "<p>Gets and sets the fragment portion of the URL.</p>\n<pre><code class=\"lang-js\">const myURL = new URL(&#39;https://example.org/foo#bar&#39;);\nconsole.log(myURL.hash);\n  // Prints #bar\n\nmyURL.hash = &#39;baz&#39;;\nconsole.log(myURL.href);\n  // Prints https://example.org/foo#baz\n</code></pre>\n<p>Invalid URL characters included in the value assigned to the <code>hash</code> property\nare <a href=\"#whatwg-percent-encoding\">percent-encoded</a>. Note that the selection of\nwhich characters to percent-encode may vary somewhat from what the\n<a href=\"#url_url_parse_urlstring_parsequerystring_slashesdenotehost\"><code>url.parse()</code></a> and <a href=\"#url_url_format_urlobject\"><code>url.format()</code></a> methods would produce.</p>\n"
+                },
+                {
+                  "textRaw": "url.host",
+                  "name": "host",
+                  "desc": "<p>Gets and sets the host portion of the URL.</p>\n<pre><code class=\"lang-js\">const myURL = new URL(&#39;https://example.org:81/foo&#39;);\nconsole.log(myURL.host);\n  // Prints example.org:81\n\nmyURL.host = &#39;example.com:82&#39;;\nconsole.log(myURL.href);\n  // Prints https://example.com:82/foo\n</code></pre>\n<p>Invalid host values assigned to the <code>host</code> property are ignored.</p>\n"
+                },
+                {
+                  "textRaw": "url.hostname",
+                  "name": "hostname",
+                  "desc": "<p>Gets and sets the hostname portion of the URL. The key difference between\n<code>url.host</code> and <code>url.hostname</code> is that <code>url.hostname</code> does <em>not</em> include the\nport.</p>\n<pre><code class=\"lang-js\">const myURL = new URL(&#39;https://example.org:81/foo&#39;);\nconsole.log(myURL.hostname);\n  // Prints example.org\n\nmyURL.hostname = &#39;example.com:82&#39;;\nconsole.log(myURL.href);\n  // Prints https://example.com:81/foo\n</code></pre>\n<p>Invalid hostname values assigned to the <code>hostname</code> property are ignored.</p>\n"
+                },
+                {
+                  "textRaw": "url.href",
+                  "name": "href",
+                  "desc": "<p>Gets and sets the serialized URL.</p>\n<pre><code class=\"lang-js\">const myURL = new URL(&#39;https://example.org/foo&#39;);\nconsole.log(myURL.href);\n  // Prints https://example.org/foo\n\nmyURL.href = &#39;https://example.com/bar&#39;\n  // Prints https://example.com/bar\n</code></pre>\n<p>Setting the value of the <code>href</code> property to a new value is equivalent to\ncreating a new <code>URL</code> object using <code>new URL(value)</code>. Each of the <code>URL</code> object&#39;s\nproperties will be modified.</p>\n<p>If the value assigned to the <code>href</code> property is not a valid URL, a <code>TypeError</code>\nwill be thrown.</p>\n"
+                },
+                {
+                  "textRaw": "url.origin",
+                  "name": "origin",
+                  "desc": "<p>Gets the read-only serialization of the URL&#39;s origin. Unicode characters that\nmay be contained within the hostname will be encoded as-is without <a href=\"https://tools.ietf.org/html/rfc5891#section-4.4\">Punycode</a>\nencoding.</p>\n<pre><code class=\"lang-js\">const myURL = new URL(&#39;https://example.org/foo/bar?baz&#39;);\nconsole.log(myURL.origin);\n  // Prints https://example.org\n</code></pre>\n<pre><code class=\"lang-js\">const idnURL = new URL(&#39;https://你好你好&#39;);\nconsole.log(idnURL.origin);\n  // Prints https://你好你好\n\nconsole.log(idnURL.hostname);\n  // Prints xn--6qqa088eba\n</code></pre>\n"
+                },
+                {
+                  "textRaw": "url.password",
+                  "name": "password",
+                  "desc": "<p>Gets and sets the password portion of the URL.</p>\n<pre><code class=\"lang-js\">const myURL = new URL(&#39;https://abc:xyz@example.com&#39;);\nconsole.log(myURL.password);\n  // Prints xyz\n\nmyURL.password = &#39;123&#39;;\nconsole.log(myURL.href);\n  // Prints https://abc:123@example.com\n</code></pre>\n<p>Invalid URL characters included in the value assigned to the <code>password</code> property\nare <a href=\"#whatwg-percent-encoding\">percent-encoded</a>. Note that the selection of\nwhich characters to percent-encode may vary somewhat from what the\n<a href=\"#url_url_parse_urlstring_parsequerystring_slashesdenotehost\"><code>url.parse()</code></a> and <a href=\"#url_url_format_urlobject\"><code>url.format()</code></a> methods would produce.</p>\n"
+                },
+                {
+                  "textRaw": "url.pathname",
+                  "name": "pathname",
+                  "desc": "<p>Gets and sets the path portion of the URL.</p>\n<pre><code class=\"lang-js\">const myURL = new URL(&#39;https://example.org/abc/xyz?123&#39;);\nconsole.log(myURL.pathname);\n  // Prints /abc/xyz\n\nmyURL.pathname = &#39;/abcdef&#39;;\nconsole.log(myURL.href);\n  // Prints https://example.org/abcdef?123\n</code></pre>\n<p>Invalid URL characters included in the value assigned to the <code>pathname</code>\nproperty are <a href=\"#whatwg-percent-encoding\">percent-encoded</a>. Note that the\nselection of which characters to percent-encode may vary somewhat from what the\n<a href=\"#url_url_parse_urlstring_parsequerystring_slashesdenotehost\"><code>url.parse()</code></a> and <a href=\"#url_url_format_urlobject\"><code>url.format()</code></a> methods would produce.</p>\n"
+                },
+                {
+                  "textRaw": "url.port",
+                  "name": "port",
+                  "desc": "<p>Gets and sets the port portion of the URL. When getting the port, the value\nis returned as a String.</p>\n<pre><code class=\"lang-js\">const myURL = new URL(&#39;https://example.org:8888&#39;);\nconsole.log(myURL.port);\n  // Prints 8888\n\nmyURL.port = 1234;\nconsole.log(myURL.href);\n  // Prints https://example.org:1234\n</code></pre>\n<p>The port value may be set as either a number or as a String containing a number\nin the range <code>0</code> to <code>65535</code> (inclusive). Setting the value to the default port\nof the <code>URL</code> objects given <code>protocol</code> will result in the <code>port</code> value becoming\nthe empty string (<code>&#39;&#39;</code>).</p>\n<p>Invalid URL port values assigned to the <code>port</code> property are ignored.</p>\n"
+                },
+                {
+                  "textRaw": "url.protocol",
+                  "name": "protocol",
+                  "desc": "<p>Gets and sets the protocol portion of the URL.</p>\n<pre><code class=\"lang-js\">const myURL = new URL(&#39;https://example.org&#39;);\nconsole.log(myURL.protocol);\n  // Prints http:\n\nmyURL.protocol = &#39;ftp&#39;;\nconsole.log(myURL.href);\n  // Prints ftp://example.org\n</code></pre>\n<p>Invalid URL protocol values assigned to the <code>protocol</code> property are ignored.</p>\n"
+                },
+                {
+                  "textRaw": "url.search",
+                  "name": "search",
+                  "desc": "<p>Gets and sets the serialized query portion of the URL.</p>\n<pre><code class=\"lang-js\">const myURL = new URL(&#39;https://example.org/abc?123&#39;);\nconsole.log(myURL.search);\n  // Prints ?123\n\nmyURL.search = &#39;abc=xyz&#39;;\nconsole.log(myURL.href);\n  // Prints https://example.org/abc?abc=xyz\n</code></pre>\n<p>Any invalid URL characters appearing in the value assigned the <code>search</code>\nproperty will be <a href=\"#whatwg-percent-encoding\">percent-encoded</a>. Note that the\nselection of which characters to percent-encode may vary somewhat from what the\n<a href=\"#url_url_parse_urlstring_parsequerystring_slashesdenotehost\"><code>url.parse()</code></a> and <a href=\"#url_url_format_urlobject\"><code>url.format()</code></a> methods would produce.</p>\n"
+                },
+                {
+                  "textRaw": "url.searchParams",
+                  "name": "searchParams",
+                  "desc": "<p>Gets a <a href=\"#url_class_urlsearchparams\"><code>URLSearchParams</code></a> object representing the\nquery parameters of the URL.</p>\n"
+                },
+                {
+                  "textRaw": "url.username",
+                  "name": "username",
+                  "desc": "<p>Gets and sets the username portion of the URL.</p>\n<pre><code class=\"lang-js\">const myURL = new URL(&#39;https://abc:xyz@example.com&#39;);\nconsole.log(myURL.username);\n  // Prints abc\n\nmyURL.username = &#39;123&#39;;\nconsole.log(myURL.href);\n  // Prints https://123:xyz@example.com\n</code></pre>\n<p>Any invalid URL characters appearing in the value assigned the <code>username</code>\nproperty will be <a href=\"#whatwg-percent-encoding\">percent-encoded</a>. Note that the\nselection of which characters to percent-encode may vary somewhat from what the\n<a href=\"#url_url_parse_urlstring_parsequerystring_slashesdenotehost\"><code>url.parse()</code></a> and <a href=\"#url_url_format_urlobject\"><code>url.format()</code></a> methods would produce.</p>\n"
+                }
+              ],
+              "methods": [
+                {
+                  "textRaw": "url.toString()",
+                  "type": "method",
+                  "name": "toString",
+                  "desc": "<p>The <code>toString()</code> method on the <code>URL</code> object returns the serialized URL. The\nvalue returned is equivalent to that of <code>url.href</code>.</p>\n",
+                  "signatures": [
+                    {
+                      "params": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "textRaw": "Class: URLSearchParams",
+              "type": "class",
+              "name": "URLSearchParams",
+              "desc": "<p>The <code>URLSearchParams</code> object provides read and write access to the query of a\n<code>URL</code>.</p>\n<pre><code class=\"lang-js\">const URL = require(&#39;url&#39;).URL;\nconst myURL = new URL(&#39;https://example.org/?abc=123&#39;);\nconsole.log(myURL.searchParams.get(&#39;abc&#39;));\n  // Prints 123\n\nmyURL.searchParams.append(&#39;abc&#39;, &#39;xyz&#39;);\nconsole.log(myURL.href);\n  // Prints https://example.org/?abc=123&amp;abc=xyz\n\nmyURL.searchParams.delete(&#39;abc&#39;);\nmyURL.searchParams.set(&#39;a&#39;, &#39;b&#39;);\nconsole.log(myURL.href);\n  // Prints https://example.org/?a=b\n</code></pre>\n",
+              "methods": [
+                {
+                  "textRaw": "Constructor: new URLSearchParams([init])",
+                  "name": "Constructor: new URLSearchParams([init])",
+                  "desc": "<ul>\n<li><code>init</code> {String} The URL query</li>\n</ul>\n",
+                  "type": "method",
+                  "signatures": [
+                    {
+                      "params": [
+                        {
+                          "textRaw": "`name` {String} ",
+                          "name": "name",
+                          "type": "String"
+                        },
+                        {
+                          "textRaw": "`value` {String} ",
+                          "name": "value",
+                          "type": "String"
+                        }
+                      ]
+                    },
+                    {
+                      "params": [
+                        {
+                          "name": "name"
+                        },
+                        {
+                          "name": "value"
+                        }
+                      ]
+                    },
+                    {
+                      "params": [
+                        {
+                          "name": "init",
+                          "optional": true
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "textRaw": "urlSearchParams.append(name, value)",
+                  "type": "method",
+                  "name": "append",
+                  "signatures": [
+                    {
+                      "params": [
+                        {
+                          "textRaw": "`name` {String} ",
+                          "name": "name",
+                          "type": "String"
+                        },
+                        {
+                          "textRaw": "`value` {String} ",
+                          "name": "value",
+                          "type": "String"
+                        }
+                      ]
+                    },
+                    {
+                      "params": [
+                        {
+                          "name": "name"
+                        },
+                        {
+                          "name": "value"
+                        }
+                      ]
+                    }
+                  ],
+                  "desc": "<p>Append a new name-value pair to the query string.</p>\n"
+                },
+                {
+                  "textRaw": "urlSearchParams.delete(name)",
+                  "type": "method",
+                  "name": "delete",
+                  "signatures": [
+                    {
+                      "params": [
+                        {
+                          "textRaw": "`name` {String} ",
+                          "name": "name",
+                          "type": "String"
+                        }
+                      ]
+                    },
+                    {
+                      "params": [
+                        {
+                          "name": "name"
+                        }
+                      ]
+                    }
+                  ],
+                  "desc": "<p>Remove all name-value pairs whose name is <code>name</code>.</p>\n"
+                },
+                {
+                  "textRaw": "urlSearchParams.entries()",
+                  "type": "method",
+                  "name": "entries",
+                  "signatures": [
+                    {
+                      "return": {
+                        "textRaw": "Returns: {Iterator} ",
+                        "name": "return",
+                        "type": "Iterator"
+                      },
+                      "params": []
+                    },
+                    {
+                      "params": []
+                    }
+                  ],
+                  "desc": "<p>Returns an ES6 Iterator over each of the name-value pairs in the query.\nEach item of the iterator is a JavaScript Array. The first item of the Array\nis the <code>name</code>, the second item of the Array is the <code>value</code>.</p>\n<p>Alias for <code>urlSearchParams\\[\\@\\@iterator\\]()</code>.</p>\n"
+                },
+                {
+                  "textRaw": "urlSearchParams.forEach(fn)",
+                  "type": "method",
+                  "name": "forEach",
+                  "signatures": [
+                    {
+                      "params": [
+                        {
+                          "textRaw": "`fn` {Function} Function invoked for each name-value pair in the query. ",
+                          "name": "fn",
+                          "type": "Function",
+                          "desc": "Function invoked for each name-value pair in the query."
+                        }
+                      ]
+                    },
+                    {
+                      "params": [
+                        {
+                          "name": "fn"
+                        }
+                      ]
+                    }
+                  ],
+                  "desc": "<p>Iterates over each name-value pair in the query and invokes the given function.</p>\n<pre><code class=\"lang-js\">const URL = require(&#39;url&#39;).URL;\nconst myURL = new URL(&#39;https://example.org/?a=b&amp;c=d&#39;);\nmyURL.searchParams.forEach((value, name) =&gt; {\n  console.log(name, value);\n});\n</code></pre>\n"
+                },
+                {
+                  "textRaw": "urlSearchParams.get(name)",
+                  "type": "method",
+                  "name": "get",
+                  "signatures": [
+                    {
+                      "return": {
+                        "textRaw": "Returns: {String} or `null` if there is no name-value pair with the given `name`. ",
+                        "name": "return",
+                        "type": "String",
+                        "desc": "or `null` if there is no name-value pair with the given `name`."
+                      },
+                      "params": [
+                        {
+                          "textRaw": "`name` {String} ",
+                          "name": "name",
+                          "type": "String"
+                        }
+                      ]
+                    },
+                    {
+                      "params": [
+                        {
+                          "name": "name"
+                        }
+                      ]
+                    }
+                  ],
+                  "desc": "<p>Returns the value of the first name-value pair whose name is <code>name</code>.</p>\n"
+                },
+                {
+                  "textRaw": "urlSearchParams.getAll(name)",
+                  "type": "method",
+                  "name": "getAll",
+                  "signatures": [
+                    {
+                      "return": {
+                        "textRaw": "Returns: {Array} ",
+                        "name": "return",
+                        "type": "Array"
+                      },
+                      "params": [
+                        {
+                          "textRaw": "`name` {String} ",
+                          "name": "name",
+                          "type": "String"
+                        }
+                      ]
+                    },
+                    {
+                      "params": [
+                        {
+                          "name": "name"
+                        }
+                      ]
+                    }
+                  ],
+                  "desc": "<p>Returns the values of all name-value pairs whose name is <code>name</code>.</p>\n"
+                },
+                {
+                  "textRaw": "urlSearchParams.has(name)",
+                  "type": "method",
+                  "name": "has",
+                  "signatures": [
+                    {
+                      "return": {
+                        "textRaw": "Returns: {Boolean} ",
+                        "name": "return",
+                        "type": "Boolean"
+                      },
+                      "params": [
+                        {
+                          "textRaw": "`name` {String} ",
+                          "name": "name",
+                          "type": "String"
+                        }
+                      ]
+                    },
+                    {
+                      "params": [
+                        {
+                          "name": "name"
+                        }
+                      ]
+                    }
+                  ],
+                  "desc": "<p>Returns <code>true</code> if there is at least one name-value pair whose name is <code>name</code>.</p>\n"
+                },
+                {
+                  "textRaw": "urlSearchParams.keys()",
+                  "type": "method",
+                  "name": "keys",
+                  "signatures": [
+                    {
+                      "return": {
+                        "textRaw": "Returns: {Iterator} ",
+                        "name": "return",
+                        "type": "Iterator"
+                      },
+                      "params": []
+                    },
+                    {
+                      "params": []
+                    }
+                  ],
+                  "desc": "<p>Returns an ES6 Iterator over the names of each name-value pair.</p>\n"
+                },
+                {
+                  "textRaw": "urlSearchParams.set(name, value)",
+                  "type": "method",
+                  "name": "set",
+                  "signatures": [
+                    {
+                      "params": [
+                        {
+                          "textRaw": "`name` {String} ",
+                          "name": "name",
+                          "type": "String"
+                        },
+                        {
+                          "textRaw": "`value` {String} ",
+                          "name": "value",
+                          "type": "String"
+                        }
+                      ]
+                    },
+                    {
+                      "params": [
+                        {
+                          "name": "name"
+                        },
+                        {
+                          "name": "value"
+                        }
+                      ]
+                    }
+                  ],
+                  "desc": "<p>Remove any existing name-value pairs whose name is <code>name</code> and append a new\nname-value pair.</p>\n"
+                },
+                {
+                  "textRaw": "urlSearchParams.toString()",
+                  "type": "method",
+                  "name": "toString",
+                  "signatures": [
+                    {
+                      "return": {
+                        "textRaw": "Returns: {String} ",
+                        "name": "return",
+                        "type": "String"
+                      },
+                      "params": []
+                    },
+                    {
+                      "params": []
+                    }
+                  ],
+                  "desc": "<p>Returns the search parameters serialized as a URL-encoded string.</p>\n"
+                },
+                {
+                  "textRaw": "urlSearchParams.values()",
+                  "type": "method",
+                  "name": "values",
+                  "signatures": [
+                    {
+                      "return": {
+                        "textRaw": "Returns: {Iterator} ",
+                        "name": "return",
+                        "type": "Iterator"
+                      },
+                      "params": []
+                    },
+                    {
+                      "params": []
+                    }
+                  ],
+                  "desc": "<p>Returns an ES6 Iterator over the values of each name-value pair.</p>\n"
+                },
+                {
+                  "textRaw": "urlSearchParams\\[\\@\\@iterator\\]()",
+                  "type": "method",
+                  "name": "urlSearchParams\\[\\@\\@iterator\\]",
+                  "signatures": [
+                    {
+                      "return": {
+                        "textRaw": "Returns: {Iterator} ",
+                        "name": "return",
+                        "type": "Iterator"
+                      },
+                      "params": []
+                    },
+                    {
+                      "params": []
+                    }
+                  ],
+                  "desc": "<p>Returns an ES6 Iterator over each of the name-value pairs in the query string.\nEach item of the iterator is a JavaScript Array. The first item of the Array\nis the <code>name</code>, the second item of the Array is the <code>value</code>.</p>\n<p>Alias for <code>urlSearchParams.entries()</code>.</p>\n"
+                }
+              ]
+            }
+          ],
+          "methods": [
+            {
+              "textRaw": "require('url').domainToAscii(domain)",
+              "type": "method",
+              "name": "domainToAscii",
+              "signatures": [
+                {
+                  "return": {
+                    "textRaw": "Returns: {String} ",
+                    "name": "return",
+                    "type": "String"
+                  },
+                  "params": [
+                    {
+                      "textRaw": "`domain` {String} ",
+                      "name": "domain",
+                      "type": "String"
+                    }
+                  ]
+                },
+                {
+                  "params": [
+                    {
+                      "name": "'url').domainToAscii(domain"
+                    }
+                  ]
+                }
+              ],
+              "desc": "<p>Returns the <a href=\"https://tools.ietf.org/html/rfc5891#section-4.4\">Punycode</a> ASCII serialization of the <code>domain</code>.</p>\n<p><em>Note</em>: The <code>require(&#39;url&#39;).domainToAscii()</code> method is introduced as part of\nthe new <code>URL</code> implementation but is not part of the WHATWG URL standard.</p>\n"
+            },
+            {
+              "textRaw": "require('url').domainToUnicode(domain)",
+              "type": "method",
+              "name": "domainToUnicode",
+              "signatures": [
+                {
+                  "return": {
+                    "textRaw": "Returns: {String} ",
+                    "name": "return",
+                    "type": "String"
+                  },
+                  "params": [
+                    {
+                      "textRaw": "`domain` {String} ",
+                      "name": "domain",
+                      "type": "String"
+                    }
+                  ]
+                },
+                {
+                  "params": [
+                    {
+                      "name": "'url').domainToUnicode(domain"
+                    }
+                  ]
+                }
+              ],
+              "desc": "<p>Returns the Unicode serialization of the <code>domain</code>.</p>\n<p><em>Note</em>: The <code>require(&#39;url&#39;).domainToUnicode()</code> API is introduced as part of the\nthe new <code>URL</code> implementation but is not part of the WHATWG URL standard.</p>\n<p><a id=\"whatwg-percent-encoding\"></a></p>\n"
+            }
+          ],
+          "modules": [
+            {
+              "textRaw": "Percent-Encoding in the WHATWG URL Standard",
+              "name": "percent-encoding_in_the_whatwg_url_standard",
+              "desc": "<p>URLs are permitted to only contain a certain range of characters. Any character\nfalling outside of that range must be encoded. How such characters are encoded,\nand which characters to encode depends entirely on where the character is\nlocated within the structure of the URL. The WHATWG URL Standard uses a more\nselective and fine grained approach to selecting encoded characters than that\nused by the older <a href=\"#url_url_parse_urlstring_parsequerystring_slashesdenotehost\"><code>url.parse()</code></a> and <a href=\"#url_url_format_urlobject\"><code>url.format()</code></a> methods.</p>\n<p>The WHATWG algorithm defines three &quot;encoding sets&quot; that describe ranges of\ncharacters that must be percent-encoded:</p>\n<ul>\n<li><p>The <em>simple encode set</em> includes code points in range U+0000 to U+001F\n(inclusive) and all code points greater than U+007E.</p>\n</li>\n<li><p>The <em>default encode set</em> includes the <em>simple encode set</em> and code points\nU+0020, U+0022, U+0023, U+003C, U+003E, U+003F, U+0060, U+007B, and U+007D.</p>\n</li>\n<li><p>The <em>userinfo encode set</em> includes the <em>default encode set</em> and code points\nU+002F, U+003A, U+003B, U+003D, U+0040, U+005B, U+005C, U+005D, U+005E, and\nU+007C.</p>\n</li>\n</ul>\n<p>The <em>simple encode set</em> is used primary for URL fragments and certain specific\nconditions for the path. The <em>userinfo encode set</em> is used specifically for\nusername and passwords encoded within the URL. The <em>default encode set</em> is used\nfor all other cases.</p>\n<p>When non-ASCII characters appear within a hostname, the hostname is encoded\nusing the <a href=\"https://tools.ietf.org/html/rfc5891#section-4.4\">Punycode</a> algorithm. Note, however, that a hostname <em>may</em> contain\n<em>both</em> Punycode encoded and percent-encoded characters. For example:</p>\n<pre><code class=\"lang-js\">const URL = require(&#39;url&#39;).URL;\nconst myURL = new URL(&#39;https://%CF%80.com/foo&#39;);\nconsole.log(myURL.href);\n  // Prints https://xn--1xa.com/foo\nconsole.log(myURL.origin);\n  // Prints https://π.com\n</code></pre>\n",
+              "type": "module",
+              "displayName": "Percent-Encoding in the WHATWG URL Standard"
+            }
+          ],
+          "type": "module",
+          "displayName": "The WHATWG URL API"
+        }
+      ],
+      "methods": [
+        {
+          "textRaw": "url.format(urlObject)",
+          "type": "method",
+          "name": "format",
+          "meta": {
+            "added": [
+              "v0.1.25"
+            ]
+          },
+          "signatures": [
+            {
+              "params": [
+                {
+                  "textRaw": "`urlObject` {Object | String} A URL object (as returned by `url.parse()` or constructed otherwise). If a string, it is converted to an object by passing it to `url.parse()`. ",
+                  "name": "urlObject",
+                  "type": "Object | String",
+                  "desc": "A URL object (as returned by `url.parse()` or constructed otherwise). If a string, it is converted to an object by passing it to `url.parse()`."
+                }
+              ]
+            },
+            {
+              "params": [
+                {
+                  "name": "urlObject"
+                }
+              ]
+            }
+          ],
+          "desc": "<p>The <code>url.format()</code> method returns a formatted URL string derived from\n<code>urlObject</code>.</p>\n<p>If <code>urlObject</code> is not an object or a string, <code>url.parse()</code> will throw a\n<a href=\"errors.html#errors_class_typeerror\"><code>TypeError</code></a>.</p>\n<p>The formatting process operates as follows:</p>\n<ul>\n<li>A new empty string <code>result</code> is created.</li>\n<li>If <code>urlObject.protocol</code> is a string, it is appended as-is to <code>result</code>.</li>\n<li>Otherwise, if <code>urlObject.protocol</code> is not <code>undefined</code> and is not a string, an\n<a href=\"errors.html#errors_class_error\"><code>Error</code></a> is thrown.</li>\n<li>For all string values of <code>urlObject.protocol</code> that <em>do not end</em> with an ASCII\ncolon (<code>:</code>) character, the literal string <code>:</code> will be appended to <code>result</code>.</li>\n<li>If either of the following conditions is true, then the literal string <code>//</code>\nwill be appended to <code>result</code>:<ul>\n<li><code>urlObject.slashes</code> property is true;</li>\n<li><code>urlObject.protocol</code> begins with <code>http</code>, <code>https</code>, <code>ftp</code>, <code>gopher</code>, or\n<code>file</code>;</li>\n</ul>\n</li>\n<li>If the value of the <code>urlObject.auth</code> property is truthy, and either\n<code>urlObject.host</code> or <code>urlObject.hostname</code> are not <code>undefined</code>, the value of\n<code>urlObject.auth</code> will be coerced into a string and appended to <code>result</code>\n followed by the literal string <code>@</code>.</li>\n<li>If the <code>urlObject.host</code> property is <code>undefined</code> then:<ul>\n<li>If the <code>urlObject.hostname</code> is a string, it is appended to <code>result</code>.</li>\n<li>Otherwise, if <code>urlObject.hostname</code> is not <code>undefined</code> and is not a string,\nan <a href=\"errors.html#errors_class_error\"><code>Error</code></a> is thrown.</li>\n<li>If the <code>urlObject.port</code> property value is truthy, and <code>urlObject.hostname</code>\nis not <code>undefined</code>:<ul>\n<li>The literal string <code>:</code> is appended to <code>result</code>, and</li>\n<li>The value of <code>urlObject.port</code> is coerced to a string and appended to\n<code>result</code>.</li>\n</ul>\n</li>\n</ul>\n</li>\n<li>Otherwise, if the <code>urlObject.host</code> property value is truthy, the value of\n<code>urlObject.host</code> is coerced to a string and appended to <code>result</code>.</li>\n<li>If the <code>urlObject.pathname</code> property is a string that is not an empty string:<ul>\n<li>If the <code>urlObject.pathname</code> <em>does not start</em> with an ASCII forward slash\n(<code>/</code>), then the literal string &#39;/&#39; is appended to <code>result</code>.</li>\n<li>The value of <code>urlObject.pathname</code> is appended to <code>result</code>.</li>\n</ul>\n</li>\n<li>Otherwise, if <code>urlObject.pathname</code> is not <code>undefined</code> and is not a string, an\n<a href=\"errors.html#errors_class_error\"><code>Error</code></a> is thrown.</li>\n<li>If the <code>urlObject.search</code> property is <code>undefined</code> and if the <code>urlObject.query</code>\nproperty is an <code>Object</code>, the literal string <code>?</code> is appended to <code>result</code>\nfollowed by the output of calling the <a href=\"querystring.html\"><code>querystring</code></a> module&#39;s <code>stringify()</code>\nmethod passing the value of <code>urlObject.query</code>.</li>\n<li>Otherwise, if <code>urlObject.search</code> is a string:<ul>\n<li>If the value of <code>urlObject.search</code> <em>does not start</em> with the ASCII question\nmark (<code>?</code>) character, the literal string <code>?</code> is appended to <code>result</code>.</li>\n<li>The value of <code>urlObject.search</code> is appended to <code>result</code>.</li>\n</ul>\n</li>\n<li>Otherwise, if <code>urlObject.search</code> is not <code>undefined</code> and is not a string, an\n<a href=\"errors.html#errors_class_error\"><code>Error</code></a> is thrown.</li>\n<li>If the <code>urlObject.hash</code> property is a string:<ul>\n<li>If the value of <code>urlObject.hash</code> <em>does not start</em> with the ASCII hash (<code>#</code>)\ncharacter, the literal string <code>#</code> is appended to <code>result</code>.</li>\n<li>The value of <code>urlObject.hash</code> is appended to <code>result</code>.</li>\n</ul>\n</li>\n<li>Otherwise, if the <code>urlObject.hash</code> property is not <code>undefined</code> and is not a\nstring, an <a href=\"errors.html#errors_class_error\"><code>Error</code></a> is thrown.</li>\n<li><code>result</code> is returned.</li>\n</ul>\n"
+        },
+        {
+          "textRaw": "url.parse(urlString[, parseQueryString[, slashesDenoteHost]])",
+          "type": "method",
+          "name": "parse",
+          "meta": {
+            "added": [
+              "v0.1.25"
+            ]
+          },
+          "signatures": [
+            {
+              "params": [
+                {
+                  "textRaw": "`urlString` {String} The URL string to parse. ",
+                  "name": "urlString",
+                  "type": "String",
+                  "desc": "The URL string to parse."
+                },
+                {
+                  "textRaw": "`parseQueryString` {Boolean} If `true`, the `query` property will always be set to an object returned by the [`querystring`][] module's `parse()` method. If `false`, the `query` property on the returned URL object will be an unparsed, undecoded string. Defaults to `false`. ",
+                  "name": "parseQueryString",
+                  "type": "Boolean",
+                  "desc": "If `true`, the `query` property will always be set to an object returned by the [`querystring`][] module's `parse()` method. If `false`, the `query` property on the returned URL object will be an unparsed, undecoded string. Defaults to `false`.",
+                  "optional": true
+                },
+                {
+                  "textRaw": "`slashesDenoteHost` {Boolean} If `true`, the first token after the literal string `//` and preceding the next `/` will be interpreted as the `host`. For instance, given `//foo/bar`, the result would be `{host: 'foo', pathname: '/bar'}` rather than `{pathname: '//foo/bar'}`. Defaults to `false`. ",
+                  "name": "slashesDenoteHost",
+                  "type": "Boolean",
+                  "desc": "If `true`, the first token after the literal string `//` and preceding the next `/` will be interpreted as the `host`. For instance, given `//foo/bar`, the result would be `{host: 'foo', pathname: '/bar'}` rather than `{pathname: '//foo/bar'}`. Defaults to `false`.",
+                  "optional": true
+                }
+              ]
+            },
+            {
+              "params": [
+                {
+                  "name": "urlString"
+                },
+                {
+                  "name": "parseQueryString",
+                  "optional": true
+                },
+                {
+                  "name": "slashesDenoteHost",
+                  "optional": true
+                }
+              ]
+            }
+          ],
+          "desc": "<p>The <code>url.parse()</code> method takes a URL string, parses it, and returns a URL\nobject.</p>\n"
+        },
+        {
+          "textRaw": "url.resolve(from, to)",
+          "type": "method",
+          "name": "resolve",
+          "meta": {
+            "added": [
+              "v0.1.25"
+            ]
+          },
+          "signatures": [
+            {
+              "params": [
+                {
+                  "textRaw": "`from` {String} The Base URL being resolved against. ",
+                  "name": "from",
+                  "type": "String",
+                  "desc": "The Base URL being resolved against."
+                },
+                {
+                  "textRaw": "`to` {String} The HREF URL being resolved. ",
+                  "name": "to",
+                  "type": "String",
+                  "desc": "The HREF URL being resolved."
+                }
+              ]
+            },
+            {
+              "params": [
+                {
+                  "name": "from"
+                },
+                {
+                  "name": "to"
+                }
+              ]
+            }
+          ],
+          "desc": "<p>The <code>url.resolve()</code> method resolves a target URL relative to a base URL in a\nmanner similar to that of a Web browser resolving an anchor tag HREF.</p>\n<p>For example:</p>\n<pre><code class=\"lang-js\">url.resolve(&#39;/one/two/three&#39;, &#39;four&#39;)         // &#39;/one/two/four&#39;\nurl.resolve(&#39;http://example.com/&#39;, &#39;/one&#39;)    // &#39;http://example.com/one&#39;\nurl.resolve(&#39;http://example.com/one&#39;, &#39;/two&#39;) // &#39;http://example.com/two&#39;\n</code></pre>\n"
+        }
+      ],
+      "type": "module",
+      "displayName": "URL"
+    }
+  ]
+}
