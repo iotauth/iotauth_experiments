@@ -100,12 +100,12 @@ Later, open 16_setup.txt and cut second part and save it as 16_publish.txt
 
 ******** For Proposed ********
 
-****** Proposed ******
+****** Individual ******
 *** Updated ***
 node server.js configs/net2/server.config 2> 16_setup.txt
 tshark -i lo0 -w 16_setup.pcap
-server> skReqSub 1
-./repeat_client.py 16 keyId
+server> skReqPub 1
+./repeat_client.py 16 keyId 22100
 
 CTRL+C
 tshark -i lo0 -w 16_publish.pcap
@@ -116,15 +116,14 @@ Later, open 16_setup.txt and cut second part and save it as 16_publish.txt
 *** Permanent ***
 node server.js configs/net2/rcServer.config 2> 16_setup.txt
 tshark -i lo0 -w 16_setup.pcap
-server> skReqSub 1
+server> skReqPub 1
 ./repeat_client.py 16 keyId 22300
-server> skReqSub 1
 
 CTRL+C
 tshark -i lo0 -w 16_publish.pcap
 server> sendFile
 
-****** Broker ******
+****** MessageBroker ******
 *** Updated ***
 node client.js configs/net1/client.config 2> 16_setup.txt
 tshark -i lo0 -w 16_setup.pcap
