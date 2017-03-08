@@ -7,6 +7,7 @@ This is a repository for experiments of SST (Secure Swarm Toolkit).
 - **entity**: Directory for entities ("things" in the IoT) used for experiments and data for those entities.
 - **experiments**: Directory for experimental setup and results.
 - **lib**: Directory for external libraries. Currently, we have Node.js and its dependent libraries (e.g., OpenSSL).
+- **network_sim**: Directory for source codes used for network simulation, especially for experiments of DDoS attacks.
 
 # Contributors
 ---
