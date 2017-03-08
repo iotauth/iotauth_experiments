@@ -1,0 +1,24 @@
+# Overview
+---
+This is a repository for experiments of SST (Secure Swarm Toolkit). 
+
+# Directory structure
+---
+- **entity**: Directory for entities ("things" in the IoT) used for experiments and data for those entities.
+- **experiments**: Directory for experimental setup and results.
+- **lib**: Directory for external libraries. Currently, we have Node.js and its dependent libraries (e.g., OpenSSL).
+
+# Contributors
+---
+- [Hokeun Kim](https://people.eecs.berkeley.edu/~hokeunkim/)
+- [Eunsuk Kang](https://eskang.github.io/)
+
+# External libraries
+---
+- **Node.js-v7.6.0**: For experiments for entities. We modified OpenSSL library included in Node.js to log cryptographic operations.
+
+# Disclaimer
+---
+This repository includes modified source code of an open-source library. Users must use the provided source codes with caution at their own risk.
+
+*Last updated on March 7, 2017*
