@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+# script for repeatedly executing TLS entities for experiments.
+
 import os
 import sys
 import time
