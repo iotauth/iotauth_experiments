@@ -134,6 +134,8 @@ Later, open 16_setup.txt and cut second part and save it as 16_publish.txt
 			CTRL+C
 			tshark -i lo0 -w 16_publish.pcap
 			server> sendFile
+			
+	Make sure you check packets for **server**, because in this case **server is a publisher**!
 
 * MessageBroker (MQTT)
 
@@ -148,12 +150,11 @@ Later, open 16_setup.txt and cut second part and save it as 16_publish.txt
 			tshark -i lo0 -w 16_publish.pcap
 			client> spubFile
 
-	* NO NEED to run server (subscriber) for experiments, but to check if the server really receives the messages (sanity check)
-	* Run the server registered with Auth101
-	
-			node server.js configs/net1/server.config
-			server> skReqSub
-			server> mqtt
+		* NO NEED to run server (subscriber) for experiments, but to check if the server really receives the messages (sanity check), run the server registered with Auth101 using following commands
+
+				node server.js configs/net1/server.config
+				server> skReqSub
+				server> mqtt
 
 	* Permanent distribution key
 	
@@ -164,7 +165,7 @@ Later, open 16_setup.txt and cut second part and save it as 16_publish.txt
 
 * Broadcast (UDP)
 
-	* Updated
+	* Updated distribution key
 
 			node client.js configs/net1/udpClient.config 2> 16_setup.txt
 			tshark -i lo0 -w 16_setup.pcap
@@ -181,7 +182,7 @@ Later, open 16_setup.txt and cut second part and save it as 16_publish.txt
 				server> skReqSub
 				server> bcSub
 
-	* Permanent
+	* Permanent distribution key
 
 			node client.js configs/net1/rcUdpClient.config 2> 16_setup.txt
 			tshark -i lo0 -w 16_setup.pcap
