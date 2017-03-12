@@ -82,7 +82,7 @@ function generateSetupScript(devList) {
         
     for (var i = 0; i < devList.length; i++) {
         var devName = devList[i].name;
-        var containerName = devName;
+        var containerName = getContainerName(devName);
         var bridgeName = getBridgeName(devName);
         var tapName = getTapName(devName);
         // for setup script
@@ -136,10 +136,10 @@ function generateSetupScript(devList) {
     teardownScript = teardownScript.replace('SET_TAP_NONPERSISTENT_COMMANDS', setTapNonPersistentCommands);
     fs.writeFileSync(teardownScriptFileName, teardownScript, 'utf-8');
 }
-
+// container name, [ {dev name, addr}, {dev name, addr} ]
 var devList = [
-    {name: 'auth101', addr: '10.0.0.1'},
-    {name: 'auth102', addr: '10.0.0.2'},
+    {name: 'auth101', addr: '10.0.0.1', wifi: '10.0.0.5'},
+    {name: 'auth102', addr: '10.0.0.2', wifi: '10,0,0,6'},
     {name: 'net1.client', addr: '10.0.0.3'},
     {name: 'net2.server', addr: '10.0.0.4'}
 ];
