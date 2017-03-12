@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# run this after using 'chroot /'
+
+# destroy containers
+DESTROY_CONTAINER_COMMANDS
+
+# take bridges down
+BRIDGE_DOWN_COMMANDS
+
+# remove taps from bridges
+REMOVE_BRIDGE_FROM_TAP_COMMANDS
+
+# delete bridges
+DELETE_BRIDGE_COMMANDS
+
+# see if bridges are deleted correctly
+echo "Bridges that are not deleted yet (should be empty by now):"
+brctl show
+
+# bring TAP devices down
+TAP_DOWN_COMMANDS
+
+# set taps nonpersistent
+SET_TAP_NONPERSISTENT_COMMANDS
+

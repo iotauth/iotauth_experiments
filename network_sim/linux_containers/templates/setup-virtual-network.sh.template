@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# run this after using 'chroot /'
+
+# add bridges
+ADD_BRIDGE_COMMANDS
+# create TAP devices
+CREATE_TAP_COMMANDS
+# set TAP devices persistent, assign IP addresses
+SET_TAP_PERSISTENT_COMMANDS
+# add bridge interfaces to TAP device, and bring bridges up
+ADD_BRIDGE_TO_TAP_COMMANDS
+
+# see if bridges and TAP devices are configured correctly
+brctl show
+
+# create containers using lxc-create (lxc: linux container)
+# if you use -t none, it may crash (use -t for template, -d for distribution, -r for release, -a for architecture)
+# do this in $NS3/src/tap-bridge/examples
+CREATE_CONTAINER_COMMANDS
+
+# see if containers are created correctly
+lxc-ls
+
