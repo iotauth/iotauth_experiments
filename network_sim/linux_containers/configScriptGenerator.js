@@ -39,16 +39,60 @@ function getContainerName(devName) {
     return devName;
 }
 
+function addNetworkConfig(networkConfigs, bridgeName, addr) {
+    networkConfigs += 'lxc.network.type = veth\n';
+    networkConfigs += 'lxc.network.link = ' + bridgeName + '\n';
+    networkConfigs += 'lxc.network.ipv4 = ' + addr + '/24\n';
+    networkConfigs += 'lxc.network.flags = up\n';
+    return networkConfigs;
+}
+
 function generateLxcConfigs(devList) {
     var templateStr = fs.readFileSync('templates/lxc.conf.template', 'utf-8');
     for (var i = 0; i < devList.length; i++) {
         var dev = devList[i];
         var devName = dev.name;
-        var lxcConfStr = templateStr.replace(new RegExp('BRIDGE_NAME', 'g'), getBridgeName(devName));
+        var bridgeName = getBridgeName(devName);
+        var lxcConfStr = templateStr.replace(new RegExp('BRIDGE_NAME', 'g'), bridgeName);
         lxcConfStr = lxcConfStr.replace(new RegExp('CONTAINER_NAME', 'g'), getContainerName(devName));
-        lxcConfStr = lxcConfStr.replace(new RegExp('DEV_ADDR', 'g'), dev.addr);
+        
+        var networkConfigs = '';
+        networkConfigs = addNetworkConfig(networkConfigs, bridgeName, dev.addr);
+        if (dev.wifi) {
+            networkConfigs += '\n';
+            networkConfigs = addNetworkConfig(networkConfigs, bridgeName + 'wifi', dev.wifi);
+        }
+
+        lxcConfStr = lxcConfStr.replace('NET_CONF', networkConfigs);
         fs.writeFileSync(getLxcConfFileName(devName), lxcConfStr, 'utf-8');
     }
+}
+
+function addTapBridgeCommands(commands, bridgeName, tapName) {
+    // for setup script
+    commands.addBridge += 'brctl addbr ' + bridgeName + '\n';
+    commands.createTap += 'tunctl -t ' + tapName + '\n';
+    commands.setTapPersistent += 'ifconfig ' + tapName + ' 0.0.0.0 promisc up\n';
+    commands.addBridgeToTap += 'brctl addif ' + bridgeName + ' ' + tapName + '\nifconfig ' + bridgeName + ' up\n';
+    // for teardown script
+    commands.bridgeDown += 'ifconfig ' + bridgeName + ' down\n';
+    commands.removeBridgeFromTap += 'brctl delif ' + bridgeName + ' ' + tapName + '\n';
+    commands.deleteBridge += 'brctl delbr ' + bridgeName + '\n';
+    commands.tapDown += 'ifconfig ' + tapName + ' down\n';
+    commands.setTapNonPersistent += 'tunctl -d ' + tapName + '\n';
+    return commands;
+}
+
+function addContainerCommands(commands, containerName, lxcConfFileName) {
+    // for setup script
+    commands.createContainer += 'lxc-create -n ' + containerName + ' -f ' + lxcConfFileName + ' -t download -- -d ubuntu -r xenial -a amd64\n';
+    // for start script
+    commands.startContainer += 'lxc-start -n ' + containerName + ' -d\n';
+    // for stop script
+    commands.stopContainer += 'lxc-stop -n ' + containerName + '\n';
+    // for teardown script
+    commands.destroyContainer += 'lxc-destroy -n ' + containerName + '\n';
+    return commands;
 }
 
 function generateSetupScript(devList) {
@@ -58,90 +102,79 @@ function generateSetupScript(devList) {
     var stopScriptFileName = 'stop-virtual-network.sh';
     var teardownScriptFileName = 'teardown-virtual-network.sh';
     
-    // for setup script
-    var addBridgeCommands = '';
-    var createTapCommands = '';
-    var setTapPersistentCommands = '';
-    var addBridgeToTapCommands = '';
-    var createContainerCommands = '';
-    
-    // for start script
-    var startContainerCommands = '';
-    
-    // for stop script
-    var stopContainerCommands = '';
-    
-    // for teardown script
-    var destroyContainerCommands = '';
-    var bridgeDownCommands = '';
-    var removeBridgeFromTapCommands = '';
-    var deleteBridgeCommands = '';
-    var tapDownCommands = '';
-    var setTapNonPersistentCommands = '';
+    var commands = {
+        // for setup script
+        addBridge: '',
+        createTap: '',
+        setTapPersistent: '',
+        addBridgeToTap: '',
+        createContainer: '',
+        
+        // for start script
+        startContainer: '',
+        
+        // for stop script
+        stopContainer: '',
+        
+        // for teardown script
+        destroyContainer: '',
+        bridgeDown: '',
+        removeBridgeFromTap: '',
+        deleteBridge: '',
+        tapDown: '',
+        setTapNonPersistent: ''
+    };
     
         
     for (var i = 0; i < devList.length; i++) {
-        var devName = devList[i].name;
+        var dev = devList[i];
+        var devName = dev.name;
         var containerName = getContainerName(devName);
         var bridgeName = getBridgeName(devName);
         var tapName = getTapName(devName);
-        // for setup script
-        addBridgeCommands += 'brctl addbr ' + bridgeName + '\n';
-        createTapCommands += 'tunctl -t ' + tapName + '\n';
-        setTapPersistentCommands += 'ifconfig ' + tapName + ' 0.0.0.0 promisc up\n';
-        addBridgeToTapCommands += 'brctl addif ' + bridgeName + ' ' + tapName + '\nifconfig ' + bridgeName + ' up\n';
-        createContainerCommands += 'lxc-create -n ' + containerName + ' -f ' + getLxcConfFileName(devName) + ' -t download -- -d ubuntu -r xenial -a amd64\n';
-        
-        // for start script
-        startContainerCommands += 'lxc-start -n ' + containerName + ' -d\n';
-        
-        // for stop script
-        stopContainerCommands += 'lxc-stop -n ' + containerName + '\n';
-        
-        // for teardown script
-        destroyContainerCommands += 'lxc-destroy -n ' + containerName + '\n';
-        bridgeDownCommands += 'ifconfig ' + bridgeName + ' down\n';
-        removeBridgeFromTapCommands += 'brctl delif ' + bridgeName + ' ' + tapName + '\n';
-        deleteBridgeCommands += 'brctl delbr ' + bridgeName + '\n';
-        tapDownCommands += 'ifconfig ' + tapName + ' down\n';
-        setTapNonPersistentCommands += 'tunctl -d ' + tapName + '\n';
+        var lxcConfFileName = getLxcConfFileName(devName);
+        commands = addTapBridgeCommands(commands, bridgeName, tapName);
+        if (dev.wifi) {
+            commands = addTapBridgeCommands(commands, bridgeName + 'wifi', tapName + 'wifi');
+        }
+        commands = addContainerCommands(commands, containerName, lxcConfFileName);
     }
     
     // generating setup script
     var setupScript = fs.readFileSync('templates/' + setupScriptFileName + '.template', 'utf-8');
-    setupScript = setupScript.replace('ADD_BRIDGE_COMMANDS', addBridgeCommands);
-    setupScript = setupScript.replace('CREATE_TAP_COMMANDS', createTapCommands);
-    setupScript = setupScript.replace('ADD_BRIDGE_TO_TAP_COMMANDS', addBridgeToTapCommands);
-    setupScript = setupScript.replace('SET_TAP_PERSISTENT_COMMANDS', setTapPersistentCommands);
-    setupScript = setupScript.replace('CREATE_CONTAINER_COMMANDS', createContainerCommands);
+    setupScript = setupScript.replace('ADD_BRIDGE_COMMANDS', commands.addBridge);
+    setupScript = setupScript.replace('CREATE_TAP_COMMANDS', commands.createTap);
+    setupScript = setupScript.replace('ADD_BRIDGE_TO_TAP_COMMANDS', commands.addBridgeToTap);
+    setupScript = setupScript.replace('SET_TAP_PERSISTENT_COMMANDS', commands.setTapPersistent);
+    setupScript = setupScript.replace('CREATE_CONTAINER_COMMANDS', commands.createContainer);
     fs.writeFileSync(setupScriptFileName, setupScript, 'utf-8');
     
     // generating start script
     var startScript = fs.readFileSync('templates/' + startScriptFileName + '.template', 'utf-8');
-    startScript = startScript.replace('START_CONTAINER_COMMANDS', startContainerCommands);
+    startScript = startScript.replace('START_CONTAINER_COMMANDS', commands.startContainer);
     fs.writeFileSync(startScriptFileName, startScript, 'utf-8');
     
     // generating stop script
     var stopScript = fs.readFileSync('templates/' + stopScriptFileName + '.template', 'utf-8');
-    stopScript = stopScript.replace('STOP_CONTAINER_COMMANDS', stopContainerCommands);
+    stopScript = stopScript.replace('STOP_CONTAINER_COMMANDS', commands.stopContainer);
     fs.writeFileSync(stopScriptFileName, stopScript, 'utf-8');
     
     // generating teardown script
     var teardownScript = fs.readFileSync('templates/' + teardownScriptFileName + '.template', 'utf-8');
-    teardownScript = teardownScript.replace('DESTROY_CONTAINER_COMMANDS', destroyContainerCommands);
-    teardownScript = teardownScript.replace('BRIDGE_DOWN_COMMANDS', bridgeDownCommands);
-    teardownScript = teardownScript.replace('REMOVE_BRIDGE_FROM_TAP_COMMANDS', removeBridgeFromTapCommands);
-    teardownScript = teardownScript.replace('DELETE_BRIDGE_COMMANDS', deleteBridgeCommands);
-    teardownScript = teardownScript.replace('TAP_DOWN_COMMANDS', tapDownCommands);
-    teardownScript = teardownScript.replace('SET_TAP_NONPERSISTENT_COMMANDS', setTapNonPersistentCommands);
+    teardownScript = teardownScript.replace('DESTROY_CONTAINER_COMMANDS', commands.destroyContainer);
+    teardownScript = teardownScript.replace('BRIDGE_DOWN_COMMANDS', commands.bridgeDown);
+    teardownScript = teardownScript.replace('REMOVE_BRIDGE_FROM_TAP_COMMANDS', commands.removeBridgeFromTap);
+    teardownScript = teardownScript.replace('DELETE_BRIDGE_COMMANDS', commands.deleteBridge);
+    teardownScript = teardownScript.replace('TAP_DOWN_COMMANDS', commands.tapDown);
+    teardownScript = teardownScript.replace('SET_TAP_NONPERSISTENT_COMMANDS', commands.setTapNonPersistent);
     fs.writeFileSync(teardownScriptFileName, teardownScript, 'utf-8');
 }
 // container name, [ {dev name, addr}, {dev name, addr} ]
 var devList = [
-    {name: 'auth101', addr: '10.0.0.1', wifi: '10.0.0.5'},
-    {name: 'auth102', addr: '10.0.0.2', wifi: '10,0,0,6'},
-    {name: 'net1.client', addr: '10.0.0.3'},
-    {name: 'net2.server', addr: '10.0.0.4'}
+    {name: 'auth101', addr: '10.0.0.1', wifi: '10.0.1.1'},
+    {name: 'auth102', addr: '10.0.0.2', wifi: '10.0.1.2'},
+    {name: 'net1.client', addr: '10.0.1.3'},
+    {name: 'net2.server', addr: '10.0.1.4'}
 ];
 
 generateLxcConfigs(devList);
