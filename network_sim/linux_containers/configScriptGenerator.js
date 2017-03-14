@@ -170,6 +170,26 @@ function generateSetupScript(devList) {
     fs.writeFileSync(teardownScriptFileName, teardownScript, 'utf-8');
 }
 // container name, [ {dev name, addr}, {dev name, addr} ]
+function generateAddressMapping(devList) {
+    var assignmentString = '';
+    for (var i = 0; i < devList.length; i++) {
+        var dev = devList[i];
+        var devName = dev.name;
+        if (devName.startsWith('auth')) {
+            devName = devName.replace('auth', 'Auth');
+        }
+        assignmentString += devName + '\t' + dev.addr;
+        if (dev.wifi) {
+            assignmentString += '\t' + dev.wifi;
+        }
+        assignmentString += '\n';
+    }
+    var outputFileName = 'host-port-assignments.txt';
+    var outputFileString = fs.readFileSync('templates/' + outputFileName + '.template', 'utf-8');
+    outputFileString = outputFileString.replace('HOST_PORT_ASSIGNMENTS', assignmentString);
+    fs.writeFileSync(outputFileName, outputFileString, 'utf-8');
+}
+
 var devList = [
     {name: 'auth101', addr: '10.0.0.1', wifi: '10.0.1.1'},
     {name: 'auth102', addr: '10.0.0.2', wifi: '10.0.1.2'},
@@ -179,4 +199,5 @@ var devList = [
 
 generateLxcConfigs(devList);
 generateSetupScript(devList);
+generateAddressMapping(devList);
 
