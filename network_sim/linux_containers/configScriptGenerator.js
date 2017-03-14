@@ -36,7 +36,8 @@ function getTapName(devName) {
 }
 
 function getContainerName(devName) {
-    return devName;
+    // net1.client -> net1_client
+    return devName.replace('.', '_');
 }
 
 function addNetworkConfig(networkConfigs, bridgeName, addr) {
