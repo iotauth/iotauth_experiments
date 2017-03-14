@@ -40,6 +40,10 @@ function getContainerName(devName) {
     return devName.replace('.', '_');
 }
 
+function capitalizeFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 function addNetworkConfig(networkConfigs, bridgeName, addr) {
     networkConfigs += 'lxc.network.type = veth\n';
     networkConfigs += 'lxc.network.link = ' + bridgeName + '\n';
@@ -176,7 +180,7 @@ function generateAddressMapping(devList) {
     for (var i = 0; i < devList.length; i++) {
         var dev = devList[i];
         var devName = dev.name;
-        if (devName.startsWith('auth')) {
+        if (devName.toLowerCase().startsWith('auth')) {
             devName = devName.replace('auth', 'Auth');
         }
         assignmentString += devName + '\t' + dev.addr;
@@ -191,14 +195,47 @@ function generateAddressMapping(devList) {
     fs.writeFileSync(outputFileName, outputFileString, 'utf-8');
 }
 
+function generateAuthStartStopScripts(devList) {
+    var startAuthCommands = '';
+    var stopAuthCommands = '';
+    for (var i = 0; i < devList.length; i++) {
+        var dev = devList[i];
+        var devName = dev.name;
+        if (!devName.toLowerCase().startsWith('auth')) {
+            continue;
+        }
+        var containerName = getContainerName(devName);
+        var dirName = devName;
+        // for start commands
+        startAuthCommands += '\nmkdir -p ' + dirName + '\n';
+        startAuthCommands += 'cd ' + dirName + '\n'
+        startAuthCommands += 'lxc-start -n ' + containerName + '\n'
+        startAuthCommands += 'printf "y\\nasdf\\n" | nohup lxc-attach -n ' + containerName + ' -- java -jar $AUTH/target/auth-server-jar-with-dependencies.jar -p $AUTH/../properties/example' + capitalizeFirstLetter(devName) + '.properties -b $AUTH/ &\n';
+        startAuthCommands += 'cd ..\n';
+        // for stop commands
+        stopAuthCommands += '\nlxc-stop -n ' + containerName + '\n';
+    }
+    var startScriptFileName = 'start-auths.sh';
+    var stopScriptFileName = 'stop-auths.sh';
+    var startScriptString = fs.readFileSync('templates/' + startScriptFileName + '.template', 'utf-8').replace('START_AUTH_COMMANDS', startAuthCommands);
+    var stopScriptString = fs.readFileSync('templates/' + stopScriptFileName + '.template', 'utf-8').replace('STOP_AUTH_COMMANDS', stopAuthCommands);
+    var targetDirectory = '../container_execution/auth_execution/';
+    fs.writeFileSync(targetDirectory + startScriptFileName, startScriptString, 'utf-8');
+    fs.writeFileSync(targetDirectory + stopScriptFileName, stopScriptString, 'utf-8');
+}
+
 var devList = [
     {name: 'auth101', addr: '10.0.0.1', wifi: '10.0.1.1'},
     {name: 'auth102', addr: '10.0.0.2', wifi: '10.0.1.2'},
     {name: 'net1.client', addr: '10.0.1.3'},
-    {name: 'net2.server', addr: '10.0.1.4'}
+    {name: 'net1.server', addr: '10.0.1.4'},
+    {name: 'net2.client', addr: '10.0.1.5'},
+    {name: 'net2.server', addr: '10.0.1.6'}
 ];
 
 generateLxcConfigs(devList);
 generateSetupScript(devList);
 generateAddressMapping(devList);
+generateAuthStartStopScripts(devList);
+
 
