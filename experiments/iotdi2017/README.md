@@ -93,7 +93,7 @@
 		tshark -i lo0 -w 16.pcap
 
 
-# Publish-Subscribe experiment manual
+# A Sender & Multiple Receivers experiments manual
 
 ## For SSL/TLS experiments
 
@@ -137,7 +137,7 @@ Later, open 16_setup.txt and cut second part and save it as 16_publish.txt
 			
 	Make sure you check packets for **server**, because in this case **server is a publisher**!
 
-* MessageBroker (MQTT)
+* MessageBroker (MQTT Publish-Subscribe)
 
 	* Updated distribution key
 	
