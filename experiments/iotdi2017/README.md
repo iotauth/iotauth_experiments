@@ -153,7 +153,7 @@ Later, open 16_setup.txt and cut second part and save it as 16_publish.txt
 		* NO NEED to run server (subscriber) for experiments, but to check if the server really receives the messages (sanity check), run the server registered with Auth101 using following commands
 
 				node server.js configs/net1/server.config
-				server> skReqSub
+				server> skReqSub 1
 				server> mqtt
 
 	* Permanent distribution key
@@ -179,7 +179,7 @@ Later, open 16_setup.txt and cut second part and save it as 16_publish.txt
 		* NO NEED to run server (receiver) for experiments, but to check if the server really receives the messages (sanity check), run the server registered with Auth101 using following commands
 		
 				node server configs/net1/udpServer.config
-				server> skReqSub
+				server> skReqSub 1
 				server> bcSub
 
 	* Permanent distribution key
