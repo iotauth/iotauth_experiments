@@ -53,9 +53,10 @@
 
 	* one cached key
 
+			client> numKyes 1	// set numKeysPerRequest 1
 			client> exp1 16 [22400 for UDP]
 
-	* unlimited cached keys
+	* unlimited cached keys (before beginning, set MaxSessionKeysPerRequest field 64 for clients/server in Auth101/Auth102 respectively)
 
 			Auth1> reset sk
 			client> skReq 16
@@ -69,7 +70,8 @@
 		tshark -i lo0 -w 16.pcap
 
 	* one cached key
-
+	
+			client> numKyes 1	// set numKeysPerRequest 1
 			client> exp1 16 22300 [22600 for RC-UDP]
 
 	* unlimited cached keys
@@ -116,7 +118,7 @@ Later, open 16_setup.txt and cut second part and save it as 16_publish.txt
 			node server.js configs/net2/server.config 2> 16_setup.txt
 			tshark -i lo0 -w 16_setup.pcap
 			server> skReqPub 1
-			./repeat_client.py 16 keyId 22100
+			./repeat_client.py 16 [keyId] 22100
 
 			CTRL+C
 			tshark -i lo0 -w 16_publish.pcap
@@ -129,7 +131,7 @@ Later, open 16_setup.txt and cut second part and save it as 16_publish.txt
 			node server.js configs/net2/rcServer.config 2> 16_setup.txt
 			tshark -i lo0 -w 16_setup.pcap
 			server> skReqPub 1
-			./repeat_client.py 16 keyId 22300
+			./repeat_client.py 16 [keyId] 22300
 
 			CTRL+C
 			tshark -i lo0 -w 16_publish.pcap
@@ -141,50 +143,48 @@ Later, open 16_setup.txt and cut second part and save it as 16_publish.txt
 
 	* Updated distribution key
 	
-			node client.js configs/net1/client.config 2> 16_setup.txt
-			tshark -i lo0 -w 16_setup.pcap
-			client> skReqPub 1
-			client> mqtt
+			tshark -i lo0 -w 16_setup.pcap		// run tshark first!
+			node publisher.js configs/net1/client.config 2> 16_setup.txt
 
 			CTRL+C
 			tshark -i lo0 -w 16_publish.pcap
-			client> spubFile
+			publisher> spubFile
 
-		* NO NEED to run server (subscriber) for experiments, but to check if the server really receives the messages (sanity check), run the server registered with Auth101 using following commands
+		* NO NEED to run subscriber for experiments, but to check if the subscriber really receives the messages (sanity check), run the subscriber registered with Auth101 using following commands
 
-				node server.js configs/net1/server.config
-				server> skReqSub 1
-				server> mqtt
+				node subscriber.js configs/net1/server.config
+				subscriber> sub
 
 	* Permanent distribution key
 	
-			node client.js configs/net1/rcClient.config 2> 16_setup.txt
-			tshark -i lo0 -w 16_setup.pcap
-			client> skReqPub 1
-			client> mqtt
+			tshark -i lo0 -w 16_setup.pcap		// run tshark first!
+			node publisher.js configs/net1/rcClient.config 2> 16_setup.txt
+
+			CTRL+C
+			tshark -i lo0 -w 16_publish.pcap
+			publisher> spubFile
 
 * Broadcast (UDP)
 
 	* Updated distribution key
 
-			node client.js configs/net1/udpClient.config 2> 16_setup.txt
-			tshark -i lo0 -w 16_setup.pcap
-			client> skReqPub 1
-			client> initBc
+			tshark -i lo0 -w 16_setup.pcap		// run tshark first!
+			node publisher.js configs/net1/udpClient.config 2> 16_setup.txt
 
 			CTRL+C
 			tshark -i lo0 -w 16_publish.pcap
-			client> spubFile
+			publisher> spubFile
 
-		* NO NEED to run server (receiver) for experiments, but to check if the server really receives the messages (sanity check), run the server registered with Auth101 using following commands
+		* NO NEED to run subscriber (receiver) for experiments, but to check if the subscriber really receives the messages (sanity check), run the subscriber registered with Auth101 using following commands
 		
-				node server configs/net1/udpServer.config
-				server> skReqSub 1
-				server> bcSub
+				node subscriber.js configs/net1/udpServer.config
+				publisher> sub
 
 	* Permanent distribution key
 
-			node client.js configs/net1/rcUdpClient.config 2> 16_setup.txt
-			tshark -i lo0 -w 16_setup.pcap
-			client> skReqPub 1
-			client> initBc
+			tshark -i lo0 -w 16_setup.pcap		// run tshark first!
+			node publisher.js configs/net1/rcUdpClient.config 2> 16_setup.txt
+
+			CTRL+C
+			tshark -i lo0 -w 16_publish.pcap
+			publisher> spubFile
