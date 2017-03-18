@@ -210,7 +210,8 @@ function generateAuthStartStopScripts(devList) {
         startAuthCommands += '\nmkdir -p ' + dirName + '\n';
         startAuthCommands += 'cd ' + dirName + '\n'
         startAuthCommands += 'lxc-start -n ' + containerName + '\n'
-        startAuthCommands += 'printf "y\\nasdf\\n" | nohup lxc-attach -n ' + containerName + ' -- java -jar $AUTH/target/auth-server-jar-with-dependencies.jar -p $AUTH/../properties/example' + capitalizeFirstLetter(devName) + '.properties -b $AUTH/ &\n';
+        // printf "y\\nasdf\\n" |
+        startAuthCommands += 'nohup lxc-attach -n ' + containerName + ' -- java -jar $AUTH/target/auth-server-jar-with-dependencies.jar -p $AUTH/../properties/example' + capitalizeFirstLetter(devName) + '.properties -b $AUTH/ -s asdf &\n';
         startAuthCommands += 'cd ..\n';
         // for stop commands
         stopAuthCommands += '\nlxc-stop -n ' + containerName + '\n';
