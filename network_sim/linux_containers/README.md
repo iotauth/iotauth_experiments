@@ -25,8 +25,11 @@ Steps to generate and run linux containers
     run sudo ./stop-auths.sh to stop all Auth containers
 
 
-5. sudo ./stop-virtual-network.sh
+4. sudo ./stop-virtual-network.sh
 - Stop linux containers
 
-6. sudo ./teardown-virtual-network.sh
+5. sudo ./teardown-virtual-network.sh
 - Tear down and remove linux containers and bridges.
+
+6. ./cleanAll.sh
+- delete all configuration files and other scripts.
