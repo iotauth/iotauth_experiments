@@ -12,4 +12,6 @@ rm host-port-assignments.txt
 
 rm ../container_execution/auth_execution/start-auths.sh
 rm ../container_execution/auth_execution/stop-auths.sh
+rm ../container_execution/server_execution/start-servers.sh
+rm ../container_execution/server_execution/stop-servers.sh
 

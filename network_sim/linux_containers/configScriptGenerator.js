@@ -195,48 +195,67 @@ function generateAddressMapping(devList) {
     fs.writeFileSync(outputFileName, outputFileString, 'utf-8');
 }
 
-function generateAuthStartStopScripts(devList) {
+function generateAuthServerStartStopScripts(devList) {
     var startAuthCommands = '';
     var stopAuthCommands = '';
+    var startServerCommands = '';
+    var stopServerCommands = '';
     for (var i = 0; i < devList.length; i++) {
         var dev = devList[i];
         var devName = dev.name;
-        if (!devName.toLowerCase().startsWith('auth')) {
-            continue;
-        }
         var containerName = getContainerName(devName);
         var dirName = devName;
-        // for start commands
-        startAuthCommands += '\nmkdir -p ' + dirName + '\n';
-        startAuthCommands += 'cd ' + dirName + '\n'
-        startAuthCommands += 'lxc-start -n ' + containerName + '\n'
-        // printf "y\\nasdf\\n" |
-        startAuthCommands += 'nohup lxc-attach -n ' + containerName + ' -- java -jar $AUTH/target/auth-server-jar-with-dependencies.jar -p $AUTH/../properties/example' + capitalizeFirstLetter(devName) + '.properties -b $AUTH/ -s asdf &\n';
-        startAuthCommands += 'cd ..\n';
-        // for stop commands
-        stopAuthCommands += '\nlxc-stop -n ' + containerName + '\n';
+        if (dev.type == 'auth') {
+            // for start commands
+            startAuthCommands += '\nmkdir -p ' + dirName + '\n';
+            startAuthCommands += 'cd ' + dirName + '\n'
+            startAuthCommands += 'lxc-start -n ' + containerName + '\n';
+            // printf "y\\nasdf\\n" |
+            startAuthCommands += 'nohup lxc-attach -n ' + containerName + ' -- java -jar $AUTH/target/auth-server-jar-with-dependencies.jar -p $AUTH/../properties/example' + capitalizeFirstLetter(devName) + '.properties -b $AUTH/ -s asdf &\n';
+            startAuthCommands += 'cd ..\n';
+            // for stop commands
+            stopAuthCommands += '\nlxc-stop -n ' + containerName + '\n';
+        }
+        else if (dev.type == 'server') {
+            // for start commands
+            startServerCommands += '\nmkdir -p ' + dirName + '\n';
+            startServerCommands += 'cd ' + dirName + '\n'
+            startServerCommands += 'lxc-start -n ' + containerName + '\n';
+            startServerCommands += 'nohup lxc-attach -n ' + containerName + ' -- node $ENTITY/echoServer.js $ENTITY/configs/Servers/' + devName + '.config &\n';
+            startServerCommands += 'cd ..\n';
+            // for stop commands
+            stopServerCommands += '\nlxc-stop -n ' + containerName + '\n';
+        }
     }
-    var startScriptFileName = 'start-auths.sh';
-    var stopScriptFileName = 'stop-auths.sh';
-    var startScriptString = fs.readFileSync('templates/' + startScriptFileName + '.template', 'utf-8').replace('START_AUTH_COMMANDS', startAuthCommands);
-    var stopScriptString = fs.readFileSync('templates/' + stopScriptFileName + '.template', 'utf-8').replace('STOP_AUTH_COMMANDS', stopAuthCommands);
-    var targetDirectory = '../container_execution/auth_execution/';
-    fs.writeFileSync(targetDirectory + startScriptFileName, startScriptString, 'utf-8');
-    fs.writeFileSync(targetDirectory + stopScriptFileName, stopScriptString, 'utf-8');
+    // write to Auth script files
+    var startAuthScriptFileName = 'start-auths.sh';
+    var stopAuthScriptFileName = 'stop-auths.sh';
+    var startAuthScriptString = fs.readFileSync('templates/' + startAuthScriptFileName + '.template', 'utf-8').replace('START_AUTH_COMMANDS', startAuthCommands);
+    var stopAuthScriptString = fs.readFileSync('templates/' + stopAuthScriptFileName + '.template', 'utf-8').replace('STOP_AUTH_COMMANDS', stopAuthCommands);
+    var authTargetDirectory = '../container_execution/auth_execution/';
+    fs.writeFileSync(authTargetDirectory + startAuthScriptFileName, startAuthScriptString, 'utf-8');
+    fs.writeFileSync(authTargetDirectory + stopAuthScriptFileName, stopAuthScriptString, 'utf-8');
+    // write to server script files
+    var startServerScriptFileName = 'start-servers.sh';
+    var stopServerScriptFileName = 'stop-servers.sh';
+    var startServerScriptString = fs.readFileSync('templates/' + startServerScriptFileName + '.template', 'utf-8').replace('START_SERVER_COMMANDS', startServerCommands);
+    var stopServerScriptString = fs.readFileSync('templates/' + stopServerScriptFileName + '.template', 'utf-8').replace('STOP_SERVER_COMMANDS', stopServerCommands);
+    var serverTargetDirectory = '../container_execution/server_execution/';
+    fs.writeFileSync(serverTargetDirectory + startServerScriptFileName, startServerScriptString, 'utf-8');
+    fs.writeFileSync(serverTargetDirectory + stopServerScriptFileName, stopServerScriptString, 'utf-8');
 }
 
-var devList = [
-    {name: 'auth101', addr: '10.0.0.1', wifi: '10.0.1.1'},
-    {name: 'auth102', addr: '10.0.0.2', wifi: '10.0.1.2'},
-    {name: 'net1.client', addr: '10.0.1.3'},
-    {name: 'net1.server', addr: '10.0.1.4'},
-    {name: 'net2.client', addr: '10.0.1.5'},
-    {name: 'net2.server', addr: '10.0.1.6'}
-];
+// get devList file
+if (process.argv.length <= 2) {
+    console.error('Graph file must be provided!');
+    process.exit(1);
+}
+var devListFile = process.argv[2];
+var devList = JSON.parse(fs.readFileSync(devListFile));
 
 generateLxcConfigs(devList);
 generateSetupScript(devList);
 generateAddressMapping(devList);
-generateAuthStartStopScripts(devList);
+generateAuthServerStartStopScripts(devList);
 
 
