@@ -245,6 +245,43 @@ function generateAuthServerStartStopScripts(devList) {
     fs.writeFileSync(serverTargetDirectory + stopServerScriptFileName, stopServerScriptString, 'utf-8');
 }
 
+function generateTapConfigs(devList) {
+    var wiredTapList = [];
+    var wifiTapList = [];
+    var wifiPositionList = [];
+    
+    for (var i = 0; i < devList.length; i++) {
+        var dev = devList[i];
+        var tapName = getTapName(dev.name);
+        var position = dev.position;
+        if (dev.type == 'auth') {
+            wiredTapList.push(tapName);
+            wifiTapList.push(tapName + 'wifi');
+            wifiPositionList.push(position.x + ' ' + position.y + ' ' + position.z);
+        }
+        else {
+            wifiTapList.push(tapName);
+            wifiPositionList.push(position.x + ' ' + position.y + ' ' + position.z);
+        }
+    }
+    
+    var tapConfigString = '';
+    for (var i = 0; i < wiredTapList.length; i++) {
+        tapConfigString += wiredTapList[i] + '\n';
+    }
+    tapConfigString += '\n';
+    for (var i = 0; i < wifiTapList.length; i++) {
+        tapConfigString += wifiTapList[i] + '\n';
+    }
+    tapConfigString += '\n';
+    for (var i = 0; i < wifiPositionList.length; i++) {
+        tapConfigString += wifiPositionList[i] + '\n';
+    }
+    var outputFileName = 'tapConfigs.txt';
+    fs.writeFileSync(outputFileName, tapConfigString, 'utf-8');
+    
+}
+
 // get devList file
 if (process.argv.length <= 2) {
     console.error('Graph file must be provided!');
@@ -257,5 +294,6 @@ generateLxcConfigs(devList);
 generateSetupScript(devList);
 generateAddressMapping(devList);
 generateAuthServerStartStopScripts(devList);
+generateTapConfigs(devList);
 
 
