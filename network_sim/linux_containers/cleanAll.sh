@@ -8,7 +8,6 @@ rm setup-virtual-network.sh
 rm start-virtual-network.sh
 rm stop-virtual-network.sh
 rm teardown-virtual-network.sh
-rm host-port-assignments.txt
 rm tapConfigs.txt
 
 rm ../container_execution/auth_execution/start-auths.sh

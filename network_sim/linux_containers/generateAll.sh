@@ -56,5 +56,4 @@ chmod +x ../container_execution/auth_execution/stop-auths.sh
 # scripts for servers
 chmod +x ../container_execution/server_execution/start-servers.sh
 chmod +x ../container_execution/server_execution/stop-servers.sh
-# configuration for generating Auths and entities
-cp host-port-assignments.txt $IOT/examples/configs
+
