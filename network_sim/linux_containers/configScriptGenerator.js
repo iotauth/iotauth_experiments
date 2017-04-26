@@ -221,7 +221,7 @@ function generateAuthServerStartStopScripts(devList) {
             startServerCommands += '\nmkdir -p ' + dirName + '\n';
             startServerCommands += 'cd ' + dirName + '\n'
             startServerCommands += 'lxc-start -n ' + containerName + '\n';
-            startServerCommands += 'nohup lxc-attach -n ' + containerName + ' -- node $ENTITY/echoServer.js $ENTITY/configs/Servers/' + devName + '.config &\n';
+            startServerCommands += 'nohup lxc-attach -n ' + containerName + ' -- node $ENTITY/echoServer.js $ENTITY/configs/Servers/' + devName + '.config $ENTITY &\n';
             startServerCommands += 'cd ..\n';
             // for stop commands
             stopServerCommands += '\nlxc-stop -n ' + containerName + '\n';
@@ -292,7 +292,7 @@ var devList = JSON.parse(fs.readFileSync(devListFile));
 
 generateLxcConfigs(devList);
 generateSetupScript(devList);
-generateAddressMapping(devList);
+//generateAddressMapping(devList);
 generateAuthServerStartStopScripts(devList);
 generateTapConfigs(devList);
 
