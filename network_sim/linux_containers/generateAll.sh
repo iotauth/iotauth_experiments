@@ -6,6 +6,7 @@
 # followings are default parameters
 # file for host and port assignment of Auth and entities
 DEV_LIST_FILE="devList.txt"
+COMM_COSTS_FILE=""
 
 # parsing command line arguments
 # -n for number of nets, -d for DB protection method and -a for host port assignment
@@ -16,6 +17,10 @@ do
 	case $key in
 		-d|--devlist)
 			DEV_LIST_FILE="$2"
+			shift # past argument
+		;;
+		-c|--commcosts)
+			COMM_COSTS_FILE="$2"
 			shift # past argument
 		;;
 		-h|--help)
@@ -33,14 +38,16 @@ if [ "$SHOW_HELP" = true ] ; then
 	echo
 	echo "Options:"
 	echo "  -d,--devlist <arg>              Path for device list file."
+	echo "  -c,--commcosts <arg>            Path for communication costs file."
 	echo "  -h,--help                       Show this help."
 	exit 1
 fi
 
 echo "Config script generation options:"
 echo DEV_LIST_FILE = $DEV_LIST_FILE
+echo COMM_COSTS_FILE = $COMM_COSTS_FILE
 
-node configScriptGenerator.js $DEV_LIST_FILE
+node configScriptGenerator.js $DEV_LIST_FILE $COMM_COSTS_FILE
 if [ $? -ne 0  ] ; then
 	echo "[Error] Script finished with problems! exiting..." ; exit 1
 fi
