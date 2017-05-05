@@ -245,41 +245,58 @@ function generateAuthServerStartStopScripts(devList) {
     fs.writeFileSync(serverTargetDirectory + stopServerScriptFileName, stopServerScriptString, 'utf-8');
 }
 
-function generateTapConfigs(devList) {
+
+function getTapIndex(tapList, devName) {
+    for (var i = 0; i < tapList.length; i++) {
+        if (tapList[i].devName == devName) {
+            return i;
+        }
+    }
+}
+
+function generateTapConfigs(devList, commCosts) {
     var wiredTapList = [];
     var wifiTapList = [];
     var wifiPositionList = [];
     
     for (var i = 0; i < devList.length; i++) {
         var dev = devList[i];
+        var devName = dev.name;
         var tapName = getTapName(dev.name);
         var position = dev.position;
         if (dev.type == 'auth') {
-            wiredTapList.push(tapName);
-            wifiTapList.push(tapName + 'wifi');
-            wifiPositionList.push(position.x + ' ' + position.y + ' ' + position.z);
+            wiredTapList.push({tapName: tapName, devName: devName});
+            tapName = tapName + 'wifi';
         }
-        else {
-            wifiTapList.push(tapName);
-            wifiPositionList.push(position.x + ' ' + position.y + ' ' + position.z);
-        }
+        wifiTapList.push({tapName: tapName, devName: devName});
+        wifiPositionList.push(position.x + ' ' + position.y + ' ' + position.z);
     }
     
     var tapConfigString = '';
     for (var i = 0; i < wiredTapList.length; i++) {
-        tapConfigString += wiredTapList[i] + '\n';
+        tapConfigString += wiredTapList[i].tapName + '\n';
     }
     tapConfigString += '\n';
     for (var i = 0; i < wifiTapList.length; i++) {
-        tapConfigString += wifiTapList[i] + '\n';
+        tapConfigString += wifiTapList[i].tapName + '\n';
     }
     tapConfigString += '\n';
     for (var i = 0; i < wifiPositionList.length; i++) {
         tapConfigString += wifiPositionList[i] + '\n';
     }
+    
+    if (commCosts) {
+        tapConfigString += '\n';
+        for (var i = 0; i < commCosts.length; i++) {
+            var commCost = commCosts[i];
+            var index1 = getTapIndex(wifiTapList, commCost.name1);
+            var index2 = getTapIndex(wifiTapList, commCost.name2);
+            tapConfigString += index1 + ' ' + index2 + ' ' + commCost.cost + '\n';
+        }
+    }
+    
     var outputFileName = 'tapConfigs.txt';
     fs.writeFileSync(outputFileName, tapConfigString, 'utf-8');
-    
 }
 
 // get devList file
@@ -294,6 +311,17 @@ generateLxcConfigs(devList);
 generateSetupScript(devList);
 //generateAddressMapping(devList);
 generateAuthServerStartStopScripts(devList);
-generateTapConfigs(devList);
+
+var commCosts = null;
+// get commCosts
+if (process.argv.length > 3) {
+    console.log('commCosts are given!');
+    var commCostsFile = process.argv[3];
+    commCosts = JSON.parse(fs.readFileSync(commCostsFile));
+    console.log(commCosts);
+}
+generateTapConfigs(devList, commCosts);
+
+
 
 
