@@ -1,7 +1,25 @@
+# Enviroment variables
+export IOT=$DEV/iotauth
+
+export EXP=$DEV/iotauth_experiments
+export CONF=$EXP/expConfigs
+export CCS=$EXP/experiments/ccs2017
+
+export NS3=$DEV/bake/source/ns-3.26
+export TAP=$NS3/src/tap-bridge/examples
+
+export NETSIM=$DEV/iotauth_experiments/network_sim
+export LXC=$NETSIM/linux_containers
+export EXEC=$NETSIM/container_execution
+
+# Experiment graph
+cd $CONF
+node expGraphGenerator.js
+
 # To generate Auths and entities using graph
 cd $IOT/examples
 ./cleanAll.sh
-./generateAll.sh -g expConfigs/ns3Exp.graph
+./generateAll.sh -g $CONF/ns3Exp.graph
 
 # To set linux containers (setup takes some time...)
 cd $LXC

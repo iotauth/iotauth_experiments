@@ -34,40 +34,52 @@ var uniqueHosts = isNS3 ? true : false;
 var authList = [
 	{id: 1},
 	{id: 2},
-	{id: 3}
+	{id: 3},
+	{id: 4}
 ];
 var authTrusts = [
 	{id1: 1, id2: 2},
 	{id1: 1, id2: 3},
-	{id1: 2, id2: 3}
+	{id1: 2, id2: 3},
+	{id1: 1, id2: 4}
 ];
 var assignments = {
 	't1': 1,
 	't2': 1,
 	't3': 2,
 	't4': 2,
-	't5': 3
+	't5': 3,
+	't6': 1,
+	't7': 4,
+	't8': 4
 }
 // plan 2
 var echoServerList = [
 	{name: 't1', backupTo: 3},
-	{name: 't3'}
+	{name: 't3'},
+	{name: 't7'}
 ];
 var autoClientList = [
 	{name: 't2', target: 't1', backupTo: 2},
 	{name: 't4', target: 't3'},
-	{name: 't5', target: 't1'}
+	{name: 't5', target: 't1'},
+	{name: 't6', target: 't7', backupTo: 4},
+	{name: 't8', target: 't7'},
 ];
 // positions
 var positions = {
 	1: {x: 0, y: 35, z: 0},
 	2: {x: 20, y: 20, z: 0},
 	3: {x: 5, y: 0, z: 0},
+	4: {x: 5, y: 0, z: 0},
 	't1': {x: 0, y: 20, z: 0},
 	't2': {x: 5, y: 30, z: 0},
 	't3': {x: 25, y: 25, z: 0},
 	't4': {x: 25, y: 15, z: 0},
-	't5': {x: 5, y: 10, z: 0}
+	't5': {x: 5, y: 10, z: 0},
+	't6': {x: 5, y: 10, z: 0},
+	't7': {x: 5, y: 10, z: 0},
+	't8': {x: 5, y: 10, z: 0}
 }
 // commCostList
 var commCostList = [];
@@ -114,6 +126,15 @@ addCommCost(1,	't2',	1);
 addCommCost('t1',	't2',	1);
 addCommCost('t1',	't5',	1);
 addCommCost('t3',	't4',	1);
+addCommCost('t6',	't7',	1);
+addCommCost('t7',	't8',	1);
+// for experiemtns a4, t6, t7, t8
+addCommCost(1,	't6',	1);
+addCommCost(2,	't6',	1);
+addCommCost(3,	't6',	2);
+addCommCost(4,	't6',	3);
+addCommCost(4,	't7',	1);
+addCommCost(4,	't8',	1);
 
 var entityList = [];
 var serverHostPortMap = {};
