@@ -13,7 +13,7 @@
  * IOTAUTH_COPYRIGHT_VERSION_1
  */
 
- /**
+/**
  * Generator for linux container (lxc) configurations and scripts.
  * @author Hokeun Kim
  */
@@ -301,7 +301,7 @@ function generateTapConfigs(devList, commCosts) {
 
 // get devList file
 if (process.argv.length <= 2) {
-    console.error('Graph file must be provided!');
+    console.error('Device list file must be provided!');
     process.exit(1);
 }
 var devListFile = process.argv[2];

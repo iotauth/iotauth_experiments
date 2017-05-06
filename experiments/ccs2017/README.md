@@ -66,6 +66,16 @@ lxc-attach -n t5
 cd $ENTITY
 node autoClient.js configs/Clients/t5.config 
 
+lxc-start -n t6
+lxc-attach -n t6
+cd $ENTITY
+node autoClient.js configs/Clients/t6.config 
+
+lxc-start -n t8
+lxc-attach -n t8
+cd $ENTITY
+node autoClient.js configs/Clients/t8.config 
+
 # To simulate failure of an Auth
 sudo lxc-stop -n auth1
 
