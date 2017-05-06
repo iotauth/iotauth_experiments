@@ -12,7 +12,9 @@ export NETSIM=$DEV/iotauth_experiments/network_sim
 export LXC=$NETSIM/linux_containers
 export EXEC=$NETSIM/container_execution
 
-# Experiment graph
+# Experiment graph generation (ns3Exp.graph)
+# This also generates commCosts.txt (communication costs between Auths and things)
+# and devList.txt (a list of device information - name, address, type, position)
 cd $CONF
 node expGraphGenerator.js
 
@@ -24,8 +26,11 @@ cd $IOT/examples
 # To set linux containers (setup takes some time...)
 cd $LXC
 ./cleanAll.sh
-./generateAll.sh -d $IOT/examples/expConfigs/devList.txt -c $IOT/examples/expConfigs/commCosts.txt
+./generateAll.sh -d $CONF/devList.txt -c $CONF/commCosts.txt
 sudo ./setup-virtual-network.sh
+
+# To see current linux containers,
+sudo lxc-ls
 
 # To setup ns3 network simulation environment (build is optional)
 cd $NS3

@@ -318,7 +318,6 @@ if (process.argv.length > 3) {
     console.log('commCosts are given!');
     var commCostsFile = process.argv[3];
     commCosts = JSON.parse(fs.readFileSync(commCostsFile));
-    console.log(commCosts);
 }
 generateTapConfigs(devList, commCosts);
 
