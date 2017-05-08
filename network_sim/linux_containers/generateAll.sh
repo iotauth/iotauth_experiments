@@ -63,4 +63,7 @@ chmod +x ../container_execution/auth_execution/stop-auths.sh
 # scripts for servers
 chmod +x ../container_execution/server_execution/start-servers.sh
 chmod +x ../container_execution/server_execution/stop-servers.sh
+# scripts for clients
+chmod +x ../container_execution/client_execution/start-clients.sh
+chmod +x ../container_execution/client_execution/stop-clients.sh
 
