@@ -287,19 +287,19 @@ function getTapIndex(tapList, devName) {
 function generateTapConfigs(devList, commCosts) {
     var wiredTapList = [];
     var wifiTapList = [];
-    var wifiPositionList = [];
+    //var wifiPositionList = [];
     
     for (var i = 0; i < devList.length; i++) {
         var dev = devList[i];
         var devName = dev.name;
         var tapName = getTapName(dev.name);
-        var position = dev.position;
+        //var position = dev.position;
         if (dev.type == 'auth') {
             wiredTapList.push({tapName: tapName, devName: devName});
             tapName = tapName + 'wifi';
         }
         wifiTapList.push({tapName: tapName, devName: devName});
-        wifiPositionList.push(position.x + ' ' + position.y + ' ' + position.z);
+        //wifiPositionList.push(position.x + ' ' + position.y + ' ' + position.z);
     }
     
     var tapConfigString = '';
@@ -310,10 +310,12 @@ function generateTapConfigs(devList, commCosts) {
     for (var i = 0; i < wifiTapList.length; i++) {
         tapConfigString += wifiTapList[i].tapName + '\n';
     }
+    /*
     tapConfigString += '\n';
     for (var i = 0; i < wifiPositionList.length; i++) {
         tapConfigString += wifiPositionList[i] + '\n';
     }
+    */
     
     if (commCosts) {
         tapConfigString += '\n';
