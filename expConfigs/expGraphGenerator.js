@@ -31,111 +31,24 @@ var isNS3 = true;
 var uniquePorts = isNS3 ? false : true;
 var uniqueHosts = isNS3 ? true : false;
 
-var authList = [
-	{id: 1},
-	{id: 2},
-	{id: 3},
-	{id: 4}
-];
-var authTrusts = [
-	{id1: 1, id2: 2},
-	{id1: 1, id2: 3},
-	{id1: 2, id2: 3},
-	{id1: 1, id2: 4}
-];
-var assignments = {
-	't1': 1,
-	't2': 1,
-	't3': 2,
-	't4': 2,
-	't5': 3,
-	't6': 1,
-	't7': 4,
-	't8': 4
-}
-// plan 2
-var echoServerList = [
-	{name: 't1', backupTo: 3},
-	{name: 't3'},
-	{name: 't7'}
-];
-var autoClientList = [
-	{name: 't2', target: 't1', backupTo: 2},
-	{name: 't4', target: 't3'},
-	{name: 't5', target: 't1'},
-	{name: 't6', target: 't7', backupTo: 4},
-	{name: 't8', target: 't7'},
-];
-// positions
-var positions = {
-	1: {x: 0, y: 35, z: 0},
-	2: {x: 20, y: 20, z: 0},
-	3: {x: 5, y: 0, z: 0},
-	4: {x: 5, y: 0, z: 0},
-	't1': {x: 0, y: 20, z: 0},
-	't2': {x: 5, y: 30, z: 0},
-	't3': {x: 25, y: 25, z: 0},
-	't4': {x: 25, y: 15, z: 0},
-	't5': {x: 5, y: 10, z: 0},
-	't6': {x: 5, y: 10, z: 0},
-	't7': {x: 5, y: 10, z: 0},
-	't8': {x: 5, y: 10, z: 0}
-}
-// commCostList
-var commCostList = [];
-function addCommCost(e1, e2, cost) {
-	if ((typeof e1) == 'number') {
-		e1 = 'auth' + e1;
-	}
-	commCostList.push({
-		name1: e1,
-		name2: e2,
-		cost: cost
-	});
-}
-/*
-var commCostMap = {};
-function addCommCost(e1, e2, cost) {
-	if (commCostMap[e1] == null) {
-		commCostMap[e1] = {};
-	}
-	commCostMap[e1][e2] = cost;
-	if (commCostMap[e2] == null) {
-		commCostMap[e2] = {};
-	}
-	commCostMap[e2][e1] = cost;
-}
-*/
-// in paper
-//addCommCost(2,	3,	3);		// c(a2,a3) = 3
-addCommCost(2,	't1',	2);		// c(a2,t1) = 2
-addCommCost(2,	't2',	1.5);	// c(a2,t2) = 1.5
-addCommCost(2,	't3',	1);		// c(a2,t3) = 1
-addCommCost(2,	't4',	1);		// c(a2,t4) = 1
-addCommCost(3,	't1',	2.5);	// c(a3,t1) = 2.5
-addCommCost(3,	't2',	3);		// c(a3,t2) = 3
-addCommCost(3,	't5',	1);		// c(a3,t5) = 1
-// not in paper yet, but necessary
-// between Auths
-//addCommCost(1,	2,	1);
-//addCommCost(1,	3,	1);
-// before a1 fails, for entities
-addCommCost(1,	't1',	1);
-addCommCost(1,	't2',	1);
-// between things
-addCommCost('t1',	't2',	1);
-addCommCost('t1',	't5',	1);
-addCommCost('t3',	't4',	1);
-addCommCost('t6',	't7',	1);
-addCommCost('t7',	't8',	1);
-// for experiemtns a4, t6, t7, t8
-addCommCost(1,	't6',	1);
-addCommCost(2,	't6',	1);
-addCommCost(3,	't6',	2);
-addCommCost(4,	't6',	3);
-addCommCost(4,	't7',	1);
-addCommCost(4,	't8',	1);
+// getting input file using require
+var graphInput = require('./graphInput.js')('ns3Exp.input');
 
+// inputs
+var authList = graphInput.authList;
+var authTrusts = graphInput.authTrusts;
+var assignments = graphInput.assignments;
+var echoServerList = graphInput.echoServerList;
+var autoClientList = graphInput.autoClientList;
+var positions = graphInput.positions;
+var commCostList = graphInput.commCostList;
+
+console.log('echoServerList');
+console.log(echoServerList);
+console.log('autoClientList');
+console.log(autoClientList);
+
+// to be populated
 var entityList = [];
 var serverHostPortMap = {};
 var devList =[];
