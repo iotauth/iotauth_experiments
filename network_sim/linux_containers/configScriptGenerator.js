@@ -241,7 +241,7 @@ function generateStartStopScripts(devList) {
             startClientCommands += 'lxc-start -n ' + containerName + '\n';
             startClientCommands += 'nohup lxc-attach -n ' + containerName + ' -- node $ENTITY/autoClient.js $ENTITY/configs/Clients/' + devName + '.config $ENTITY $CCS/expOptions/expEntity.option &\n';
             startClientCommands += 'cd ..\n';
-            startClientCommands += 'sleep 0.23s\n';   // intentional delay
+            startClientCommands += 'sleep 0.43s\n';   // intentional delay
             // for stop commands
             stopClientCommands += '\nlxc-stop -n ' + containerName + '\n';
         }
