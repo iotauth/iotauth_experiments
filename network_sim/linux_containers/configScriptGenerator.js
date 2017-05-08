@@ -195,16 +195,22 @@ function generateAddressMapping(devList) {
     fs.writeFileSync(outputFileName, outputFileString, 'utf-8');
 }
 
-function generateAuthServerStartStopScripts(devList) {
+function generateStartStopScripts(devList) {
     var startAuthCommands = '';
     var stopAuthCommands = '';
+    
     var startServerCommands = '';
     var stopServerCommands = '';
+    
+    var startClientCommands = '';
+    var stopClientCommands = '';
+    
     for (var i = 0; i < devList.length; i++) {
         var dev = devList[i];
         var devName = dev.name;
         var containerName = getContainerName(devName);
         var dirName = devName;
+        
         if (dev.type == 'auth') {
             // for start commands
             startAuthCommands += '\nmkdir -p ' + dirName + '\n';
@@ -216,6 +222,7 @@ function generateAuthServerStartStopScripts(devList) {
             // for stop commands
             stopAuthCommands += '\nlxc-stop -n ' + containerName + '\n';
         }
+        
         else if (dev.type == 'server') {
             // for start commands
             startServerCommands += '\nmkdir -p ' + dirName + '\n';
@@ -226,7 +233,19 @@ function generateAuthServerStartStopScripts(devList) {
             // for stop commands
             stopServerCommands += '\nlxc-stop -n ' + containerName + '\n';
         }
+        
+        else if (dev.type == 'client') {
+            // for start commands
+            startClientCommands += '\nmkdir -p ' + dirName + '\n';
+            startClientCommands += 'cd ' + dirName + '\n'
+            startClientCommands += 'lxc-start -n ' + containerName + '\n';
+            startClientCommands += 'nohup lxc-attach -n ' + containerName + ' -- node $ENTITY/autoClient.js $ENTITY/configs/Clients/' + devName + '.config $ENTITY $CCS/expOptions/expEntity.option &\n';
+            startClientCommands += 'cd ..\n';
+            // for stop commands
+            stopClientCommands += '\nlxc-stop -n ' + containerName + '\n';
+        }
     }
+    
     // write to Auth script files
     var startAuthScriptFileName = 'start-auths.sh';
     var stopAuthScriptFileName = 'stop-auths.sh';
@@ -235,6 +254,7 @@ function generateAuthServerStartStopScripts(devList) {
     var authTargetDirectory = '../container_execution/auth_execution/';
     fs.writeFileSync(authTargetDirectory + startAuthScriptFileName, startAuthScriptString, 'utf-8');
     fs.writeFileSync(authTargetDirectory + stopAuthScriptFileName, stopAuthScriptString, 'utf-8');
+    
     // write to server script files
     var startServerScriptFileName = 'start-servers.sh';
     var stopServerScriptFileName = 'stop-servers.sh';
@@ -243,6 +263,15 @@ function generateAuthServerStartStopScripts(devList) {
     var serverTargetDirectory = '../container_execution/server_execution/';
     fs.writeFileSync(serverTargetDirectory + startServerScriptFileName, startServerScriptString, 'utf-8');
     fs.writeFileSync(serverTargetDirectory + stopServerScriptFileName, stopServerScriptString, 'utf-8');
+    
+    // write to client script files
+    var startClientScriptFileName = 'start-clients.sh';
+    var stopClientScriptFileName = 'stop-clients.sh';
+    var startClientScriptString = fs.readFileSync('templates/' + startClientScriptFileName + '.template', 'utf-8').replace('START_CLIENT_COMMANDS', startClientCommands);
+    var stopClientScriptString = fs.readFileSync('templates/' + stopClientScriptFileName + '.template', 'utf-8').replace('STOP_CLIENT_COMMANDS', stopClientCommands);
+    var clientTargetDirectory = '../container_execution/client_execution/';
+    fs.writeFileSync(clientTargetDirectory + startClientScriptFileName, startClientScriptString, 'utf-8');
+    fs.writeFileSync(clientTargetDirectory + stopClientScriptFileName, stopClientScriptString, 'utf-8');
 }
 
 
@@ -310,7 +339,7 @@ var devList = JSON.parse(fs.readFileSync(devListFile));
 generateLxcConfigs(devList);
 generateSetupScript(devList);
 //generateAddressMapping(devList);
-generateAuthServerStartStopScripts(devList);
+generateStartStopScripts(devList);
 
 var commCosts = null;
 // get commCosts
