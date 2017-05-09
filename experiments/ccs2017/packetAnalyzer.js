@@ -22,6 +22,7 @@
 
 var fs = require('fs');
 var util = require('util');
+var JSON2 = require('JSON2');
 const execSync = require('child_process').execSync;
 
 ///////////////////////// For getting pcap information list /////////////////////
@@ -280,9 +281,16 @@ function analyzePcapResults(pcapInfoList, pcapDir, debugging) {
 //////////////////////////// Actual execution starts below /////////////////
 
 // get files
-if (process.argv.length <= 5) {
+var numRequiredArgs = 4;
+if (process.argv.length < (2 + numRequiredArgs)) {
     console.error('[Pcap result directory], [graph file], [dev list file] and [comm costs file] must be provided!');
     process.exit(1);
+}
+
+var outputFile = null;
+if (process.argv.length > (2 + numRequiredArgs) ) {
+    outputFile = process.argv[2 + numRequiredArgs];
+    console.log('Output file is given: ' + outputFile);
 }
 
 var graphFile = process.argv[3];
@@ -322,4 +330,12 @@ for (var i = 0; i < energyResultList.length; i++) {
 console.log('\nTotal energy for all things: \n');
 console.log(totalThingsEnergy / 1000 + ' mJ');
 
+if (outputFile != null) {
+    console.log('Also writing the result to output file: ' + outputFile);
+    
+	fs.writeFileSync(outputFile, 
+		JSON2.stringify(energyResultList, null, '\t'),
+		'utf8'
+	);
+}
 
