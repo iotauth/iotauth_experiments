@@ -71,7 +71,8 @@ cd auth_execution
 ./stop-auths.sh
 cd ..
 
-
+echo "Changing ownership of execution logs ..."
+./changeOwnerOfLogs.sh
 
 
 
