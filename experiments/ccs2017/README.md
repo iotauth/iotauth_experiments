@@ -1,16 +1,42 @@
-# Enviroment variables
-export IOT=$DEV/iotauth
+# Important directories and enviroment variables
 
-export EXP=$DEV/iotauth_experiments
-export CONF=$EXP/expConfigs
-export CCS=$EXP/experiments/ccs2017
+* $CONF (iotauth_experiments/expConfigs)
 
-export NS3=$DEV/bake/source/ns-3.26
-export TAP=$NS3/src/tap-bridge/examples
+  * This directory includes scripts for generating the *ns3Exp.graph*, *devList.txt*, and *commCosts.txt* files using *.input* file which describes Auths and thing, including a list of Auths, a list of things (clients & servers), assignemts (Auth - thing registration), trust relationships between Auths, communication costs, and migration plans.
+  
+* $IOT/examples (iotauth/examples)
 
-export NETSIM=$DEV/iotauth_experiments/network_sim
-export LXC=$NETSIM/linux_containers
-export EXEC=$NETSIM/container_execution
+  * This directory is for scripts to generate credentials, config files, and Auth databases using *.graph* file generated in $CONF.
+  
+* $LXC (iotauth_experiments/network_sim/linux_containers)
+
+  * This directory includes scripts for generating other scripts to set up, start, stop, and teardown linux containers (LXC, para-virtualmachines). The generation script uses *devList.txt* and *commCosts.txt* files.
+  
+* $NS3 (bake/source/ns-3.26)
+  * A directory for running the ns-3 network simulator. The network model is under $TAP directory ($NS3/src/tap-bridge/examples). This simulation model connects linux containers (LXCs), therefore, the simulator must be running before we run LXCs.
+
+* $EXEC (iotauth_experiments/network_sim/container_execution)
+
+  * This directory is for actually executing linux containers (LXCs) for Auths, servers, and clinets. As a result of LXC execution, the execution logs are stored in subdirectories *auth_execution* for Auth logs, *server_execution* for server logs, and *client_execution* for client logs.
+
+* $CCS (iotauth_experiments/experiments/ccs2017)
+
+  * Current directory. This directory includes options for exepriments under $CCS/expOptions and contains scripts for copying logs and packet captures (pcap) to $CCS/results directory and scripts for analyzing the results, including availability and expected energy consumption.
+
+* Environment variable details
+
+      export IOT=$DEV/iotauth
+
+      export EXP=$DEV/iotauth_experiments
+      export CONF=$EXP/expConfigs
+      export CCS=$EXP/experiments/ccs2017
+
+      export NS3=$DEV/bake/source/ns-3.26
+      export TAP=$NS3/src/tap-bridge/examples
+
+      export NETSIM=$DEV/iotauth_experiments/network_sim
+      export LXC=$NETSIM/linux_containers
+      export EXEC=$NETSIM/container_execution
 
 # Experiment graph generation (ns3Exp.graph)
 # This also generates commCosts.txt (communication costs between Auths and things)
