@@ -10,7 +10,7 @@
   
 **$LXC (iotauth_experiments/network_sim/linux_containers)**
 
-* This directory includes scripts for generating other scripts to set up, start, stop, and teardown linux containers (LXC, para-virtualmachines). The generation script uses *devList.txt* and *commCosts.txt* files.
+* This directory includes scripts for generating other scripts to set up, start, stop, and teardown linux containers (LXC, para-virtualmachines). The generation script uses *devList.txt* and *commCosts.txt* files. See [LXC README.md](https://github.com/iotauth/iotauth_experiments/blob/master/network_sim/linux_containers/README.md) for more details.
   
 **$NS3 (bake/source/ns-3.26)**
 
@@ -55,7 +55,7 @@
       ./cleanAll.sh
       ./generateAll.sh -g $CONF/ns3Exp.graph
 
-* To set linux containers (setup takes some time...)
+* To set linux containers (LXCs). The setup takes some time. See [LXC README.md](https://github.com/iotauth/iotauth_experiments/blob/master/network_sim/linux_containers/README.md) for more details. Do not forget to teardown LXCs with "./teardown-virtual-network.sh" before you create a new set of LXCs. (If not, it will cause problems because of the LXCs that are already there).
 
       cd $LXC
       ./cleanAll.sh
