@@ -45,7 +45,10 @@
 
 # Experiment flow
 
-![Image of experiment flow](figures/exp_flow.pdf)
+* Overall flow of experiments (from graph generation to result analysis)
+
+![Image of experiment flow](figures/exp_flow.png?raw=true "Title")
+[PDF version of image](figures/exp_flow.pdf)
 
 # Experiment procedure
 
