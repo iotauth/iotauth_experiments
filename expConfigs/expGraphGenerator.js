@@ -41,6 +41,7 @@ var assignments = graphInput.assignments;
 var echoServerList = graphInput.echoServerList;
 var autoClientList = graphInput.autoClientList;
 var commCostList = graphInput.commCostList;
+var positions = graphInput.positions == null ? {} : graphInput.positions;
 
 // to be populated
 var entityList = [];
@@ -76,6 +77,9 @@ function populateAuthList() {
 				wifi: authList[i].entityHost,
 				type: 'auth'
 			};
+			if (positions[authList[i].id] != null) {
+				dev.position = positions[authList[i].id];
+			}
 			devList.push(dev);
 			wiredAddress++;
 			wifiAddress++;
@@ -106,6 +110,9 @@ function populateEchoServers() {
 		}
 		if (uniqueHosts) {
 			var dev = {name: entity.name, addr: entity.host, type: 'server'};
+			if (positions[entity.name] != null) {
+				dev.position = positions[entity.name];
+			}
 			devList.push(dev);
 			wifiAddress++;
 		}
@@ -141,6 +148,9 @@ function populateAutoClients() {
 		entityList.push(entity);
 		if (uniqueHosts) {
 			var dev = {name: entity.name, addr: wifiSubnetBase + wifiAddress, type: 'client'};
+			if (positions[entity.name] != null) {
+				dev.position = positions[entity.name];
+			}
 			devList.push(dev);
 			wifiAddress++;
 		}
