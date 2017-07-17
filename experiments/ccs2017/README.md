@@ -41,10 +41,9 @@
 
 # Experiment procedure
 
-* Experiment graph generation (ns3Exp.graph)
+* Experiment graph generation (**ns3Exp.graph**)
 
-  * This also generates commCosts.txt (communication costs between Auths and things)
-  * and devList.txt (a list of device information - name, address, type, position)
+  * This also generates **commCosts.txt** (communication costs between Auths and things) and **devList.txt** (a list of device information - name, address, type, position)
   
         cd $CONF
         node expGraphGenerator.js
@@ -55,7 +54,7 @@
       ./cleanAll.sh
       ./generateAll.sh -g $CONF/ns3Exp.graph
 
-* To set linux containers (LXCs). The setup takes some time. See [LXC README.md](https://github.com/iotauth/iotauth_experiments/blob/master/network_sim/linux_containers/README.md) for more details. Do not forget to teardown LXCs with "./teardown-virtual-network.sh" before you create a new set of LXCs. (If not, it will cause problems because of the LXCs that are already there).
+* To set linux containers (LXCs). **generateAll.sh** will generate **tapConfigs.txt** that is used for ns3 simulation. The setup takes some time. See [LXC README.md](https://github.com/iotauth/iotauth_experiments/blob/master/network_sim/linux_containers/README.md) for more details. Do not forget to teardown LXCs with "./teardown-virtual-network.sh" before you create a new set of LXCs. (If not, it will cause problems because of the LXCs that are already there).
 
       cd $LXC
       ./cleanAll.sh
@@ -68,11 +67,13 @@
 
 * To setup ns3 network simulation environment (build is optional)
 
-      cd $NS3
-      ./waf build
-      ./waf --run tap-matrix-sst --command-template="%s $LXC/tapConfigs.txt"
+  * To edit the simulator source code, see inside **src/tap-bridge/examples** and look into simulation files (e.g., **tap-matrix-sst.cc**, **tap-mixed-sst.cc**)
+  
+        cd $NS3
+        ./waf build
+        ./waf --run tap-matrix-sst --command-template="%s $LXC/tapConfigs.txt"
 
-      # NOT used anymore: ./waf --run tap-mixed-sst --command-template="%s $LXC/tapConfigs.txt"
+        # NOT used anymore: ./waf --run tap-mixed-sst --command-template="%s $LXC/tapConfigs.txt"
 
 * To run linux containers (LXCs) for experiments
 
