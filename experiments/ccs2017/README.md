@@ -43,6 +43,10 @@
       export LXC=$NETSIM/linux_containers
       export EXEC=$NETSIM/container_execution
 
+# Experiment flow
+
+![Image of experiment flow](figures/exp_flow.pdf)
+
 # Experiment procedure
 
 * Experiment graph generation (**ns3Exp.graph**)
