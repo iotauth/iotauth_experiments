@@ -71,9 +71,12 @@
   
         cd $NS3
         ./waf build
+        
+        # To use matrix propagation loss for wifi connections
         ./waf --run tap-matrix-sst --command-template="%s $LXC/tapConfigs.txt"
-
-        # NOT used anymore: ./waf --run tap-mixed-sst --command-template="%s $LXC/tapConfigs.txt"
+        
+        # To use positions in x,y,z coordinates for wifi connections
+        ./waf --run tap-mixed-sst --command-template="%s $LXC/tapConfigs.txt"
 
 * To run linux containers (LXCs) for experiments
 
