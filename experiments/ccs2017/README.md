@@ -14,7 +14,11 @@
   
 **$NS3 (bake/source/ns-3.26)**
 
-* A directory for running the ns-3 network simulator. The network model is under $TAP directory ($NS3/src/tap-bridge/examples). This simulation model connects linux containers (LXCs), therefore, the simulator must be running before we run LXCs.
+* A directory for running the ns-3 network simulator. The network model is under *$TAP* directory (*$NS3/src/tap-bridge/examples*). This simulation model connects linux containers (LXCs), therefore, the simulator must be running before we run LXCs.
+
+**$TAP ($NS3/src/tap-bridge/examples)**
+
+* This directory includes SST simulation models using tap bridges. Currently used simulation models are *tap-matrix-sst.cc* and *tap-mixed-sst.cc*. Other files include *comm-cost.h* for CommCost class and *tap-csma-sst.cc* which was used for experimenting wired connections for Auths.
 
 **$EXEC (iotauth_experiments/network_sim/container_execution)**
 
@@ -67,7 +71,7 @@
 
 * To setup ns3 network simulation environment (build is optional)
 
-  * To edit the simulator source code, see inside **src/tap-bridge/examples** and look into simulation files (e.g., **tap-matrix-sst.cc**, **tap-mixed-sst.cc**)
+  * To edit the simulator source code, see inside **$TAP** (**$NS3/src/tap-bridge/examples**) and look into simulation files (e.g., **tap-matrix-sst.cc**, **tap-mixed-sst.cc**)
   
         cd $NS3
         ./waf build
