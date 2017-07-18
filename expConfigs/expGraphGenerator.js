@@ -23,11 +23,30 @@
 var fs = require('fs');
 var JSON2 = require('JSON2');
 
+
+// get devList file
+if (process.argv.length <= 3) {
+    console.error('Device list file must be provided!');
+    process.exit(1);
+}
+
+var inputFileName = process.argv[2];    // ns3Exp.input
+var outputGraphFileName = process.argv[3];  // exp.graph (for non-ns3) or ns3Exp.graph (for ns3)
+console.log('Input file: ' + inputFileName + '\tOutput file: ' + outputGraphFileName);
+
+var isNS3;
+if (process.argv.length > 4 && process.argv[4] == '-n') {
+    console.log('Generating graph for ns3, using unique host addresses');
+    isNS3 = true
+}
+else {
+    console.log('Generating graph for local experiments, using unique ports');
+    isNS3 = false;
+}
+
 // options
 // uniquePorts: to distinguish Auths, server entities using different port numbers
 // uniqueHosts: to distinguish Auths, server entities using different network addresses
-var isNS3 = true;
-
 var uniquePorts = isNS3 ? false : true;
 var uniqueHosts = isNS3 ? true : false;
 
@@ -169,12 +188,7 @@ var graph = {
 	entityList: entityList
 }
 
-// write to file
-var expGraphFile = 'exp.graph';
-if (isNS3) {
-	expGraphFile = 'ns3Exp.graph';
-}
-fs.writeFileSync(expGraphFile, 
+fs.writeFileSync(outputGraphFileName, 
 	JSON2.stringify(graph, null, '\t'),
 	'utf8'
 );
