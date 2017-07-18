@@ -48,7 +48,7 @@
 * Overall flow of experiments (from graph generation to result analysis)
 
 ![Image of experiment flow](figures/exp_flow.png?raw=true "Title")
-[PDF version of image](figures/exp_flow.pdf)
+[Download PDF version of image](https://github.com/iotauth/iotauth_experiments/raw/master/experiments/ccs2017/figures/exp_flow.pdf)
 
 # Experiment procedure
 
