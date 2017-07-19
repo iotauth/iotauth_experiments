@@ -21,36 +21,6 @@
 
 var fs = require('fs');
 
-var floorPlanFile = 'floorPlans/cory5th.txt';
-var outputFile = 'floorPlans/cory5th.input';
-
-var floorPlanString = fs.readFileSync(floorPlanFile, 'utf-8');
-var floorPlanLines = floorPlanString.split('\n');
-
-var auths = [];
-var clients = [];
-var servers = [];
-
-for (var i = 0; i < floorPlanLines.length; i++) {
-	var line = floorPlanLines[i].trim();
-	var tokens = line.split(/[ \t]+/);
-    if (tokens.length < 4) {
-    	continue;
-    }
-    var position = {x: parseFloat(tokens[1]), y: parseFloat(tokens[2]), z: parseFloat(tokens[3])};
-    var name = tokens[0];
-
-    if (name.startsWith('c')) {
-    	clients.push({name: name, position: position});
-    }
-    else if (name.startsWith('s')) {
-    	servers.push({name: name, position: position});
-    }
-    else {
-    	auths.push({id: parseInt(name), position: position});
-    }
-}
-
 Array.prototype.sortOn = function(key){
     this.sort(function(a, b){
         if(a[key] < b[key]){
@@ -62,34 +32,25 @@ Array.prototype.sortOn = function(key){
     });
 }
 
-clients.sortOn('name');
-servers.sortOn('name');
-auths.sortOn('id');
-
-console.log('Total ' +  clients.length + ' clients');
-console.log(clients);
-console.log('Total ' +  servers.length + ' servers');
-console.log(servers);
-console.log('Total ' +  auths.length + ' auths');
-console.log(auths);
-
 // authList
-var authList = [];
-for (var i = 0; i < auths.length; i++) {
-    authList.push({id: auths[i].id});
+function getAuthList(auths) {
+    var authList = [];
+    for (var i = 0; i < auths.length; i++) {
+        authList.push({id: auths[i].id});
+    }
+    return authList;
 }
-
-console.log(JSON.stringify(authList,null,'\t'));
 
 // authTrusts
-var authTrusts = [];
-for (var i = 0; i < auths.length; i++) {
-    for (var j = i + 1; j < auths.length; j++) {
-        authTrusts.push({id1: auths[i].id, id2: auths[j].id});
+function getAuthTrusts(auths) {
+    var authTrusts = [];
+    for (var i = 0; i < auths.length; i++) {
+        for (var j = i + 1; j < auths.length; j++) {
+            authTrusts.push({id1: auths[i].id, id2: auths[j].id});
+        }
     }
+    return authTrusts;
 }
-
-console.log(JSON.stringify(authTrusts,null,'\t'));
 
 function computeDistance(pos1, pos2) {
     var squared = (pos1.x-pos2.x)*(pos1.x-pos2.x)
@@ -97,15 +58,14 @@ function computeDistance(pos1, pos2) {
         + (pos1.z-pos2.z)*(pos1.z-pos2.z);
     return Math.sqrt(squared);
 }
-var assignments ={};
 
-function populateAssignments(entityList, authList) {
+function populateAssignments(assignments, entityList, auths) {
     for (var i = 0; i < entityList.length; i++) {
         var entity = entityList[i];
         var authId = -1;
         var minDist = 1000000;
-        for (var j = 0; j < authList.length; j++) {
-            var auth = authList[j];
+        for (var j = 0; j < auths.length; j++) {
+            var auth = auths[j];
             var curDist = computeDistance(entity.position, auth.position);
             if (curDist < minDist) {
                 minDist = curDist;
@@ -115,33 +75,42 @@ function populateAssignments(entityList, authList) {
         assignments[entity.name] = authId;
     }
 }
-populateAssignments(clients, auths);
-populateAssignments(servers, auths);
 
-console.log(JSON.stringify(assignments,null,'\t'));
-
-var echoServerList = [];
-for (var i = 0; i < servers.length; i++) {
-    echoServerList.push({name: servers[i].name});
+function getAssignments(auths, clients, servers) {
+    var assignments ={};
+    populateAssignments(assignments, clients, auths);
+    populateAssignments(assignments, servers, auths);
+    return assignments;
 }
 
-var autoClientList = [];
-for (var i = 0; i < clients.length; i++) {
-    var client = clients[i];
-    var target = "";
-    var minDist = 1000000;
-    for (var j = 0; j < servers.length; j++) {
-        var server = servers[j];
-        var curDist = computeDistance(client.position, server.position);
-        if (curDist < minDist) {
-            minDist = curDist;
-            target = server.name;
-        }
+function getEchoServerList(servers) {
+    var echoServerList = [];
+    for (var i = 0; i < servers.length; i++) {
+        echoServerList.push({name: servers[i].name});
     }
-    autoClientList.push({name: client.name, target: target});
+    return echoServerList;
 }
-var positions = {};
-function populatePositions(entityList) {
+
+function getAutoClientList(clients, servers) {
+    var autoClientList = [];
+    for (var i = 0; i < clients.length; i++) {
+        var client = clients[i];
+        var target = "";
+        var minDist = 1000000;
+        for (var j = 0; j < servers.length; j++) {
+            var server = servers[j];
+            var curDist = computeDistance(client.position, server.position);
+            if (curDist < minDist) {
+                minDist = curDist;
+                target = server.name;
+            }
+        }
+        autoClientList.push({name: client.name, target: target});
+    }
+    return autoClientList;
+}
+
+function populatePositions(positions, entityList) {
     for (var i = 0; i < entityList.length; i++) {
         var entity = entityList[i];
         if (entity.id != null) {
@@ -152,19 +121,22 @@ function populatePositions(entityList) {
         }
     }
 }
-populatePositions(auths);
-populatePositions(clients);
-populatePositions(servers);
 
-console.log(JSON.stringify(positions,null,'\t'));
+function getPositions(auths, clients, servers) {
+    var positions = {};
+    populatePositions(positions, auths);
+    populatePositions(positions, clients);
+    populatePositions(positions, servers);
+    return positions;
+}
 
-function populateBackupTos(entityList, authList) {
+function populateBackupTos(entityList, auths) {
     for (var i = 0; i < entityList.length; i++) {
         var entity = entityList[i];
         var authId = -1;
         var minDist = 1000000;
-        for (var j = 0; j < authList.length; j++) {
-            var auth = authList[j];
+        for (var j = 0; j < auths.length; j++) {
+            var auth = auths[j];
             if (assignments[entity.name] == auth.id) {
                 continue;
             }
@@ -178,8 +150,69 @@ function populateBackupTos(entityList, authList) {
     }
 }
 
+var floorPlanFile = 'floorPlans/cory5th.txt';
+var outputFile = 'floorPlans/cory5th.input';
+
+var floorPlanString = fs.readFileSync(floorPlanFile, 'utf-8');
+var floorPlanLines = floorPlanString.split('\n');
+
+var auths = [];
+var clients = [];
+var servers = [];
+
+for (var i = 0; i < floorPlanLines.length; i++) {
+    var line = floorPlanLines[i].trim();
+    var tokens = line.split(/[ \t]+/);
+    if (tokens.length < 4) {
+        continue;
+    }
+    var position = {x: parseFloat(tokens[1]), y: parseFloat(tokens[2]), z: parseFloat(tokens[3])};
+    var name = tokens[0];
+
+    if (name.startsWith('c')) {
+        clients.push({name: name, position: position});
+    }
+    else if (name.startsWith('s')) {
+        servers.push({name: name, position: position});
+    }
+    else {
+        auths.push({id: parseInt(name), position: position});
+    }
+}
+
+clients.sortOn('name');
+servers.sortOn('name');
+auths.sortOn('id');
+/*
+console.log('Total ' +  clients.length + ' clients');
+console.log(clients);
+console.log('Total ' +  servers.length + ' servers');
+console.log(servers);
+console.log('Total ' +  auths.length + ' auths');
+console.log(auths);
+*/
+var authList = getAuthList(auths);
+var authTrusts = getAuthTrusts(auths);
+var assignments = getAssignments(auths, clients, servers);
+var echoServerList = getEchoServerList(servers);
+var autoClientList = getAutoClientList(clients, servers);
+var positions = getPositions(auths, clients, servers);
 populateBackupTos(autoClientList, auths);
 populateBackupTos(echoServerList, auths);
-
-console.log(JSON.stringify(autoClientList,null,'\t'));
+/*
+console.log(JSON.stringify(authList,null,'\t'));
+console.log(JSON.stringify(authTrusts,null,'\t'));
+console.log(JSON.stringify(assignments,null,'\t'));
 console.log(JSON.stringify(echoServerList,null,'\t'));
+console.log(JSON.stringify(autoClientList,null,'\t'));
+console.log(JSON.stringify(positions,null,'\t'));
+*/
+var outputString = '';
+outputString += 'module.authList = ' + JSON.stringify(authList,null,'\t') + ';\n\n';
+outputString += 'module.authTrusts = ' + JSON.stringify(authTrusts,null,'\t') + ';\n\n';
+outputString += 'module.assignments = ' + JSON.stringify(assignments,null,'\t') + ';\n\n';
+outputString += 'module.echoServerList = ' + JSON.stringify(echoServerList,null,'\t') + ';\n\n';
+outputString += 'module.autoClientList = ' + JSON.stringify(autoClientList,null,'\t') + ';\n\n';
+outputString += 'module.positions = ' + JSON.stringify(positions,null,'\t') + ';\n\n';
+
+fs.writeFileSync(outputFile, outputString, 'utf8');
