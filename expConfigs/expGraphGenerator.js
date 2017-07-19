@@ -51,7 +51,7 @@ var uniquePorts = isNS3 ? false : true;
 var uniqueHosts = isNS3 ? true : false;
 
 // getting input file using require
-var graphInput = require('./graphInput.js')('ns3Exp.input');
+var graphInput = require('./graphInput.js')(inputFileName);
 
 // inputs
 var authList = graphInput.authList;
