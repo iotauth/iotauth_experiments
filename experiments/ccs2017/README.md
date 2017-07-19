@@ -52,12 +52,18 @@
 
 # Experiment procedure
 
-* Experiment graph generation (**ns3Exp.graph**)
+* Experiment graph generation (**ns3Exp.graph** as default, can be changed)
 
   * This also generates **commCosts.txt** (communication costs between Auths and things) and **devList.txt** (a list of device information - name, address, type, position)
+  * Internally uses *expGraphGenerator.js* and *graphInput.js*
   
         cd $CONF
-        node expGraphGenerator.js
+        # for help
+        ./generateAll.sh --help
+        # default local
+        ./generateAll.sh 
+        # With a given floor plan
+        ./generateAll.sh -i $CCS/floorPlans/cory5th.input -o cory5th.graph
 
 * To generate Auths and entities using graph
 
