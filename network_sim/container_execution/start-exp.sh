@@ -8,7 +8,7 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-NS3_PROC_ID=`ps -aux | grep "tap-matrix-sst" | grep -v "grep" | awk '{print $2}'`
+NS3_PROC_ID=`ps -aux | grep "tap-mixed-sst" | grep -v "grep" | awk '{print $2}'`
 
 if [[ $NS3_PROC_ID != *[!\ ]* ]]; then
   echo "NS3 is not running! Please run NS3 first. Exiting ..."
@@ -20,12 +20,14 @@ TIME_BEFOR_FAIL=120s
 TIME_AFTER_FAIL=120s
 AUTH_TO_KILL=auth1
 CURRENT_DIR=`pwd`
+WAIT_TIME_BETWEEN_CLIENTS=1.5s #0.43s
 
 echo "WAIT_TIME_FOR_AUTH_INIT=$WAIT_TIME_FOR_AUTH_INIT"
 echo "TIME_BEFOR_FAIL=$TIME_BEFOR_FAIL"
 echo "TIME_AFTER_FAIL=$TIME_AFTER_FAIL"
 echo "AUTH_TO_KILL=$AUTH_TO_KILL"
 echo "CURRENT_DIR=$CURRENT_DIR"
+echo "WAIT_TIME_BETWEEN_CLIENTS=$WAIT_TIME_BETWEEN_CLIENTS"
 
 echo "Starting Auths ..."
 cd auth_execution
@@ -42,7 +44,7 @@ sleep $WAIT_TIME_FOR_AUTH_INIT
 
 echo "Starting clients ..."
 cd client_execution
-./start-clients.sh
+./start-clients.sh $WAIT_TIME_BETWEEN_CLIENTS
 cd ..
 
 echo "Now running experiemtns for $TIME_BEFOR_FAIL before failure ..."

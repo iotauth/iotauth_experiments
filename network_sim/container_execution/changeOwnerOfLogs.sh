@@ -5,12 +5,18 @@
 
 USER=`stat -c '%U' .`
 
-chown $USER client_execution/t*
-chown $USER client_execution/t*/nohup.out
+chown $USER client_execution/t[0-9]*
+chown $USER client_execution/t[0-9]*/nohup.out
 
-chown $USER server_execution/t*
-chown $USER server_execution/t*/nohup.out
+chown $USER client_execution/c[0-9]*
+chown $USER client_execution/c[0-9]*/nohup.out
 
-chown $USER auth_execution/auth*
-chown $USER auth_execution/auth*/nohup.out
+chown $USER server_execution/t[0-9]*
+chown $USER server_execution/t[0-9]*/nohup.out
+
+chown $USER server_execution/s[0-9]*
+chown $USER server_execution/s[0-9]*/nohup.out
+
+chown $USER auth_execution/auth[0-9]*
+chown $USER auth_execution/auth[0-9]*/nohup.out
 
