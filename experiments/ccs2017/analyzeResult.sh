@@ -18,7 +18,7 @@ ANALYSIS_DIR=$RESULT_DIR/analysis
 mkdir -p $ANALYSIS_DIR
 
 # analyze pcap results
-node packetAnalyzer.js $RESULT_DIR/pcap $RESULT_CONF/ns3Exp.graph $RESULT_CONF/devList.txt $RESULT_CONF/commCosts.txt $ANALYSIS_DIR/packet.txt
+node packetAnalyzer.js $RESULT_DIR/pcap $RESULT_CONF/cory5th.graph $RESULT_CONF/devList.txt $RESULT_CONF/commCosts.txt $ANALYSIS_DIR/packet.txt
 
 # analyze availability results
 node availabilityAnalyzer.js $RESULT_DIR/client_execution $ANALYSIS_DIR/availability.txt
