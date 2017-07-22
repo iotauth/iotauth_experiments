@@ -40,45 +40,182 @@ if (process.argv.length > (2 + numRequiredArgs) ) {
 
 var execLogDir = process.argv[2];
 
-function extractAvailability(entityName, logString) {
+function extractLastAvailability(entityName, logString) {
     var logLines = logString.split('\n');
     for (var i = logLines.length - 1; i >= 0; i--) {
         var logLine = logLines[i];
-        if (logLine.startsWith('Responses-actual/expected/ratio:')) {
+        if (logLine.startsWith('Resp-actual/expected/ratio/ts:')) {
             var tokens = logLine.split(' ');
-            var actualResponses = parseInt(tokens[tokens.length -3]);
-            var expectedResponses = parseInt(tokens[tokens.length -2]);
+            var actualResponses = parseInt(tokens[tokens.length -4]);
+            var expectedResponses = parseInt(tokens[tokens.length -3]);
+            var timeStamp = parseInt(tokens[tokens.length - 1]);
             return {
                 name: entityName,
                 actual: actualResponses,
                 expected: expectedResponses,
-                ratio: actualResponses/expectedResponses
+                ratio: actualResponses/expectedResponses,
+                timeStamp: timeStamp
             };
         }
     }
 }
 
+function extractAvailability(entityName, logString, responseList) {
+    var logLines = logString.split('\n');
+    for (var i = 0; i < logLines.length; i++) {
+        var logLine = logLines[i];
+        if (logLine.startsWith('Resp-actual/expected/ratio/ts:')) {
+            var tokens = logLine.split(' ');
+            var actualResponses = parseInt(tokens[tokens.length -4]);
+            var expectedResponses = parseInt(tokens[tokens.length -3]);
+            var timeStamp = parseInt(tokens[tokens.length - 1]);
+            var response = {
+                name: entityName,
+                actual: actualResponses,
+                expected: expectedResponses,
+                ratio: actualResponses/expectedResponses,
+                timeStamp: timeStamp
+            };
+            responseList.push(response);
+        }
+    }
+}
+
 var responseList = [];
+var lastResponseList = [];
 var elementList = fs.readdirSync(execLogDir);
 for (var i = 0; i < elementList.length; i++) {
     var element = elementList[i];
     var fullPath = path.join(execLogDir, element);
     var stat = fs.statSync(fullPath);
     if (stat.isDirectory()) {
-        var response = extractAvailability(element, fs.readFileSync(fullPath + '/nohup.out', 'utf-8'));
-        responseList.push(response);
+        var logString = fs.readFileSync(fullPath + '/nohup.out', 'utf-8');
+        var response = extractLastAvailability(element, logString);
+        extractAvailability(element, logString, responseList);
+        lastResponseList.push(response);
     }
 }
 
+//console.log(lastResponseList);
+
+// sort by timestamp
+responseList.sort(function(a,b) { return a.timeStamp - b.timeStamp; });
 console.log(responseList);
-        
+
+
+function getSubResponseLists(firstStartTime, timeWindow, responseList) {
+    var subResponseLists = [];
+    
+    var currentSubList = [];
+    // inclusive startTime and endTime
+    var startTime = firstStartTime;
+    var endTime = startTime + timeWindow - 1;    
+    for (var i = 0; i < responseList.length; i++) {
+        var response = responseList[i];
+        if (response.timeStamp > endTime) {
+            // proceed to next window
+            startTime = endTime + 1;
+            endTime = startTime + timeWindow - 1;
+            subResponseLists.push(currentSubList);
+            currentSubList = [];
+        }
+        currentSubList.push(response);
+    }
+    // add subList for the last window
+    subResponseLists.push(currentSubList);
+    return subResponseLists;
+}
+
+function extractLastResponsesFromEachSubList(oldSubResponseLists) {
+    var newSubResponseLists = [];
+
+    for (var i = 0; i < oldSubResponseLists.length; i++) {
+        var oldSubResponseList = oldSubResponseLists[i];
+        var map = {};
+        for (var j = oldSubResponseList.length - 1; j >= 0; j--) {
+            var oldSubResponse = oldSubResponseList[j];
+            if (map[oldSubResponse.name] == null) {
+                map[oldSubResponse.name] = oldSubResponse;
+            }
+        }
+        newSubResponseLists.push(map);
+    }
+    return newSubResponseLists;
+}
+
+function getPerWindowAvailability(subResponseLists) {
+    var prevMap = {};
+    var perWindowAvailability = [];
+    for (var i = 0; i < subResponseLists.length; i++) {
+        var subResponseList = subResponseLists[i];
+        var windowExpected = 0;
+        var windowActual = 0;
+        var numResponseToPrevWindow = 0;
+        for (var attribute in subResponseList) {
+            var response = subResponseList[attribute];
+            var expected = response.expected;
+            var actual = response.actual;
+            var prevResponse = prevMap[response.name];
+            if (prevResponse != null) {
+                expected -= prevResponse.expected;
+                actual -= prevResponse.actual;
+            }
+            if (actual > expected) {
+                var diff = actual - expected;
+                numResponseToPrevWindow += diff;
+            }
+            windowExpected += expected;
+            windowActual += actual;
+            prevMap[response.name] = response;
+        }
+      
+        perWindowAvailability.push({
+            actual: windowActual,
+            expected: windowExpected,
+            respToPrev: numResponseToPrevWindow,
+        });
+    }
+
+    console.log(perWindowAvailability);
+    // push back responses to previous windows
+    var respToPrev = 0;
+    for (var i = perWindowAvailability.length - 1; i >= 0; i--) {
+        var perWindow = perWindowAvailability[i];
+        if (respToPrev > 0) {
+            perWindow.actual += respToPrev;
+            respToPrev = 0;
+        }
+        var diff = perWindow.actual - perWindow.expected;
+        if (diff > 0) {
+            respToPrev += diff;
+            perWindow.actual -= diff;
+        }
+        respToPrev += perWindow.respToPrev;
+        delete perWindow.respToPrev;
+        perWindow.ratio = perWindow.actual / perWindow.expected;
+        perWindowAvailability[i] = perWindow;
+    }
+
+    return perWindowAvailability;
+}
+
+var firstStartTime = responseList[0].timeStamp;
+var timeWindow = 60 * 1000;   // 1 minute
+
+var originalSubResponseLists = getSubResponseLists(firstStartTime, timeWindow, responseList);
+var subResponseLists = extractLastResponsesFromEachSubList(originalSubResponseLists);
+var perWindowAvailability = getPerWindowAvailability(subResponseLists);
+
+console.log(perWindowAvailability);
+
 if (outputFile != null) {
     console.log('Also writing the result to output file: ' + outputFile);
     
-	fs.writeFileSync(outputFile, 
-		JSON2.stringify(responseList, null, '\t'),
-		'utf8'
-	);
+	  fs.writeFileSync(outputFile, 
+		    //JSON2.stringify(subResponseLists, null, '\t'),
+		    JSON2.stringify(originalSubResponseLists, null, '\t'),
+		    'utf8'
+	  );
 }
 // readlines reverse order
 //startsWith('Responses-actual/expected/ratio:')
