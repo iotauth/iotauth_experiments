@@ -146,59 +146,74 @@ function populateBackupTos(entityList, auths) {
                 authId = auth.id;
             }
         }
-        entityList[i].backupTo = authId;
+        var backupTo = [];
+        backupTo.push(authId);
+        entityList[i].backupTo = backupTo;
     }
+}
+
+/*
+    takes a floor plan file and returns sorted entities like this:
+
+    entities = {
+        auths:   list of {id, position: {x,y,z} },
+        clients: list of {name, position: {x,y,z} },
+        servers: list of {name, position: {x,y,z} }
+    }
+*/
+function extractEntitiesFromFloorPlan(floorPlanFile) {
+    var floorPlanString = fs.readFileSync(floorPlanFile, 'utf-8');
+    var floorPlanLines = floorPlanString.split('\n');
+
+    var auths = [];
+    var clients = [];
+    var servers = [];
+
+    for (var i = 0; i < floorPlanLines.length; i++) {
+        var line = floorPlanLines[i].trim();
+        var tokens = line.split(/[ \t]+/);
+        if (tokens.length < 4) {
+            continue;
+        }
+        var position = {x: parseFloat(tokens[1]), y: parseFloat(tokens[2]), z: parseFloat(tokens[3])};
+        var name = tokens[0];
+
+        if (name.startsWith('c')) {
+            clients.push({name: name, position: position});
+        }
+        else if (name.startsWith('s')) {
+            servers.push({name: name, position: position});
+        }
+        else {
+            auths.push({id: parseInt(name), position: position});
+        }
+    }
+
+    clients.sortOn('name');
+    servers.sortOn('name');
+    auths.sortOn('id');
+
+    return {
+        auths: auths,
+        clients: clients,
+        servers: servers
+    };
 }
 
 var floorPlanFile = 'floorPlans/cory5th.txt';
 var outputFile = 'floorPlans/cory5th.input';
 
-var floorPlanString = fs.readFileSync(floorPlanFile, 'utf-8');
-var floorPlanLines = floorPlanString.split('\n');
+var entities = extractEntitiesFromFloorPlan(floorPlanFile);
 
-var auths = [];
-var clients = [];
-var servers = [];
 
-for (var i = 0; i < floorPlanLines.length; i++) {
-    var line = floorPlanLines[i].trim();
-    var tokens = line.split(/[ \t]+/);
-    if (tokens.length < 4) {
-        continue;
-    }
-    var position = {x: parseFloat(tokens[1]), y: parseFloat(tokens[2]), z: parseFloat(tokens[3])};
-    var name = tokens[0];
-
-    if (name.startsWith('c')) {
-        clients.push({name: name, position: position});
-    }
-    else if (name.startsWith('s')) {
-        servers.push({name: name, position: position});
-    }
-    else {
-        auths.push({id: parseInt(name), position: position});
-    }
-}
-
-clients.sortOn('name');
-servers.sortOn('name');
-auths.sortOn('id');
-/*
-console.log('Total ' +  clients.length + ' clients');
-console.log(clients);
-console.log('Total ' +  servers.length + ' servers');
-console.log(servers);
-console.log('Total ' +  auths.length + ' auths');
-console.log(auths);
-*/
-var authList = getAuthList(auths);
-var authTrusts = getAuthTrusts(auths);
-var assignments = getAssignments(auths, clients, servers);
-var echoServerList = getEchoServerList(servers);
-var autoClientList = getAutoClientList(clients, servers);
-var positions = getPositions(auths, clients, servers);
-populateBackupTos(autoClientList, auths);
-populateBackupTos(echoServerList, auths);
+var authList = getAuthList(entities.auths);
+var authTrusts = getAuthTrusts(entities.auths);
+var assignments = getAssignments(entities.auths, entities.clients, entities.servers);
+var echoServerList = getEchoServerList(entities.servers);
+var autoClientList = getAutoClientList(entities.clients, entities.servers);
+var positions = getPositions(entities.auths, entities.clients, entities.servers);
+populateBackupTos(autoClientList, entities.auths);
+populateBackupTos(echoServerList, entities.auths);
 /*
 console.log(JSON.stringify(authList,null,'\t'));
 console.log(JSON.stringify(authTrusts,null,'\t'));

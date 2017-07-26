@@ -41,18 +41,18 @@ module.exports = function(inputFileName) {
 		});
 	}
 
-	function addMigrationPlan(thingName, backupToAuthID) {
+	function addMigrationPlan(thingName, backupToAuthIDs) {
 		for (var i = 0; i < module.echoServerList.length; i++) {
 			var echoServer = module.echoServerList[i];
 			if (echoServer.name == thingName) {
-				echoServer.backupTo = backupToAuthID;
+				echoServer.backupTo = backupToAuthIDs;
 				return;
 			}
 		}
 		for (var i = 0; i < module.autoClientList.length; i++) {
 			var autoClient = module.autoClientList[i];
 			if (autoClient.name == thingName) {
-				autoClient.backupTo = backupToAuthID;
+				autoClient.backupTo = backupToAuthIDs;
 				return;
 			}
 		}

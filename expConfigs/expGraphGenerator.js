@@ -120,7 +120,7 @@ function populateEchoServers() {
 			maxSessionKeysPerRequest: 1,
 			netName: 'Servers',
 			credentialPrefix: echoServer.name + '.Server',
-			backupToAuthId: echoServer.backupTo == null ? -1 : echoServer.backupTo
+			backupToAuthIds: echoServer.backupTo == null ? [] : echoServer.backupTo
 		}
 		serverHostPortMap[entity.name] = {host: entity.host, port: entity.port};
 		entityList.push(entity);
@@ -150,7 +150,7 @@ function populateAutoClients() {
 			maxSessionKeysPerRequest: 5,
 			netName: 'Clients',
 			credentialPrefix: autoClient.name + '.Client',
-			backupToAuthId: autoClient.backupTo == null ? -1 : autoClient.backupTo
+			backupToAuthIds: autoClient.backupTo == null ? [] : autoClient.backupTo
 		}
 		var targetServerInfoList = [];
 		if (autoClient.target != null) {
