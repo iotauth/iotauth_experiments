@@ -52,6 +52,16 @@
 
 # Experiment procedure
 
+* Generating an input for graph (**ns3Exp.input** as default, can be changed, others are **$CCS/floorPlans/cory5th.input**)
+
+  * This takes coordinates for entities (**$CCS/floorPlans/cory5th.txt**), predefined Auth-entity assignments (**$CCS/floorPlans/cory5thAssignments.json**), and predefined Auth trusts (**$CCS/floorPlans/cory5thAuthTrusts.json**).
+
+        cd $CCS
+        # for help
+        node floorPlanToInput.js --help
+        # for generating floor plan with predefined assignments and Auth trusts
+        node floorPlanToInput.js -a floorPlans/cory5thAssignments.json -t floorPlans/cory5thAuthTrusts.json -b 3
+
 * Experiment graph generation (**ns3Exp.graph** as default, can be changed)
 
   * This also generates **commCosts.txt** (communication costs between Auths and things) and **devList.txt** (a list of device information - name, address, type, position)
