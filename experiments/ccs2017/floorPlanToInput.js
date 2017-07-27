@@ -59,9 +59,13 @@ function computeDistance(pos1, pos2) {
     return Math.sqrt(squared);
 }
 
-function populateAssignments(assignments, entityList, auths) {
+function populateAssignments(assignments, entityList, auths, predefinedAssignments) {
     for (var i = 0; i < entityList.length; i++) {
         var entity = entityList[i];
+        if (predefinedAssignments != null && predefinedAssignments[entity.name] != null) {
+            assignments[entity.name] = predefinedAssignments[entity.name];
+            continue;
+        }
         var authId = -1;
         var minDist = 1000000;
         for (var j = 0; j < auths.length; j++) {
@@ -76,10 +80,10 @@ function populateAssignments(assignments, entityList, auths) {
     }
 }
 
-function getAssignments(auths, clients, servers) {
+function getAssignments(auths, clients, servers, predefinedAssignments) {
     var assignments ={};
-    populateAssignments(assignments, clients, auths);
-    populateAssignments(assignments, servers, auths);
+    populateAssignments(assignments, clients, auths, predefinedAssignments);
+    populateAssignments(assignments, servers, auths, predefinedAssignments);
     return assignments;
 }
 
@@ -130,24 +134,30 @@ function getPositions(auths, clients, servers) {
     return positions;
 }
 
-function populateBackupTos(entityList, auths) {
+function populateBackupTos(entityList, auths, maxNumBackupToAuths) {
     for (var i = 0; i < entityList.length; i++) {
         var entity = entityList[i];
-        var authId = -1;
-        var minDist = 1000000;
+        //var authId = -1;
+        //var minDist = 1000000;
+        var authDists = [];
         for (var j = 0; j < auths.length; j++) {
             var auth = auths[j];
             if (assignments[entity.name] == auth.id) {
                 continue;
             }
             var curDist = computeDistance(positions[entity.name], auth.position);
-            if (curDist < minDist) {
-                minDist = curDist;
-                authId = auth.id;
-            }
+            authDists.push({id: auth.id, dist: curDist});
+            //if (curDist < minDist) {
+            //    minDist = curDist;
+            //    authId = auth.id;
+            //}
         }
+        authDists.sortOn('dist');
         var backupTo = [];
-        backupTo.push(authId);
+        for (var j = 0; j < authDists.length && j < maxNumBackupToAuths; j++) {
+            backupTo.push(authDists[j].id);
+        }
+        //backupTo.push(authId);
         entityList[i].backupTo = backupTo;
     }
 }
@@ -199,21 +209,69 @@ function extractEntitiesFromFloorPlan(floorPlanFile) {
         servers: servers
     };
 }
+// take a look at iotauth/examples/configs/defaultGraphGenerator.js
+
+var program = require('commander');
+program
+  .version('0.1.0')
+  .option('-i, --in [value]', 'Input floor plan file')
+  .option('-a, --assignments [value]', 'File for predefined assignments between Auths and entities')
+  .option('-t, --auth-trusts [value]', 'File for predefined trusts between Auths')
+  .option('-o, --out [value]', 'Output \'.input\' file (used as an input file for graph generator')
+  .option('-b, --backup-auths <n>', 'Maximum number of Auths that entities can backup to', parseInt)
+  .parse(process.argv);
 
 var floorPlanFile = 'floorPlans/cory5th.txt';
+var predefinedAssignmentsFile = null;
+var predefinedAuthTrustsFile = null;
 var outputFile = 'floorPlans/cory5th.input';
+var maxNumBackupToAuths = 2;
+
+if (program.in != null) {
+    floorPlanFile = program.in;
+}
+if (program.assignments != null) {
+    predefinedAssignmentsFile = program.assignments;
+}
+if (program.authTrusts != null) {
+    predefinedAuthTrustsFile = program.authTrusts;
+}
+if (program.out != null) {
+    outputFile = program.out;
+}
+if (program.backupAuths != null) {
+    maxNumBackupToAuths = program.backupAuths;
+}
+
+console.log('Floor file name: ' + floorPlanFile);
+console.log('Predefined assignments file name: ' + predefinedAssignmentsFile);
+console.log('Predefined Auth trusts file name: ' + predefinedAuthTrustsFile);
+console.log('Output file (.input) name: ' + outputFile);
+console.log('Maximum number of Auths that entities can backup to: ' + maxNumBackupToAuths);
+
 
 var entities = extractEntitiesFromFloorPlan(floorPlanFile);
+// maximum number of Auths that an entity can backup to
 
+var predefinedAssignments = null;
+if (predefinedAssignmentsFile != null) {
+    var file = require('./' + predefinedAssignmentsFile);
+    predefinedAssignments = file.assignments;
+}
+var predefinedAuthTrusts = null;
+if (predefinedAuthTrustsFile != null) {
+    var file = require('./' + predefinedAuthTrustsFile);
+    predefinedAuthTrusts = file.authTrusts;
+}
 
 var authList = getAuthList(entities.auths);
-var authTrusts = getAuthTrusts(entities.auths);
-var assignments = getAssignments(entities.auths, entities.clients, entities.servers);
+var authTrusts = predefinedAuthTrusts == null ? getAuthTrusts(entities.auths): predefinedAuthTrusts;
+var assignments = getAssignments(entities.auths, entities.clients, entities.servers, predefinedAssignments);
 var echoServerList = getEchoServerList(entities.servers);
 var autoClientList = getAutoClientList(entities.clients, entities.servers);
 var positions = getPositions(entities.auths, entities.clients, entities.servers);
-populateBackupTos(autoClientList, entities.auths);
-populateBackupTos(echoServerList, entities.auths);
+populateBackupTos(autoClientList, entities.auths, maxNumBackupToAuths);
+populateBackupTos(echoServerList, entities.auths, maxNumBackupToAuths);
 /*
 console.log(JSON.stringify(authList,null,'\t'));
 console.log(JSON.stringify(authTrusts,null,'\t'));
