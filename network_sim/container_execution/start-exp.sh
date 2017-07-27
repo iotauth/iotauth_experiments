@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Script for running experiments
+# Core script for running experiments
 # Author: Hokeun Kim
 
 # Define a timestamp function
@@ -22,8 +22,8 @@ if [[ $NS3_PROC_ID != *[!\ ]* ]]; then
 fi
 
 WAIT_TIME_FOR_AUTH_INIT=20s
-TIME_BEFOR_FAIL=360s
-TIME_AFTER_FAIL=600s
+TIME_BEFOR_FAIL=300s
+TIME_AFTER_FAIL=720s
 NUM_AUTHS_TO_KILL=2
 AUTHS_TO_KILL=(auth1 auth3 auth4 auth2)
 CURRENT_DIR=`pwd`
@@ -40,6 +40,9 @@ for ((i=0; i< $NUM_AUTHS_TO_KILL; i++)) {
 printf "\n"
 echo "CURRENT_DIR=$CURRENT_DIR"
 echo "WAIT_TIME_BETWEEN_CLIENTS=$WAIT_TIME_BETWEEN_CLIENTS"
+
+echo "Cleaning outcomes from previous experiments ..."
+./cleanAll.sh
 
 echo "Starting Auths ..."
 cd auth_execution

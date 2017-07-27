@@ -14,3 +14,6 @@ cd ..
 cd client_execution
 ./cleanAll.sh
 cd ..
+
+rm execution.log
+

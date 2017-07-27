@@ -11,6 +11,7 @@ mkdir $RESULT_DIR
 
 # copy execution logs
 cp -r $EXEC/*_execution $RESULT_DIR
+cp $EXEC/execution.log $RESULT_DIR
 
 # copy captured packets
 mkdir $RESULT_DIR/pcap
