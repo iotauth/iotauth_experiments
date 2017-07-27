@@ -73,6 +73,14 @@ var wiredAddress = 1;
 var wifiSubnetBase = '10.0.1.';
 var wifiAddress = 1;
 
+/*
+ *     dbProtectionMethod: values
+ *     DEBUG(0),
+ *     ENCRYPT_CREDENTIALS(1),
+ *     ENCRYPT_ENTIRE_DB(2); // in memory
+ */
+var defaultDBProtectionMethod = 2;
+
 function populateAuthList() {
 	var currentPort = 21100;
 	for (var i = 0; i < authList.length; i++) {
@@ -84,7 +92,7 @@ function populateAuthList() {
 			tcpPort: currentPort,
 			udpPort: currentPort + 2,
 			authPort: currentPort + 1,
-			dbProtectionMethod: 1
+			dbProtectionMethod: defaultDBProtectionMethod
 		}
 		if (uniquePorts) {
 			currentPort += 100;
