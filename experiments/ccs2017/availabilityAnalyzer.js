@@ -208,6 +208,11 @@ var perWindowAvailability = getPerWindowAvailability(subResponseLists);
 
 console.log(perWindowAvailability);
 
+for (var i = 0; i < perWindowAvailability.length; i++) {
+    var perWindow = perWindowAvailability[i];
+    console.log(perWindow.ratio);
+}
+
 if (outputFile != null) {
     console.log('Also writing the result to output file: ' + outputFile);
     
