@@ -82,6 +82,10 @@ var wifiAddress = 1;
 var defaultDBProtectionMethod = 2;
 
 function populateAuthList() {
+	const AUTH_UDP_PORT_OFFSET = 2;
+	const TRUSTED_AUTH_PORT_OFFSET = 1;
+	const CONTEXTUAL_CALLBACK_PORT_OFFSET = 3;
+	
 	var currentPort = 21100;
 	for (var i = 0; i < authList.length; i++) {
 		var auth = authList[i];
@@ -90,9 +94,12 @@ function populateAuthList() {
 			entityHost: uniqueHosts ? wifiSubnetBase + wifiAddress : 'localhost',
 			authHost: uniqueHosts ? wiredSubnetBase + wiredAddress : 'localhost',
 			tcpPort: currentPort,
-			udpPort: currentPort + 2,
-			authPort: currentPort + 1,
-			dbProtectionMethod: defaultDBProtectionMethod
+			udpPort: currentPort + AUTH_UDP_PORT_OFFSET,
+			authPort: currentPort + TRUSTED_AUTH_PORT_OFFSET,
+			callbackPort: currentPort + CONTEXTUAL_CALLBACK_PORT_OFFSET,
+			dbProtectionMethod: defaultDBProtectionMethod,
+			backupEnabled: true,				// should always be true for experiments
+			contextualCallbackEnabled: false	// not necessary for experiments
 		}
 		if (uniquePorts) {
 			currentPort += 100;

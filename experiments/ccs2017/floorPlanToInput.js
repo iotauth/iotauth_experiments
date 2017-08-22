@@ -161,6 +161,35 @@ function populateBackupTos(entityList, auths, maxNumBackupToAuths) {
         entityList[i].backupTo = backupTo;
     }
 }
+/*
+    entities = {
+        auths:   list of {id, position: {x,y,z} },
+        clients: list of {name, position: {x,y,z} },
+        servers: list of {name, position: {x,y,z} }
+    }
+*/
+function getCommCosts(auths, clients, servers) {
+    var entities = auths.concat(clients, servers);
+    var commCosts = '';
+
+    for (var i = 0; i < entities.length; i++) {
+        var e1 = entities[i];
+        var name1 = e1.name == null ? e1.id : '\'' + e1.name + '\'';
+        var extraTap1 = e1.name == null ? '\t' : '';
+        var position1 = e1.position;
+        for (var j = i + 1; j < entities.length; j++) {
+            var e2 = entities[j];
+            var name2 = e2.name == null ? e2.id : '\'' + e2.name + '\'';
+            var extraTap2 = e2.name == null ? '\t' : '';
+            var position2 = e2.position;
+
+            var dist = computeDistance(position1, position2);
+            var costStr = 'addCommCost(' + name1 + ',\t' + extraTap1 + name2 + ',\t' + extraTap2 + dist+')';
+            commCosts += (costStr + '\n');
+        }
+    }
+    return commCosts;
+}
 
 /*
     takes a floor plan file and returns sorted entities like this:
@@ -272,6 +301,7 @@ var autoClientList = getAutoClientList(entities.clients, entities.servers);
 var positions = getPositions(entities.auths, entities.clients, entities.servers);
 populateBackupTos(autoClientList, entities.auths, maxNumBackupToAuths);
 populateBackupTos(echoServerList, entities.auths, maxNumBackupToAuths);
+//var commCosts = getCommCosts(entities.auths, entities.clients, entities.servers);
 /*
 console.log(JSON.stringify(authList,null,'\t'));
 console.log(JSON.stringify(authTrusts,null,'\t'));
@@ -287,5 +317,6 @@ outputString += 'module.assignments = ' + JSON.stringify(assignments,null,'\t') 
 outputString += 'module.echoServerList = ' + JSON.stringify(echoServerList,null,'\t') + ';\n\n';
 outputString += 'module.autoClientList = ' + JSON.stringify(autoClientList,null,'\t') + ';\n\n';
 outputString += 'module.positions = ' + JSON.stringify(positions,null,'\t') + ';\n\n';
+//utputString += commCosts;
 
 fs.writeFileSync(outputFile, outputString, 'utf8');
