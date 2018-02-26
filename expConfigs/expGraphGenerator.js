@@ -56,6 +56,7 @@ var graphInput = require('./graphInput.js')(inputFileName);
 // inputs
 var authList = graphInput.authList;
 var authTrusts = graphInput.authTrusts;
+var authCapacity = graphInput.authCapacity;
 var assignments = graphInput.assignments;
 var echoServerList = graphInput.echoServerList;
 var autoClientList = graphInput.autoClientList;
@@ -99,7 +100,8 @@ function populateAuthList() {
 			callbackPort: currentPort + CONTEXTUAL_CALLBACK_PORT_OFFSET,
 			dbProtectionMethod: defaultDBProtectionMethod,
 			backupEnabled: true,				// should always be true for experiments
-			contextualCallbackEnabled: false	// not necessary for experiments
+			contextualCallbackEnabled: false,	// not necessary for experiments
+			capacityQpsLimit: authCapacity[auth.id.toString()]
 		}
 		if (uniquePorts) {
 			currentPort += 100;
