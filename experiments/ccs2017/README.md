@@ -54,7 +54,7 @@
 
 * Generating an input for graph (**ns3Exp.input** as default, can be changed, others are **$CCS/floorPlans/cory5th.input**)
 
-  * This takes coordinates for entities (**$CCS/floorPlans/cory5th.txt**), predefined Auth-entity assignments (**$CCS/floorPlans/cory5thAssignments.json**), and predefined Auth trusts (**$CCS/floorPlans/cory5thAuthTrusts.json**).
+  * This takes coordinates for entities (**$CCS/floorPlans/cory5th.txt**), predefined Auth-entity assignments (**$CCS/floorPlans/cory5thAssignments.json**), predefined Auth trusts (**$CCS/floorPlans/cory5thAuthTrusts.json**), and predefined Auth capacity (**$CCS/floorPlans/cory5thAuthCapacity.json**).
 
         cd $CCS
         # for help
@@ -183,3 +183,15 @@
 
         sudo lxc-stop -n auth1
 
+
+# Experiment procedure for extended experiments
+
+* Generating an input for graph (**ns3Exp.input** as default, can be changed, others are **$CCS/floorPlans/cory345.input**)
+
+  * This takes coordinates for entities (**$CCS/floorPlans/cory345.txt**), predefined Auth-entity assignments (**$CCS/floorPlans/cory345Assignments.json**), predefined Auth trusts (**$CCS/floorPlans/cory345AuthTrusts.json**), predefined Auth capacity (**$CCS/floorPlans/cory345AuthCapacity.json**).
+  
+        cd $CCS
+        # for help
+        node floorPlanToInput.js --help
+        # for generating floor plan with predefined assignments and Auth trusts
+        node floorPlanToInput.js -i floorPlans/cory345/cory345.txt -a floorPlans/cory345/cory345Assignments.json -t floorPlans/cory345/cory345AuthTrusts.json -c floorPlans/cory345/cory345AuthCapacity.json -o floorPlans/cory345/cory345 -b 9
