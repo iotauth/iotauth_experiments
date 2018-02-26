@@ -52,6 +52,15 @@ function getAuthTrusts(auths) {
     return authTrusts;
 }
 
+// authCapacity
+function getDefaultAuthCapacity(auths) {
+    var authCapacity = {};
+    for (var i = 0; i < auths.length; i++) {
+        authCapacity[i.toString()] = 500;
+    }
+    return authCapacity;
+}
+
 function computeDistance(pos1, pos2) {
     var squared = (pos1.x-pos2.x)*(pos1.x-pos2.x)
         + (pos1.y-pos2.y)*(pos1.y-pos2.y)
@@ -246,14 +255,17 @@ program
   .option('-i, --in [value]', 'Input floor plan file')
   .option('-a, --assignments [value]', 'File for predefined assignments between Auths and entities')
   .option('-t, --auth-trusts [value]', 'File for predefined trusts between Auths')
-  .option('-o, --out [value]', 'Output \'.input\' file (used as an input file for graph generator')
+  .option('-c, --auth-capacity [value]', 'File for predefined capacity of Auths')
+  .option('-o, --out [value]', 'Output \'.input\' (for graph generator), \'.json\' (for migration solver)')
   .option('-b, --backup-auths <n>', 'Maximum number of Auths that entities can backup to', parseInt)
   .parse(process.argv);
 
 var floorPlanFile = 'floorPlans/cory5th.txt';
 var predefinedAssignmentsFile = null;
 var predefinedAuthTrustsFile = null;
-var outputFile = 'floorPlans/cory5th.input';
+var predefinedAuthCapacityFile = null;
+var graphGeneratorInputFile = 'floorPlans/cory5th.input';
+var migrationSolverInputFile = 'floorPlans/cory5th.json';
 var maxNumBackupToAuths = 2;
 
 if (program.in != null) {
@@ -265,8 +277,12 @@ if (program.assignments != null) {
 if (program.authTrusts != null) {
     predefinedAuthTrustsFile = program.authTrusts;
 }
+if (program.authCapacity != null) {
+    predefinedAuthCapacityFile = program.authCapacity;
+}
 if (program.out != null) {
-    outputFile = program.out;
+    graphGeneratorInputFile = program.out + '.input';
+    migrationSolverInputFile = program.out + '.json';
 }
 if (program.backupAuths != null) {
     maxNumBackupToAuths = program.backupAuths;
@@ -275,7 +291,9 @@ if (program.backupAuths != null) {
 console.log('Floor file name: ' + floorPlanFile);
 console.log('Predefined assignments file name: ' + predefinedAssignmentsFile);
 console.log('Predefined Auth trusts file name: ' + predefinedAuthTrustsFile);
-console.log('Output file (.input) name: ' + outputFile);
+console.log('Predefined Auth capacity file name: ' + predefinedAuthCapacityFile);
+console.log('Output graph generator input file (.input) name: ' + graphGeneratorInputFile);
+console.log('Output migration solver input file (.json) name: ' + migrationSolverInputFile);
 console.log('Maximum number of Auths that entities can backup to: ' + maxNumBackupToAuths);
 
 
@@ -292,31 +310,38 @@ if (predefinedAuthTrustsFile != null) {
     var file = require('./' + predefinedAuthTrustsFile);
     predefinedAuthTrusts = file.authTrusts;
 }
+var predefinedAuthCapacity = null;
+if (predefinedAuthCapacityFile != null) {
+    var file = require('./' + predefinedAuthCapacityFile);
+    predefinedAuthCapacity = file.authCapacity;
+}
 
 var authList = getAuthList(entities.auths);
-var authTrusts = predefinedAuthTrusts == null ? getAuthTrusts(entities.auths): predefinedAuthTrusts;
 var assignments = getAssignments(entities.auths, entities.clients, entities.servers, predefinedAssignments);
+var authTrusts = predefinedAuthTrusts == null ? getAuthTrusts(entities.auths): predefinedAuthTrusts;
+var authCapacity = predefinedAuthCapacity == null ? getDefaultAuthCapacity(entities.auths): predefinedAuthCapacity;
 var echoServerList = getEchoServerList(entities.servers);
 var autoClientList = getAutoClientList(entities.clients, entities.servers);
 var positions = getPositions(entities.auths, entities.clients, entities.servers);
 populateBackupTos(autoClientList, entities.auths, maxNumBackupToAuths);
 populateBackupTos(echoServerList, entities.auths, maxNumBackupToAuths);
-//var commCosts = getCommCosts(entities.auths, entities.clients, entities.servers);
-/*
-console.log(JSON.stringify(authList,null,'\t'));
-console.log(JSON.stringify(authTrusts,null,'\t'));
-console.log(JSON.stringify(assignments,null,'\t'));
-console.log(JSON.stringify(echoServerList,null,'\t'));
-console.log(JSON.stringify(autoClientList,null,'\t'));
-console.log(JSON.stringify(positions,null,'\t'));
-*/
-var outputString = '';
-outputString += 'module.authList = ' + JSON.stringify(authList,null,'\t') + ';\n\n';
-outputString += 'module.authTrusts = ' + JSON.stringify(authTrusts,null,'\t') + ';\n\n';
-outputString += 'module.assignments = ' + JSON.stringify(assignments,null,'\t') + ';\n\n';
-outputString += 'module.echoServerList = ' + JSON.stringify(echoServerList,null,'\t') + ';\n\n';
-outputString += 'module.autoClientList = ' + JSON.stringify(autoClientList,null,'\t') + ';\n\n';
-outputString += 'module.positions = ' + JSON.stringify(positions,null,'\t') + ';\n\n';
-//utputString += commCosts;
 
-fs.writeFileSync(outputFile, outputString, 'utf8');
+var graphGeneratorInputString = '';
+graphGeneratorInputString += 'module.authList = ' + JSON.stringify(authList,null,'\t') + ';\n\n';
+graphGeneratorInputString += 'module.authTrusts = ' + JSON.stringify(authTrusts,null,'\t') + ';\n\n';
+graphGeneratorInputString += 'module.authCapacity = ' + JSON.stringify(authCapacity,null,'\t') + ';\n\n';
+graphGeneratorInputString += 'module.assignments = ' + JSON.stringify(assignments,null,'\t') + ';\n\n';
+graphGeneratorInputString += 'module.echoServerList = ' + JSON.stringify(echoServerList,null,'\t') + ';\n\n';
+graphGeneratorInputString += 'module.autoClientList = ' + JSON.stringify(autoClientList,null,'\t') + ';\n\n';
+graphGeneratorInputString += 'module.positions = ' + JSON.stringify(positions,null,'\t') + ';\n\n';
+//utputString += commCosts;
+fs.writeFileSync(graphGeneratorInputFile, graphGeneratorInputString, 'utf8');
+
+var migrationSolverInputJson = {};
+migrationSolverInputJson['autoClientList'] = autoClientList;
+migrationSolverInputJson['assignments'] = assignments;
+migrationSolverInputJson['authTrusts'] = authTrusts;
+migrationSolverInputJson['authCapacity'] = authCapacity;
+
+fs.writeFileSync(migrationSolverInputFile, JSON.stringify(migrationSolverInputJson,null,'\t'), 'utf8');
+

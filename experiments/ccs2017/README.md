@@ -60,7 +60,7 @@
         # for help
         node floorPlanToInput.js --help
         # for generating floor plan with predefined assignments and Auth trusts
-        node floorPlanToInput.js -a floorPlans/cory5thAssignments.json -t floorPlans/cory5thAuthTrusts.json -b 3
+        node floorPlanToInput.js -a floorPlans/cory5thAssignments.json -t floorPlans/cory5thAuthTrusts.json -c floorPlans/cory5thAuthCapacity.json -o floorPlans/cory5th -b 3
 
 * Experiment graph generation (**ns3Exp.graph** as default, can be changed)
 
