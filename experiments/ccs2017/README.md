@@ -84,6 +84,7 @@
 * To set linux containers (LXCs). **generateAll.sh** will generate **tapConfigs.txt** that is used for ns3 simulation. The setup takes some time. See [LXC README.md](https://github.com/iotauth/iotauth_experiments/blob/master/network_sim/linux_containers/README.md) for more details. Do not forget to teardown LXCs with "./teardown-virtual-network.sh" before you create a new set of LXCs. (If not, it will cause problems because of the LXCs that are already there).
 
       cd $LXC
+      sudo ./teardown-virtual-network.sh
       ./cleanAll.sh
       ./generateAll.sh -d $CONF/devList.txt -c $CONF/commCosts.txt
       sudo ./setup-virtual-network.sh
@@ -195,3 +196,17 @@
         node floorPlanToInput.js --help
         # for generating floor plan with predefined assignments and Auth trusts
         node floorPlanToInput.js -i floorPlans/cory345/cory345.txt -a floorPlans/cory345/cory345Assignments.json -t floorPlans/cory345/cory345AuthTrusts.json -c floorPlans/cory345/cory345AuthCapacity.json -o floorPlans/cory345/cory345 -b 9
+
+* To generate graph file and devList.txt, commCost.txt
+
+      cd $CONF
+      ./generateAll.sh -i $CCS/floorPlans/cory345/cory345.input -o cory345.graph
+
+* To generate example Auths and servers and clients
+
+      cd $IOT/examples
+      ./cleanAll.sh
+      ./generateAll.sh -g $CONF/cory345.graph
+
+* The rest is the same for the smaller-scale experiments
+  
