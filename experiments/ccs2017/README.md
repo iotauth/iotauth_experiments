@@ -95,6 +95,10 @@
 
 * To setup ns3 network simulation environment (build is optional)
 
+  * **IMPORTANT**: Before the first build of ns3, configure it to include examples and tests, enable sudo, and optimize the build. Examples include modules for simulation, **tap-matrix-sst** and tap-mixed-sst**.
+
+        ./waf configure --build-profile=optimized --enable-examples --enable-tests --enable-sudo
+
   * To edit the simulator source code, see inside **$TAP** (**$NS3/src/tap-bridge/examples**) and look into simulation files (e.g., **tap-matrix-sst.cc**, **tap-mixed-sst.cc**)
   
         cd $NS3
