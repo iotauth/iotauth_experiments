@@ -32,7 +32,8 @@ if (process.argv.length <= 3) {
 
 var inputFileName = process.argv[2];    // ns3Exp.input
 var outputGraphFileName = process.argv[3];  // exp.graph (for non-ns3) or ns3Exp.graph (for ns3)
-console.log('Input file: ' + inputFileName + '\tOutput file: ' + outputGraphFileName);
+console.log('Input file: ' + inputFileName);
+console.log('Output file: ' + outputGraphFileName);
 
 var isNS3;
 if (process.argv.length > 4 && process.argv[4] == '-n') {
