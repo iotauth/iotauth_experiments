@@ -338,6 +338,7 @@ graphGeneratorInputString += 'module.positions = ' + JSON.stringify(positions,nu
 fs.writeFileSync(graphGeneratorInputFile, graphGeneratorInputString, 'utf8');
 
 var migrationSolverInputJson = {};
+migrationSolverInputJson['authList'] = authList;
 migrationSolverInputJson['autoClientList'] = autoClientList;
 migrationSolverInputJson['assignments'] = assignments;
 migrationSolverInputJson['authTrusts'] = authTrusts;
