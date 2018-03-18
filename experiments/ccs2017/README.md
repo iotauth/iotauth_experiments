@@ -189,7 +189,7 @@
         sudo lxc-stop -n auth1
 
 
-# Experiment procedure for extended experiments
+# Experiment procedure for extended experiments for Cory 3rd, 4th and 5th floors (Cory345)
 
 * Generating an input for graph (**ns3Exp.input** as default, can be changed, others are **$CCS/floorPlans/cory345.input**)
 
@@ -199,7 +199,7 @@
         # for help
         node floorPlanToInput.js --help
         # for generating floor plan with predefined assignments and Auth trusts
-        node floorPlanToInput.js -i floorPlans/cory345/cory345.txt -a floorPlans/cory345/cory345Assignments.json -t floorPlans/cory345/cory345AuthTrusts.json -c floorPlans/cory345/cory345AuthCapacity.json -o floorPlans/cory345/cory345 -b 9
+        node floorPlanToInput.js -i floorPlans/cory345/cory345.txt -a floorPlans/cory345/cory345Assignments.json -t floorPlans/cory345/cory345AuthTrusts.json -c floorPlans/cory345/cory345AuthCapacity.json -o floorPlans/cory345/cory345 -b 9 -l
 
 * To generate graph file and devList.txt, commCost.txt
 
@@ -213,4 +213,25 @@
       ./generateAll.sh -g $CONF/cory345.graph
 
 * The rest is the same for the smaller-scale experiments
+
+
+# Experiment procedure for extended experiments for Cory 4th and 5th floors (Cory45)
+
+* Generating an input for graph
+
+  * This takes entity coordinates, Auth-entity assignments, Auth trusts, and Auth capacity for Cory 4th and 5th floors.
+
+        node floorPlanToInput.js -i floorPlans/cory45/cory45.txt -a floorPlans/cory45/cory45Assignments.json -t floorPlans/cory45/cory45AuthTrusts.json -c floorPlans/cory45/cory45AuthCapacity.json -o floorPlans/cory45/cory45 -b 6 -l
   
+* To generate graph file and devList.txt, commCost.txt
+
+      cd $CONF
+      ./generateAll.sh -i $CCS/floorPlans/cory45/cory45.input -o cory45.graph
+
+* To generate example Auths and servers and clients
+
+      cd $IOT/examples
+      ./cleanAll.sh
+      ./generateAll.sh -g $CONF/cory45.graph      
+        
+* The rest is the same for the smaller-scale experiments
