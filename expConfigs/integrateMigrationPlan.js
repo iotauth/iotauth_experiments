@@ -23,6 +23,14 @@
 var fs = require('fs');
 var JSON2 = require('JSON2');
 
+function convertStringArrayToIntArray(stringArray) {
+	var intArray = [];
+	for (var i = 0; i < stringArray.length; i++) {
+		intArray.push(parseInt(stringArray[i]));
+	}
+	return intArray;
+}
+
 var program = require('commander');
 program
   .version('0.1.0')
@@ -60,14 +68,15 @@ var migrationPlan = JSON.parse(fs.readFileSync(migrationPlanFile));
 
 var backupMap = {};
 
+// Migration plan gives Auth IDs in String, thus, we need to convert them into int.
 for (var i = 0; i < migrationPlan.echoServerList.length; i++) {
 	var server = migrationPlan.echoServerList[i];
-	backupMap[server['name']] = server['backupTo'];
+	backupMap[server['name']] = convertStringArrayToIntArray(server['backupTo']);
 }
 
 for (var i = 0; i < migrationPlan.autoClientList.length; i++) {
 	var client = migrationPlan.autoClientList[i];
-	backupMap[client['name']] = client['backupTo'];
+	backupMap[client['name']] = convertStringArrayToIntArray(client['backupTo']);
 }
 
 //console.log(backupMap);
