@@ -228,6 +228,18 @@
       cd $CONF
       ./generateAll.sh -i $CCS/floorPlans/cory45/cory45.input -o cory45.graph
 
+* To integrate migration plans into graph file
+
+      cd $CONF
+
+      node integrateMigrationPlan.js -g cory45.graph -m /Users/hokeunkim/Development/iotauth/auth/migration-solver/results/cory45_plan_ILP.json -o cory45_ILP.json
+
+      node integrateMigrationPlan.js -g cory45.graph -m /Users/hokeunkim/Development/iotauth/auth/migration-solver/results/cory45_plan_ILP_mt.json -o cory45_ILP_mt.json
+
+      node integrateMigrationPlan.js -g cory45.graph -m /Users/hokeunkim/Development/iotauth/auth/migration-solver/results/cory45_plan_ILP_ac.json -o cory45_ILP_ac.json
+
+      node integrateMigrationPlan.js -g cory45.graph -m /Users/hokeunkim/Development/iotauth/auth/migration-solver/results/cory45_plan_ILP_mt_ac.json -o cory45_ILP_mt_ac.json
+
 * To generate example Auths and servers and clients
 
       cd $IOT/examples
