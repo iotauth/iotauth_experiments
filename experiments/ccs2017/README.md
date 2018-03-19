@@ -232,13 +232,13 @@
 
       cd $CONF
 
-      node integrateMigrationPlan.js -g cory45.graph -m $IOT/auth/migration-solver/results/cory45_plan_ILP.json -o cory45_ILP.json
+      node integrateMigrationPlan.js -g cory45.graph -m $IOT/auth/migration-solver/results/cory45_plan_ILP.json -o cory45_ILP.graph
 
-      node integrateMigrationPlan.js -g cory45.graph -m $IOT/auth/migration-solver/results/cory45_plan_ILP_mt.json -o cory45_ILP_mt.json
+      node integrateMigrationPlan.js -g cory45.graph -m $IOT/auth/migration-solver/results/cory45_plan_ILP_mt.json -o cory45_ILP_mt.graph
 
-      node integrateMigrationPlan.js -g cory45.graph -m $IOT/auth/migration-solver/results/cory45_plan_ILP_ac.json -o cory45_ILP_ac.json
+      node integrateMigrationPlan.js -g cory45.graph -m $IOT/auth/migration-solver/results/cory45_plan_ILP_ac.json -o cory45_ILP_ac.graph
 
-      node integrateMigrationPlan.js -g cory45.graph -m $IOT/auth/migration-solver/results/cory45_plan_ILP_mt_ac.json -o cory45_ILP_mt_ac.json
+      node integrateMigrationPlan.js -g cory45.graph -m $IOT/auth/migration-solver/results/cory45_plan_ILP_mt_ac.json -o cory45_ILP_mt_ac.graph
 
 * To generate example Auths and servers and clients
 
