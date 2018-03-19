@@ -143,7 +143,7 @@ function getPositions(auths, clients, servers) {
     return positions;
 }
 
-function populateBackupTos(entityList, auths, maxNumBackupToAuths) {
+function populateBackupTos(entityList, auths, maxNumBackupToAuths, loopToOriginAuth) {
     for (var i = 0; i < entityList.length; i++) {
         var entity = entityList[i];
         //var authId = -1;
@@ -165,6 +165,9 @@ function populateBackupTos(entityList, auths, maxNumBackupToAuths) {
         var backupTo = [];
         for (var j = 0; j < authDists.length && j < maxNumBackupToAuths; j++) {
             backupTo.push(authDists[j].id);
+        }
+        if (loopToOriginAuth) {
+            backupTo.push(assignments[entity.name]);
         }
         //backupTo.push(authId);
         entityList[i].backupTo = backupTo;
@@ -258,6 +261,7 @@ program
   .option('-c, --auth-capacity [value]', 'File for predefined capacity of Auths')
   .option('-o, --out [value]', 'Output \'.input\' (for graph generator), \'.json\' (for migration solver)')
   .option('-b, --backup-auths <n>', 'Maximum number of Auths that entities can backup to', parseInt)
+  .option('-l, --loop-to-origin-auth', 'Loop to original Auth by adding the original Auth at the end of the backup list')
   .parse(process.argv);
 
 var floorPlanFile = 'floorPlans/cory5th.txt';
@@ -267,6 +271,7 @@ var predefinedAuthCapacityFile = null;
 var graphGeneratorInputFile = 'floorPlans/cory5th.input';
 var migrationSolverInputFile = 'floorPlans/cory5th.json';
 var maxNumBackupToAuths = 2;
+var loopToOriginAuth = false;
 
 if (program.in != null) {
     floorPlanFile = program.in;
@@ -287,6 +292,9 @@ if (program.out != null) {
 if (program.backupAuths != null) {
     maxNumBackupToAuths = program.backupAuths;
 }
+if (program.loopToOriginAuth != null) {
+    loopToOriginAuth = true;
+}
 
 console.log('Floor file name: ' + floorPlanFile);
 console.log('Predefined assignments file name: ' + predefinedAssignmentsFile);
@@ -295,6 +303,7 @@ console.log('Predefined Auth capacity file name: ' + predefinedAuthCapacityFile)
 console.log('Output graph generator input file (.input) name: ' + graphGeneratorInputFile);
 console.log('Output migration solver input file (.json) name: ' + migrationSolverInputFile);
 console.log('Maximum number of Auths that entities can backup to: ' + maxNumBackupToAuths);
+console.log('Loop to original Auth by adding the original Auth at the end of the backup list: ' + loopToOriginAuth);
 
 
 var entities = extractEntitiesFromFloorPlan(floorPlanFile);
@@ -323,8 +332,8 @@ var authCapacity = predefinedAuthCapacity == null ? getDefaultAuthCapacity(entit
 var echoServerList = getEchoServerList(entities.servers);
 var autoClientList = getAutoClientList(entities.clients, entities.servers);
 var positions = getPositions(entities.auths, entities.clients, entities.servers);
-populateBackupTos(autoClientList, entities.auths, maxNumBackupToAuths);
-populateBackupTos(echoServerList, entities.auths, maxNumBackupToAuths);
+populateBackupTos(autoClientList, entities.auths, maxNumBackupToAuths, loopToOriginAuth);
+populateBackupTos(echoServerList, entities.auths, maxNumBackupToAuths, loopToOriginAuth);
 
 var graphGeneratorInputString = '';
 graphGeneratorInputString += 'module.authList = ' + JSON.stringify(authList,null,'\t') + ';\n\n';
