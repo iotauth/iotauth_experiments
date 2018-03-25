@@ -199,6 +199,17 @@ function getPerWindowAvailability(subResponseLists) {
     return perWindowAvailability;
 }
 
+function getMaxExpected(perWindowAvailability) {
+    var maxExpected = 0;
+    for (var i = 0; i < perWindowAvailability.length; i++) {
+        var perWindow = perWindowAvailability[i];
+        if (perWindow.expected > maxExpected) {
+            maxExpected = perWindow.expected;
+        }
+    }
+    return maxExpected;
+}
+
 var firstStartTime = responseList[0].timeStamp;
 var timeWindow = 60 * 1000;   // 1 minute
 
@@ -211,6 +222,14 @@ console.log(perWindowAvailability);
 for (var i = 0; i < perWindowAvailability.length; i++) {
     var perWindow = perWindowAvailability[i];
     console.log(perWindow.ratio);
+}
+
+console.log('Printing availability ratio based on maximum expected response');
+
+var maxExpected = getMaxExpected(perWindowAvailability);
+for (var i = 0; i < perWindowAvailability.length; i++) {
+    var perWindow = perWindowAvailability[i];
+    console.log(perWindow.actual / maxExpected);
 }
 
 if (outputFile != null) {
