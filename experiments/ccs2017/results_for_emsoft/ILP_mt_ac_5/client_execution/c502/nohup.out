@@ -1,0 +1,525 @@
+changing working directory to: /home/hokeunkim/Development/iotauth/entity/node/example_entities
+loading from config file: /home/hokeunkim/Development/iotauth_experiments/experiments/ccs2017/expOptions/expEntity.option
+Experimental options for autoClient: { autoSendPeriod: 60000,
+  useSameSessionKeyCount: 1,
+  connectionTimeout: 50000,
+  migrationEnabled: true,
+  authFailureThreshold: 2,
+  migrationFailureThreshold: 2 }
+loading from config file: /home/hokeunkim/Development/iotauth/entity/node/example_entities/configs/Clients/c502.config
+initializing...
+current parameters: { numKeysPerRequest: 3,
+  migrationEnabled: false,
+  authFailureThreshold: 3,
+  migrationFailureThreshold: 3 }
+current parameters: { numKeysPerRequest: 1,
+  migrationEnabled: false,
+  authFailureThreshold: 3,
+  migrationFailureThreshold: 3 }
+current parameters: { numKeysPerRequest: 1,
+  migrationEnabled: true,
+  authFailureThreshold: 3,
+  migrationFailureThreshold: 3 }
+current parameters: { numKeysPerRequest: 1,
+  migrationEnabled: true,
+  authFailureThreshold: 2,
+  migrationFailureThreshold: 3 }
+current parameters: { numKeysPerRequest: 1,
+  migrationEnabled: true,
+  authFailureThreshold: 2,
+  migrationFailureThreshold: 2 }
+current entityInfo: { name: 'c502',
+  group: 'Clients',
+  distProtocol: 'TCP',
+  usePermanentDistKey: false,
+  connectionTimeout: 50000,
+  privateKey: <Buffer 2d 2d 2d 2d 2d 42 45 47 49 4e 20 52 53 41 20 50 52 49 56 41 54 45 20 4b 45 59 2d 2d 2d 2d 2d 0a 4d 49 49 45 6f 77 49 42 41 41 4b 43 41 51 45 41 32 65 ... > }
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 0 1 0 1521616747698
+connected to auth! from local port 41210
+received auth hello!
+{ authId: 501, nonce: <Buffer 75 a5 f3 3c a4 06 d7 ee> }
+received session key response with distribution key attached!
+auth signature verified
+replyNonce in sessionKeyResp: <Buffer 2d fe d6 65 85 b9 a7 5b>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+updating distribution key: { cipherKeyVal: <Buffer 4e 40 b1 fc cc 9f cd ab 9d 40 c9 79 4b cf 60 2b>,
+  macKeyVal: <Buffer 46 30 19 3f c7 8a 12 58 04 a6 e5 fa af e9 a2 c5 c9 a4 29 ae 31 dd d2 f2 1c 02 54 d8 d4 ad 2f 4b>,
+  absValidity: 2018-03-21T08:19:07.877Z }
+received 1 keys
+currentSessionKey: [object Object]
+Session protocol: TCP
+chosen commSessionKey: 
+{ id: 50100595,
+  cipherKeyVal: <Buffer 47 69 d7 82 c5 4c 41 23 58 49 3f 53 e4 e1 0c 81>,
+  macKeyVal: <Buffer 20 55 82 1b 8f 8c cb 18 38 d7 e9 c2 e7 0c 0d a4 7c 5f 73 4b bb 6b 7b d3 93 9d c0 a0 80 7d 6c 28>,
+  absValidity: 2018-03-22T07:19:07.876Z,
+  relValidity: 7200000 }
+options
+{ serverHost: '10.0.1.25',
+  serverPort: 22100,
+  sessionKey: 
+   { id: 50100595,
+     cipherKeyVal: <Buffer 47 69 d7 82 c5 4c 41 23 58 49 3f 53 e4 e1 0c 81>,
+     macKeyVal: <Buffer 20 55 82 1b 8f 8c cb 18 38 d7 e9 c2 e7 0c 0d a4 7c 5f 73 4b bb 6b 7b d3 93 9d c0 a0 80 7d 6c 28>,
+     absValidity: 2018-03-22T07:19:07.876Z,
+     relValidity: 7200000 },
+  sessionCryptoSpec: { cipher: 'AES-128-CBC', mac: 'SHA256' },
+  sessionProtocol: 'TCP',
+  handshakeTimeout: 50000 }
+disconnected from auth
+chosen nonce: <Buffer dd 75 8a 25 74 2d 22 e6>
+switching to HANDSHAKE_1_SENT
+received session key handshake2!
+client ret: [object Object]
+server authenticated/authorized by solving nonce!
+Handler: communication initialization succeeded
+file data length: 1024
+sending at Wed Mar 21 2018 07:19:08 GMT+0000 (UTC)
+switching to IN_COMM
+received secure communication message!
+Received seqNum: 0
+Handler: data received from server via secure communication
+data1
+Resp-actual/expected/ratio/ts: 1 1 1 1521616748851
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 1 2 0.5 1521616807758
+connected to auth! from local port 41444
+received auth hello!
+{ authId: 501, nonce: <Buffer 1f 19 ba 02 21 7e 9b 0d> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer 6b 0e bb f7 e2 fe 1f c9>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+currentSessionKey: [object Object]
+Status: Secure connection closed before starting a new connection.
+Session protocol: TCP
+chosen commSessionKey: 
+{ id: 50100603,
+  cipherKeyVal: <Buffer d6 42 ad f2 d8 7f 3a 06 bc 70 1a b1 bd 2a b9 3b>,
+  macKeyVal: <Buffer 92 1e f6 40 66 1f 14 1b a6 f5 3e 18 ce 9c 72 a1 aa f0 8f a3 41 ee 37 a4 bc 4c d2 42 c9 cb 77 90>,
+  absValidity: 2018-03-22T07:20:07.987Z,
+  relValidity: 7200000 }
+options
+{ serverHost: '10.0.1.25',
+  serverPort: 22100,
+  sessionKey: 
+   { id: 50100603,
+     cipherKeyVal: <Buffer d6 42 ad f2 d8 7f 3a 06 bc 70 1a b1 bd 2a b9 3b>,
+     macKeyVal: <Buffer 92 1e f6 40 66 1f 14 1b a6 f5 3e 18 ce 9c 72 a1 aa f0 8f a3 41 ee 37 a4 bc 4c d2 42 c9 cb 77 90>,
+     absValidity: 2018-03-22T07:20:07.987Z,
+     relValidity: 7200000 },
+  sessionCryptoSpec: { cipher: 'AES-128-CBC', mac: 'SHA256' },
+  sessionProtocol: 'TCP',
+  handshakeTimeout: 50000 }
+chosen nonce: <Buffer a7 ce cb 1f 5d 8b 3d 96>
+switching to HANDSHAKE_1_SENT
+disconnected from auth
+Handler: secure connection with the server closed.
+received session key handshake2!
+client ret: [object Object]
+server authenticated/authorized by solving nonce!
+Handler: communication initialization succeeded
+file data length: 1024
+sending at Wed Mar 21 2018 07:20:08 GMT+0000 (UTC)
+switching to IN_COMM
+received secure communication message!
+Received seqNum: 0
+Handler: data received from server via secure communication
+data1
+Resp-actual/expected/ratio/ts: 2 2 1 1521616809226
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 2 3 0.6666666666666666 1521616867813
+connected to auth! from local port 41714
+received auth hello!
+{ authId: 501, nonce: <Buffer 66 6b 3c 5c 01 7a 42 d9> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer 10 7c c9 bb a3 1a ab 87>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+currentSessionKey: [object Object]
+Status: Secure connection closed before starting a new connection.
+Session protocol: TCP
+chosen commSessionKey: 
+{ id: 50100611,
+  cipherKeyVal: <Buffer 17 3f f0 f4 8b ff 17 c4 e5 d0 6f 20 16 00 00 46>,
+  macKeyVal: <Buffer 53 3a f9 2b 4c 8b a7 b8 eb 08 1c 66 fd 43 02 ce 54 75 e3 39 31 4c ab 24 72 75 a2 5f d0 b0 5f 00>,
+  absValidity: 2018-03-22T07:21:07.982Z,
+  relValidity: 7200000 }
+options
+{ serverHost: '10.0.1.25',
+  serverPort: 22100,
+  sessionKey: 
+   { id: 50100611,
+     cipherKeyVal: <Buffer 17 3f f0 f4 8b ff 17 c4 e5 d0 6f 20 16 00 00 46>,
+     macKeyVal: <Buffer 53 3a f9 2b 4c 8b a7 b8 eb 08 1c 66 fd 43 02 ce 54 75 e3 39 31 4c ab 24 72 75 a2 5f d0 b0 5f 00>,
+     absValidity: 2018-03-22T07:21:07.982Z,
+     relValidity: 7200000 },
+  sessionCryptoSpec: { cipher: 'AES-128-CBC', mac: 'SHA256' },
+  sessionProtocol: 'TCP',
+  handshakeTimeout: 50000 }
+chosen nonce: <Buffer c2 f1 36 95 2a d0 b9 13>
+switching to HANDSHAKE_1_SENT
+disconnected from auth
+Handler: secure connection with the server closed.
+received session key handshake2!
+client ret: [object Object]
+server authenticated/authorized by solving nonce!
+Handler: communication initialization succeeded
+file data length: 1024
+sending at Wed Mar 21 2018 07:21:08 GMT+0000 (UTC)
+switching to IN_COMM
+received secure communication message!
+Received seqNum: 0
+Handler: data received from server via secure communication
+data1
+Resp-actual/expected/ratio/ts: 3 3 1 1521616869236
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 3 4 0.75 1521616927835
+connected to auth! from local port 41984
+received auth hello!
+{ authId: 501, nonce: <Buffer f8 ed 21 37 68 e9 63 4a> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer 7f d5 c2 2a f2 e8 11 06>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+currentSessionKey: [object Object]
+Status: Secure connection closed before starting a new connection.
+Session protocol: TCP
+chosen commSessionKey: 
+{ id: 50100619,
+  cipherKeyVal: <Buffer c8 05 2c 0f 70 bb 18 65 a4 42 c6 96 14 f1 68 0d>,
+  macKeyVal: <Buffer ad ab d9 12 37 29 dd 79 14 da a6 f0 9d 73 f1 f1 24 36 d7 6a 19 81 e7 be ff 98 dc 8b 16 41 71 22>,
+  absValidity: 2018-03-22T07:22:08.035Z,
+  relValidity: 7200000 }
+options
+{ serverHost: '10.0.1.25',
+  serverPort: 22100,
+  sessionKey: 
+   { id: 50100619,
+     cipherKeyVal: <Buffer c8 05 2c 0f 70 bb 18 65 a4 42 c6 96 14 f1 68 0d>,
+     macKeyVal: <Buffer ad ab d9 12 37 29 dd 79 14 da a6 f0 9d 73 f1 f1 24 36 d7 6a 19 81 e7 be ff 98 dc 8b 16 41 71 22>,
+     absValidity: 2018-03-22T07:22:08.035Z,
+     relValidity: 7200000 },
+  sessionCryptoSpec: { cipher: 'AES-128-CBC', mac: 'SHA256' },
+  sessionProtocol: 'TCP',
+  handshakeTimeout: 50000 }
+chosen nonce: <Buffer 0d 24 06 cf 9c 07 24 96>
+switching to HANDSHAKE_1_SENT
+disconnected from auth
+Handler: secure connection with the server closed.
+received session key handshake2!
+client ret: [object Object]
+server authenticated/authorized by solving nonce!
+Handler: communication initialization succeeded
+file data length: 1024
+sending at Wed Mar 21 2018 07:22:08 GMT+0000 (UTC)
+switching to IN_COMM
+received secure communication message!
+Received seqNum: 0
+Handler: data received from server via secure communication
+data1
+Resp-actual/expected/ratio/ts: 4 4 1 1521616929271
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 4 5 0.8 1521616987893
+connected to auth! from local port 42254
+received auth hello!
+{ authId: 501, nonce: <Buffer 28 0f 67 94 9b 4f af 92> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer 1c 11 0f 71 59 1e ea e6>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+currentSessionKey: [object Object]
+Status: Secure connection closed before starting a new connection.
+Session protocol: TCP
+chosen commSessionKey: 
+{ id: 50100627,
+  cipherKeyVal: <Buffer d9 30 d1 40 52 6f 02 d7 e0 b9 78 be 03 e4 f2 5f>,
+  macKeyVal: <Buffer 06 82 54 d9 f2 63 df 4c bb ae 98 4e 66 7a fd 11 02 92 50 91 65 98 f3 9f 3b a7 2e 1a d4 4c 3c 45>,
+  absValidity: 2018-03-22T07:23:08.159Z,
+  relValidity: 7200000 }
+options
+{ serverHost: '10.0.1.25',
+  serverPort: 22100,
+  sessionKey: 
+   { id: 50100627,
+     cipherKeyVal: <Buffer d9 30 d1 40 52 6f 02 d7 e0 b9 78 be 03 e4 f2 5f>,
+     macKeyVal: <Buffer 06 82 54 d9 f2 63 df 4c bb ae 98 4e 66 7a fd 11 02 92 50 91 65 98 f3 9f 3b a7 2e 1a d4 4c 3c 45>,
+     absValidity: 2018-03-22T07:23:08.159Z,
+     relValidity: 7200000 },
+  sessionCryptoSpec: { cipher: 'AES-128-CBC', mac: 'SHA256' },
+  sessionProtocol: 'TCP',
+  handshakeTimeout: 50000 }
+chosen nonce: <Buffer 64 33 f4 53 d7 fa b5 17>
+switching to HANDSHAKE_1_SENT
+disconnected from auth
+Handler: secure connection with the server closed.
+received session key handshake2!
+client ret: [object Object]
+server authenticated/authorized by solving nonce!
+Handler: communication initialization succeeded
+file data length: 1024
+sending at Wed Mar 21 2018 07:23:09 GMT+0000 (UTC)
+switching to IN_COMM
+received secure communication message!
+Received seqNum: 0
+Handler: data received from server via secure communication
+data1
+Resp-actual/expected/ratio/ts: 5 5 1 1521616989338
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 5 6 0.8333333333333334 1521617047953
+connected to auth! from local port 42524
+received auth hello!
+{ authId: 501, nonce: <Buffer ba cb 86 48 d4 2c f5 79> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer 11 2a 5b d6 df 7f f2 bc>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+currentSessionKey: [object Object]
+Status: Secure connection closed before starting a new connection.
+Session protocol: TCP
+chosen commSessionKey: 
+{ id: 50100635,
+  cipherKeyVal: <Buffer 46 68 a3 34 d0 e7 cd a2 64 48 17 e2 2e 37 c6 6e>,
+  macKeyVal: <Buffer 4e 02 33 09 cb c3 69 50 6b 20 db 8d 5b b6 49 06 09 3f e4 0c 2b 57 96 b9 07 5d 6c 64 63 eb 40 70>,
+  absValidity: 2018-03-22T07:24:08.166Z,
+  relValidity: 7200000 }
+options
+{ serverHost: '10.0.1.25',
+  serverPort: 22100,
+  sessionKey: 
+   { id: 50100635,
+     cipherKeyVal: <Buffer 46 68 a3 34 d0 e7 cd a2 64 48 17 e2 2e 37 c6 6e>,
+     macKeyVal: <Buffer 4e 02 33 09 cb c3 69 50 6b 20 db 8d 5b b6 49 06 09 3f e4 0c 2b 57 96 b9 07 5d 6c 64 63 eb 40 70>,
+     absValidity: 2018-03-22T07:24:08.166Z,
+     relValidity: 7200000 },
+  sessionCryptoSpec: { cipher: 'AES-128-CBC', mac: 'SHA256' },
+  sessionProtocol: 'TCP',
+  handshakeTimeout: 50000 }
+chosen nonce: <Buffer 1a be 45 02 88 c5 81 a6>
+switching to HANDSHAKE_1_SENT
+disconnected from auth
+Handler: secure connection with the server closed.
+received session key handshake2!
+client ret: [object Object]
+server authenticated/authorized by solving nonce!
+Handler: communication initialization succeeded
+file data length: 1024
+sending at Wed Mar 21 2018 07:24:09 GMT+0000 (UTC)
+switching to IN_COMM
+received secure communication message!
+Received seqNum: 0
+Handler: data received from server via secure communication
+data1
+Resp-actual/expected/ratio/ts: 6 6 1 1521617049478
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 6 7 0.8571428571428571 1521617108009
+connected to auth! from local port 42794
+received auth hello!
+{ authId: 501, nonce: <Buffer 87 62 bb 3e 96 45 0b bb> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer ae c1 4f 9d d9 ec 47 b3>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+currentSessionKey: [object Object]
+Status: Secure connection closed before starting a new connection.
+Session protocol: TCP
+chosen commSessionKey: 
+{ id: 50100643,
+  cipherKeyVal: <Buffer b7 aa f9 d1 17 aa d7 c6 7f 68 a1 b3 00 60 ae 71>,
+  macKeyVal: <Buffer ee 5c dc d5 66 8a e2 b2 4c e5 ac dd d8 75 69 d1 4b 5c 93 ff 1b 02 55 5b 53 af e3 01 b3 01 9f d7>,
+  absValidity: 2018-03-22T07:25:08.213Z,
+  relValidity: 7200000 }
+options
+{ serverHost: '10.0.1.25',
+  serverPort: 22100,
+  sessionKey: 
+   { id: 50100643,
+     cipherKeyVal: <Buffer b7 aa f9 d1 17 aa d7 c6 7f 68 a1 b3 00 60 ae 71>,
+     macKeyVal: <Buffer ee 5c dc d5 66 8a e2 b2 4c e5 ac dd d8 75 69 d1 4b 5c 93 ff 1b 02 55 5b 53 af e3 01 b3 01 9f d7>,
+     absValidity: 2018-03-22T07:25:08.213Z,
+     relValidity: 7200000 },
+  sessionCryptoSpec: { cipher: 'AES-128-CBC', mac: 'SHA256' },
+  sessionProtocol: 'TCP',
+  handshakeTimeout: 50000 }
+chosen nonce: <Buffer aa 17 a1 c7 de 9a bc 05>
+switching to HANDSHAKE_1_SENT
+disconnected from auth
+Handler: secure connection with the server closed.
+received session key handshake2!
+client ret: [object Object]
+server authenticated/authorized by solving nonce!
+Handler: communication initialization succeeded
+file data length: 1024
+sending at Wed Mar 21 2018 07:25:09 GMT+0000 (UTC)
+switching to IN_COMM
+received secure communication message!
+Received seqNum: 0
+Handler: data received from server via secure communication
+data1
+Resp-actual/expected/ratio/ts: 7 7 1 1521617109437
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 7 8 0.875 1521617168065
+failure in connection with Auth : authFailureCount: 1
+Handler: Error in secure comm - details: Error occurred in session key request: Error: connect EHOSTUNREACH 10.0.1.4:21100
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 7 9 0.7777777777777778 1521617228075
+failure in connection with Auth : authFailureCount: 2
+failure count reached threshold (2), try migration...
+In iotAuth.js migrateToTrustedAuth: 
+In iotAuthService.js sendMigrationReqViaTCP: 
+Handler: Error in secure comm - details: Error occurred in session key request: Error: connect EHOSTUNREACH 10.0.1.4:21100
+failure in migration to another Auth : migrationFailureCount: 1
+Handler: Error in secure comm - details: Error occurred in migration request: Error: connect EHOSTUNREACH 10.0.1.3:21100
+Handler: Error in secure comm - details: Auth hello timedout ...
+failure in migration to another Auth : migrationFailureCount: 2
+Handler: Error in secure comm - details: Error occurred in migration request: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 7 10 0.7 1521617288083
+failure in connection with Auth : authFailureCount: 3
+failure count reached threshold (2), try migration...
+reached migration failure threshold, rotate migration info index from: 0
+to: 1
+Failed to migrate! host/port of current Auth is the same as host of the Auth which we migrate to
+Handler: Error in secure comm - details: Error occurred in session key request: Error: connect EHOSTUNREACH 10.0.1.4:21100
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 7 11 0.6363636363636364 1521617348094
+failure in connection with Auth : authFailureCount: 4
+failure count reached threshold (2), try migration...
+Failed to migrate! host/port of current Auth is the same as host of the Auth which we migrate to
+Handler: Error in secure comm - details: Error occurred in session key request: Error: connect EHOSTUNREACH 10.0.1.4:21100
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 7 12 0.5833333333333334 1521617408106
+failure in connection with Auth : authFailureCount: 5
+failure count reached threshold (2), try migration...
+Failed to migrate! host/port of current Auth is the same as host of the Auth which we migrate to
+Handler: Error in secure comm - details: Error occurred in session key request: Error: connect EHOSTUNREACH 10.0.1.4:21100
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 7 13 0.5384615384615384 1521617468106
+failure in connection with Auth : authFailureCount: 6
+failure count reached threshold (2), try migration...
+Failed to migrate! host/port of current Auth is the same as host of the Auth which we migrate to
+Handler: Error in secure comm - details: Error occurred in session key request: Error: connect EHOSTUNREACH 10.0.1.4:21100
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 7 14 0.5 1521617528116
+failure in connection with Auth : authFailureCount: 7
+failure count reached threshold (2), try migration...
+Failed to migrate! host/port of current Auth is the same as host of the Auth which we migrate to
+Handler: Error in secure comm - details: Error occurred in session key request: Error: connect EHOSTUNREACH 10.0.1.4:21100
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 7 15 0.4666666666666667 1521617588127
+failure in connection with Auth : authFailureCount: 8
+failure count reached threshold (2), try migration...
+Failed to migrate! host/port of current Auth is the same as host of the Auth which we migrate to
+Handler: Error in secure comm - details: Error occurred in session key request: Error: connect EHOSTUNREACH 10.0.1.4:21100
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 7 16 0.4375 1521617648137
+failure in connection with Auth : authFailureCount: 9
+failure count reached threshold (2), try migration...
+Failed to migrate! host/port of current Auth is the same as host of the Auth which we migrate to
+Handler: Error in secure comm - details: Error occurred in session key request: Error: connect EHOSTUNREACH 10.0.1.4:21100
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 7 17 0.4117647058823529 1521617708145
+failure in connection with Auth : authFailureCount: 10
+failure count reached threshold (2), try migration...
+Failed to migrate! host/port of current Auth is the same as host of the Auth which we migrate to
+Handler: Error in secure comm - details: Error occurred in session key request: Error: connect EHOSTUNREACH 10.0.1.4:21100
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 7 18 0.3888888888888889 1521617768156
+failure in connection with Auth : authFailureCount: 11
+failure count reached threshold (2), try migration...
+Failed to migrate! host/port of current Auth is the same as host of the Auth which we migrate to
+Handler: Error in secure comm - details: Error occurred in session key request: Error: connect EHOSTUNREACH 10.0.1.4:21100
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 7 19 0.3684210526315789 1521617828166
+failure in connection with Auth : authFailureCount: 12
+failure count reached threshold (2), try migration...
+Failed to migrate! host/port of current Auth is the same as host of the Auth which we migrate to
+Handler: Error in secure comm - details: Error occurred in session key request: Error: connect EHOSTUNREACH 10.0.1.4:21100
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 7 20 0.35 1521617888176
+failure in connection with Auth : authFailureCount: 13
+failure count reached threshold (2), try migration...
+Failed to migrate! host/port of current Auth is the same as host of the Auth which we migrate to
+Handler: Error in secure comm - details: Error occurred in session key request: Error: connect EHOSTUNREACH 10.0.1.4:21100
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 7 21 0.3333333333333333 1521617948185
+failure in connection with Auth : authFailureCount: 14
+failure count reached threshold (2), try migration...
+Failed to migrate! host/port of current Auth is the same as host of the Auth which we migrate to
+Handler: Error in secure comm - details: Error occurred in session key request: Error: connect EHOSTUNREACH 10.0.1.4:21100
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 7 22 0.3181818181818182 1521618008194
+failure in connection with Auth : authFailureCount: 15
+failure count reached threshold (2), try migration...
+Failed to migrate! host/port of current Auth is the same as host of the Auth which we migrate to
+Handler: Error in secure comm - details: Error occurred in session key request: Error: connect EHOSTUNREACH 10.0.1.4:21100
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 7 23 0.30434782608695654 1521618068201
+failure in connection with Auth : authFailureCount: 16
+failure count reached threshold (2), try migration...
+Failed to migrate! host/port of current Auth is the same as host of the Auth which we migrate to
+Handler: Error in secure comm - details: Error occurred in session key request: Error: connect EHOSTUNREACH 10.0.1.4:21100
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 7 24 0.2916666666666667 1521618128212
+failure in connection with Auth : authFailureCount: 17
+failure count reached threshold (2), try migration...
+Failed to migrate! host/port of current Auth is the same as host of the Auth which we migrate to
+Handler: Error in secure comm - details: Error occurred in session key request: Error: connect EHOSTUNREACH 10.0.1.4:21100
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 7 25 0.28 1521618188222
+failure in connection with Auth : authFailureCount: 18
+failure count reached threshold (2), try migration...
+Failed to migrate! host/port of current Auth is the same as host of the Auth which we migrate to
+Handler: Error in secure comm - details: Error occurred in session key request: Error: connect EHOSTUNREACH 10.0.1.4:21100
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 7 26 0.2692307692307692 1521618248232
+failure in connection with Auth : authFailureCount: 19
+failure count reached threshold (2), try migration...
+Failed to migrate! host/port of current Auth is the same as host of the Auth which we migrate to
+Handler: Error in secure comm - details: Error occurred in session key request: Error: connect EHOSTUNREACH 10.0.1.4:21100
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 7 27 0.25925925925925924 1521618308242
+failure in connection with Auth : authFailureCount: 20
+failure count reached threshold (2), try migration...
+Failed to migrate! host/port of current Auth is the same as host of the Auth which we migrate to
+Handler: Error in secure comm - details: Error occurred in session key request: Error: connect EHOSTUNREACH 10.0.1.4:21100
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 7 28 0.25 1521618368253
+failure in connection with Auth : authFailureCount: 21
+failure count reached threshold (2), try migration...
+Failed to migrate! host/port of current Auth is the same as host of the Auth which we migrate to
+Handler: Error in secure comm - details: Error occurred in session key request: Error: connect EHOSTUNREACH 10.0.1.4:21100
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 7 29 0.2413793103448276 1521618428261
+failure in connection with Auth : authFailureCount: 22
+failure count reached threshold (2), try migration...
+Failed to migrate! host/port of current Auth is the same as host of the Auth which we migrate to
+Handler: Error in secure comm - details: Error occurred in session key request: Error: connect EHOSTUNREACH 10.0.1.4:21100

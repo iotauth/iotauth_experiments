@@ -1,0 +1,1507 @@
+[main] INFO org.iot.auth.AuthServer - Properties file specified: /home/hokeunkim/Development/iotauth/auth/auth-server/../properties/exampleAuth501.properties
+[main] INFO org.iot.auth.config.AuthServerProperties - key:value = auth_id:501
+[main] INFO org.iot.auth.config.AuthServerProperties - key:value = host_name:0.0.0.0
+[main] INFO org.iot.auth.config.AuthServerProperties - key:value = entity_tcp_port:21100
+[main] INFO org.iot.auth.config.AuthServerProperties - key:value = entity_tcp_port_timeout:20000
+[main] INFO org.iot.auth.config.AuthServerProperties - key:value = entity_udp_port:21102
+[main] INFO org.iot.auth.config.AuthServerProperties - key:value = entity_udp_port_timeout:20000
+[main] INFO org.iot.auth.config.AuthServerProperties - key:value = trusted_auth_port:21101
+[main] INFO org.iot.auth.config.AuthServerProperties - key:value = trusted_auth_port_idle_timeout:600000
+[main] INFO org.iot.auth.config.AuthServerProperties - key:value = contextual_callback_port:21103
+[main] INFO org.iot.auth.config.AuthServerProperties - key:value = contextual_callback_port_idle_timeout:20000
+[main] INFO org.iot.auth.config.AuthServerProperties - key:value = contextual_callback_enabled:false
+[main] INFO org.iot.auth.config.AuthServerProperties - key:value = entity_key_store_path:/home/hokeunkim/Development/iotauth/auth/auth-server/../databases/auth501/my_keystores/Auth501Entity.pfx
+[main] INFO org.iot.auth.config.AuthServerProperties - key:value = internet_key_store_path:/home/hokeunkim/Development/iotauth/auth/auth-server/../databases/auth501/my_keystores/Auth501Internet.pfx
+[main] INFO org.iot.auth.config.AuthServerProperties - key:value = database_key_store_path:/home/hokeunkim/Development/iotauth/auth/auth-server/../databases/auth501/my_keystores/Auth501Database.pfx
+[main] INFO org.iot.auth.config.AuthServerProperties - key:value = database_encryption_key_path:/home/hokeunkim/Development/iotauth/auth/auth-server/../databases/auth501/my_keystores/Auth501Database.bin
+[main] INFO org.iot.auth.config.AuthServerProperties - key:value = trusted_ca_cert_paths:[/home/hokeunkim/Development/iotauth/auth/auth-server/../credentials/ca/CACert.pem]
+[main] INFO org.iot.auth.config.AuthServerProperties - key:value = auth_database_dir:/home/hokeunkim/Development/iotauth/auth/auth-server/../databases/auth501
+[main] INFO org.iot.auth.config.AuthServerProperties - key:value = auth_db_protection_method:2
+[main] INFO org.iot.auth.config.AuthServerProperties - key:value = backup_enabled:true
+[main] INFO org.iot.auth.config.AuthServerProperties - key:value = qps_throttling_enabled:true
+[main] INFO org.iot.auth.config.AuthServerProperties - key:value = qps_limit:0.4
+[main] INFO org.iot.auth.config.AuthServerProperties - key:value = qps_calculation_bucket_size_in_sec:60
+[main] INFO org.iot.auth.AuthServer - Finished loading Auth Server properties.
+[main] WARN org.iot.auth.AuthServer - WARNING! Auth's password is given as a program argument!
+[main] WARN org.iot.auth.AuthServer - WARNING! DO NOT give password using a program argument unless you are running experiments or debugging.
+[main] INFO org.iot.auth.db.dao.SQLiteConnector - Auth DB protection method selected: ENCRYPT_ENTIRE_DB
+[main] INFO org.iot.auth.db.dao.SQLiteConnector - Credential encryption - ENABLED
+[main] INFO org.iot.auth.db.dao.SQLiteConnector - Entire DB encryption - ENABLED
+[main] INFO org.iot.auth.AuthServer - Finished initializing Auth DB.
+[main] INFO org.iot.auth.AuthServer - Auth server information. Auth ID: 501, Entity Ports TCP: 21100 UDP: 21102, Trusted auth Port: 21101, Host name: 0.0.0.0
+[Thread-4] INFO org.iot.auth.AuthCommandLine - 
+Enter command (e.g., help, show re/cp/ta/sk/maps, clean sk, reset re/sk, issue cert [ic], backup ): 
+[main] INFO org.iot.auth.server.HeartbeatSender - Not scheduling heartbeat to Auth403 since the period is not set.
+[main] INFO org.iot.auth.server.HeartbeatSender - Not scheduling heartbeat to Auth502 since the period is not set.
+[main] INFO org.iot.auth.server.HeartbeatSender - Not scheduling heartbeat to Auth504 since the period is not set.
+[main] INFO org.iot.auth.AuthServer - Trying to back up to Auth403
+[Thread-0] ERROR org.iot.auth.AuthServer - Bluetooth for Auth is not turned on, Bluetooth will be disabled.
+[main] INFO org.iot.auth.AuthServer - List of entities to be backed up: 
+s502
+s505
+c507
+c509
+c508
+c503
+c502
+s506
+[main] INFO org.iot.auth.AuthServer - Trying to back up to Auth502
+[main] INFO org.iot.auth.AuthServer - List of entities to be backed up: 
+s504
+c506
+s501
+s507
+c510
+c501
+[main] INFO org.iot.auth.AuthServer - no entities to be backed up to Auth 504
+[main] INFO org.iot.auth.server.BackupRequester - scheduling a task of sending backup requests every 2second(s).
+[pool-2-thread-1] INFO org.iot.auth.server.BackupRequester - Response code: 200
+[pool-2-thread-1] INFO org.iot.auth.server.BackupRequester - The request was successfully handled by the trusted Auth, removing the request
+[pool-2-thread-1] INFO org.iot.auth.server.BackupRequester - Response code: 200
+[pool-2-thread-1] INFO org.iot.auth.server.BackupRequester - The request was successfully handled by the trusted Auth, removing the request
+[qtp729864207-63] INFO org.iot.auth.server.TrustedAuthConnectionHandler - Received BACKUP_REQ from Auth504 at 10.0.0.7:49566
+[qtp729864207-63] INFO org.iot.auth.server.TrustedAuthConnectionHandler - The request BACKUP_REQ was successfully handled!
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.62:43592 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  23 time in sec: 1521677303
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 1 QPS: 0.016666668 Max QPS: 0.016666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 1 QPS: 0.016666668 Max QPS: 0.016666668
+[Thread-26] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.62:43592 with auth nonce 36 01 55 ff 36 df ce 8c 
+[Thread-26] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with public key!
+[Thread-26] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-26] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.62:43592
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.24:40712 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  24 time in sec: 1521677304
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 2 QPS: 0.033333335 Max QPS: 0.033333335
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 2 QPS: 0.033333335 Max QPS: 0.033333335
+[Thread-27] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.24:40712 with auth nonce f9 35 df 25 f6 1f 6e c9 
+[Thread-27] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with public key!
+[Thread-27] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101258}
+[Thread-27] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-27] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-27] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-27] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.24:40712
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.63:49164 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  27 time in sec: 1521677307
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 3 QPS: 0.05 Max QPS: 0.05
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 3 QPS: 0.05 Max QPS: 0.05
+[Thread-28] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.63:49164 with auth nonce 32 18 64 4c b1 c7 35 60 
+[Thread-28] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with public key!
+[Thread-28] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-28] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.63:49164
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.25:50100 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  27 time in sec: 1521677307
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 4 QPS: 0.06666667 Max QPS: 0.06666667
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 4 QPS: 0.06666667 Max QPS: 0.06666667
+[Thread-29] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.25:50100 with auth nonce 5b f3 3f fd b4 da 52 7a 
+[Thread-29] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with public key!
+[Thread-29] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101259}
+[Thread-29] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-29] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-29] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-29] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.25:50100
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.64:40060 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  30 time in sec: 1521677310
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 5 QPS: 0.083333336 Max QPS: 0.083333336
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 5 QPS: 0.083333336 Max QPS: 0.083333336
+[Thread-30] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.64:40060 with auth nonce f5 6e f2 87 62 2f c6 8d 
+[Thread-30] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with public key!
+[Thread-30] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-30] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.64:40060
+[qtp729864207-69] INFO org.iot.auth.server.TrustedAuthConnectionHandler - Received AUTH_SESSION_KEY_REQ from Auth504 at 10.0.0.7:49566
+[qtp729864207-69] INFO org.iot.auth.message.AuthSessionKeyReqMessage - Received contents:  
+[qtp729864207-69] INFO org.iot.auth.message.AuthSessionKeyReqMessage - Received JSON: {"EntityName":"s503","EntityGroup":"Servers","KeyID":"50101260","TYPE":"AUTH_SESSION_KEY_REQ","CachedKeyAuthID":"-1"}
+[qtp729864207-69] INFO org.iot.auth.server.TrustedAuthConnectionHandler - Received AuthSessionKeyReqMessage: KeyID: 50101260, RequestingEntityName: s503, ReqeustingEntityGroup: Servers, CachedKeyAuthID: -1
+[qtp729864207-69] INFO org.iot.auth.server.TrustedAuthConnectionHandler - The request AUTH_SESSION_KEY_REQ was successfully handled!
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.67:60440 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  40 time in sec: 1521677320
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 6 QPS: 0.1 Max QPS: 0.1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 6 QPS: 0.1 Max QPS: 0.1
+[Thread-31] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.67:60440 with auth nonce 21 a9 8c 71 a5 7f 2d b6 
+[Thread-31] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with public key!
+[Thread-31] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-31] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.67:60440
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.27:44062 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  40 time in sec: 1521677320
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 7 QPS: 0.11666667 Max QPS: 0.11666667
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 7 QPS: 0.11666667 Max QPS: 0.11666667
+[Thread-32] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.27:44062 with auth nonce 20 82 96 e0 20 ab 05 a4 
+[Thread-32] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with public key!
+[Thread-32] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101261}
+[Thread-32] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-32] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-32] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-32] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.27:44062
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.68:39804 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  43 time in sec: 1521677323
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 8 QPS: 0.13333334 Max QPS: 0.13333334
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 8 QPS: 0.13333334 Max QPS: 0.13333334
+[Thread-33] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.68:39804 with auth nonce 55 65 23 cd b1 9c 57 18 
+[Thread-33] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with public key!
+[Thread-33] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-33] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.68:39804
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.28:55714 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  44 time in sec: 1521677324
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 9 QPS: 0.15 Max QPS: 0.15
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 9 QPS: 0.15 Max QPS: 0.15
+[Thread-34] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.28:55714 with auth nonce 34 9e 65 75 e0 c8 d1 62 
+[Thread-34] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with public key!
+[Thread-34] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101262}
+[Thread-34] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-34] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-34] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-34] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.28:55714
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.69:43148 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  46 time in sec: 1521677326
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 10 QPS: 0.16666667 Max QPS: 0.16666667
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 10 QPS: 0.16666667 Max QPS: 0.16666667
+[Thread-35] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.69:43148 with auth nonce 65 3c e0 8d c5 4d 44 ce 
+[Thread-35] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with public key!
+[Thread-35] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-35] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.69:43148
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.28:55726 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  47 time in sec: 1521677327
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 11 QPS: 0.18333334 Max QPS: 0.18333334
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 11 QPS: 0.18333334 Max QPS: 0.18333334
+[Thread-36] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.28:55726 with auth nonce 32 3a 03 d5 b6 43 97 d2 
+[Thread-36] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-36] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101263}
+[Thread-36] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-36] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-36] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-36] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.28:55726
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.70:59930 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  50 time in sec: 1521677330
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 12 QPS: 0.2 Max QPS: 0.2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 12 QPS: 0.2 Max QPS: 0.2
+[Thread-37] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.70:59930 with auth nonce d4 e8 3b fc 9f 9c 31 79 
+[Thread-37] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with public key!
+[Thread-37] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-37] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.70:59930
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.29:41466 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  50 time in sec: 1521677330
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 0 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 13 QPS: 0.21666667 Max QPS: 0.21666667
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 13 QPS: 0.21666667 Max QPS: 0.21666667
+[Thread-38] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.29:41466 with auth nonce 12 b7 23 9c 7e 84 a2 0d 
+[Thread-38] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with public key!
+[Thread-38] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101264}
+[Thread-38] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-38] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-38] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-38] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.29:41466
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.71:47232 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  53 time in sec: 1521677333
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 14 QPS: 0.23333333 Max QPS: 0.23333333
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 14 QPS: 0.23333333 Max QPS: 0.23333333
+[Thread-39] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.71:47232 with auth nonce fe c9 b1 1b b7 33 5f 09 
+[Thread-39] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with public key!
+[Thread-39] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-39] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.71:47232
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.30:44858 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  53 time in sec: 1521677333
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-40] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.30:44858 with auth nonce df 75 48 69 a2 db 7d 1e 
+[Thread-40] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with public key!
+[Thread-40] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101265}
+[Thread-40] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-40] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-40] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-40] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.30:44858
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.62:43822 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  23 time in sec: 1521677363
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-42] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.62:43822 with auth nonce f2 d1 a8 da 45 96 7a 2e 
+[Thread-42] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-42] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-42] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.62:43822
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.24:40942 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  24 time in sec: 1521677364
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-43] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.24:40942 with auth nonce 79 0d a2 c5 ff e9 3f 0d 
+[Thread-43] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-43] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101266}
+[Thread-43] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-43] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-43] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-43] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.24:40942
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.63:49400 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  27 time in sec: 1521677367
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 14 QPS: 0.23333333 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 14 QPS: 0.23333333 Max QPS: 0.25
+[Thread-44] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.63:49400 with auth nonce 39 28 69 97 1d 41 0b 00 
+[Thread-44] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-44] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-44] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.63:49400
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.25:50336 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  27 time in sec: 1521677367
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-45] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.25:50336 with auth nonce f2 0f 98 54 61 2d 9e 20 
+[Thread-45] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-45] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101267}
+[Thread-45] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-45] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-45] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-45] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.25:50336
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.64:40302 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  30 time in sec: 1521677370
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-46] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.64:40302 with auth nonce 08 36 ff 3c 28 0b 63 56 
+[Thread-46] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-46] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-46] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.64:40302
+[qtp729864207-70] INFO org.iot.auth.server.TrustedAuthConnectionHandler - Received AUTH_SESSION_KEY_REQ from Auth504 at 10.0.0.7:49566
+[qtp729864207-70] INFO org.iot.auth.message.AuthSessionKeyReqMessage - Received contents:  
+[qtp729864207-70] INFO org.iot.auth.message.AuthSessionKeyReqMessage - Received JSON: {"EntityName":"s503","EntityGroup":"Servers","KeyID":"50101268","TYPE":"AUTH_SESSION_KEY_REQ","CachedKeyAuthID":"-1"}
+[qtp729864207-70] INFO org.iot.auth.server.TrustedAuthConnectionHandler - Received AuthSessionKeyReqMessage: KeyID: 50101268, RequestingEntityName: s503, ReqeustingEntityGroup: Servers, CachedKeyAuthID: -1
+[qtp729864207-70] INFO org.iot.auth.server.TrustedAuthConnectionHandler - The request AUTH_SESSION_KEY_REQ was successfully handled!
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.67:60696 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  40 time in sec: 1521677380
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 14 QPS: 0.23333333 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 14 QPS: 0.23333333 Max QPS: 0.25
+[Thread-47] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.67:60696 with auth nonce c5 23 af 02 44 43 c6 12 
+[Thread-47] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-47] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-47] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.67:60696
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.27:44318 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  40 time in sec: 1521677380
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-48] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.27:44318 with auth nonce 1b 7c f4 ea 9a 99 6e f4 
+[Thread-48] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-48] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101269}
+[Thread-48] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-48] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-48] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-48] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.27:44318
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.68:40066 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  43 time in sec: 1521677383
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-49] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.68:40066 with auth nonce 6a 35 2b aa 0d 02 87 3a 
+[Thread-49] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-49] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-49] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.68:40066
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.28:55976 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  44 time in sec: 1521677384
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-50] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.28:55976 with auth nonce 5d 0c 72 0b 16 88 df a0 
+[Thread-50] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-50] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101270}
+[Thread-50] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-50] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-50] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-50] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.28:55976
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.69:43412 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  46 time in sec: 1521677386
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-51] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.69:43412 with auth nonce b0 17 99 ee f8 57 4d f2 
+[Thread-51] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-51] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-51] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.69:43412
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.28:55992 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  47 time in sec: 1521677387
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-52] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.28:55992 with auth nonce dd f5 bf b2 58 4c 4d 9f 
+[Thread-52] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-52] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101271}
+[Thread-52] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-52] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-52] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-52] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.28:55992
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.70:60198 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  50 time in sec: 1521677390
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 14 QPS: 0.23333333 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 14 QPS: 0.23333333 Max QPS: 0.25
+[Thread-53] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.70:60198 with auth nonce 1f 9a de 72 ea 73 15 8e 
+[Thread-53] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-53] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-53] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.70:60198
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.29:41738 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  50 time in sec: 1521677390
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-54] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.29:41738 with auth nonce 7e 9d f1 a9 06 e1 ee 4c 
+[Thread-54] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-54] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101272}
+[Thread-54] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-54] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-54] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-54] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.29:41738
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.71:47504 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  53 time in sec: 1521677393
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 14 QPS: 0.23333333 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 14 QPS: 0.23333333 Max QPS: 0.25
+[Thread-55] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.71:47504 with auth nonce 85 fb eb c0 2b 3f 4b fe 
+[Thread-55] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-55] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-55] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.71:47504
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.30:45130 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  54 time in sec: 1521677394
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-56] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.30:45130 with auth nonce fb f6 1f 96 40 48 3c 32 
+[Thread-56] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-56] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101273}
+[Thread-56] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-56] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-56] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-56] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.30:45130
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.62:44092 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  23 time in sec: 1521677423
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-58] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.62:44092 with auth nonce d8 28 00 c3 9c 20 dc 8e 
+[Thread-58] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-58] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-58] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.62:44092
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.24:41212 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  24 time in sec: 1521677424
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-59] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.24:41212 with auth nonce 07 b6 cd ad 21 55 3d 56 
+[Thread-59] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-59] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101274}
+[Thread-59] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-59] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-59] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-59] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.24:41212
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.63:49670 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  27 time in sec: 1521677427
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 14 QPS: 0.23333333 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 14 QPS: 0.23333333 Max QPS: 0.25
+[Thread-60] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.63:49670 with auth nonce 03 36 78 a5 ae d3 b8 f6 
+[Thread-60] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-60] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-60] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.63:49670
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.25:50606 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  27 time in sec: 1521677427
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-61] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.25:50606 with auth nonce c3 89 93 f0 9f 27 ad ae 
+[Thread-61] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-61] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101275}
+[Thread-61] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-61] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-61] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-61] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.25:50606
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.64:40572 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  30 time in sec: 1521677430
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-62] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.64:40572 with auth nonce 90 e1 c4 b9 d1 2f 79 37 
+[Thread-62] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-62] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-62] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.64:40572
+[qtp729864207-63] INFO org.iot.auth.server.TrustedAuthConnectionHandler - Received AUTH_SESSION_KEY_REQ from Auth504 at 10.0.0.7:49566
+[qtp729864207-63] INFO org.iot.auth.message.AuthSessionKeyReqMessage - Received contents:  
+[qtp729864207-63] INFO org.iot.auth.message.AuthSessionKeyReqMessage - Received JSON: {"EntityName":"s503","EntityGroup":"Servers","KeyID":"50101276","TYPE":"AUTH_SESSION_KEY_REQ","CachedKeyAuthID":"-1"}
+[qtp729864207-63] INFO org.iot.auth.server.TrustedAuthConnectionHandler - Received AuthSessionKeyReqMessage: KeyID: 50101276, RequestingEntityName: s503, ReqeustingEntityGroup: Servers, CachedKeyAuthID: -1
+[qtp729864207-63] INFO org.iot.auth.server.TrustedAuthConnectionHandler - The request AUTH_SESSION_KEY_REQ was successfully handled!
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.67:60966 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  40 time in sec: 1521677440
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 14 QPS: 0.23333333 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 14 QPS: 0.23333333 Max QPS: 0.25
+[Thread-63] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.67:60966 with auth nonce 4a 2d f3 65 60 0d 85 7a 
+[Thread-63] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-63] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-63] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.67:60966
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.27:44588 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  40 time in sec: 1521677440
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-64] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.27:44588 with auth nonce 75 a7 88 0f a7 7d ed 33 
+[Thread-64] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-64] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101277}
+[Thread-64] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-64] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-64] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-64] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.27:44588
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.68:40336 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  43 time in sec: 1521677443
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-65] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.68:40336 with auth nonce 1d d5 44 5b 52 bc aa 70 
+[Thread-65] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-65] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-65] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.68:40336
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.28:56246 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  44 time in sec: 1521677444
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-66] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.28:56246 with auth nonce e5 a9 f2 aa b3 fc b9 bc 
+[Thread-66] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-66] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101278}
+[Thread-66] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-66] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-66] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-66] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.28:56246
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.69:43686 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  46 time in sec: 1521677446
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-67] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.69:43686 with auth nonce cf 36 90 7f 25 d0 0c fe 
+[Thread-67] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-67] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-67] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.69:43686
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.28:56264 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  47 time in sec: 1521677447
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-68] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.28:56264 with auth nonce c2 e9 09 88 50 85 e0 60 
+[Thread-68] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-68] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101279}
+[Thread-68] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-68] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-68] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-68] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.28:56264
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.70:60468 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  50 time in sec: 1521677450
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 14 QPS: 0.23333333 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 14 QPS: 0.23333333 Max QPS: 0.25
+[Thread-69] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.70:60468 with auth nonce df 80 8d 6a c4 74 91 3f 
+[Thread-69] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-69] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-69] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.70:60468
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.29:42006 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  50 time in sec: 1521677450
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-70] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.29:42006 with auth nonce ad 21 62 4d 9a 2b 26 ed 
+[Thread-70] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-70] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101280}
+[Thread-70] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-70] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-70] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-70] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.29:42006
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.71:47774 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  53 time in sec: 1521677453
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.25
+[Thread-71] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.71:47774 with auth nonce c9 99 4f bb e3 a8 c0 37 
+[Thread-71] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-71] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-71] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.71:47774
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.30:45400 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  53 time in sec: 1521677453
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 16 QPS: 0.26666668 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 16 QPS: 0.26666668 Max QPS: 0.26666668
+[Thread-72] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.30:45400 with auth nonce 40 70 ea 09 a8 ae 17 42 
+[Thread-72] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-72] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101281}
+[Thread-72] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-72] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-72] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-72] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.30:45400
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.62:44362 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  24 time in sec: 1521677484
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-74] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.62:44362 with auth nonce 7e 89 77 97 64 ca 51 8e 
+[Thread-74] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-74] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-74] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.62:44362
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.24:41482 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  24 time in sec: 1521677484
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-75] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.24:41482 with auth nonce 10 9c db 7d e9 79 fe a6 
+[Thread-75] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-75] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101282}
+[Thread-75] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-75] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-75] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-75] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.24:41482
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.63:49940 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  27 time in sec: 1521677487
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-76] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.63:49940 with auth nonce a9 47 d9 53 70 2b 4d 7d 
+[Thread-76] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-76] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-76] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.63:49940
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.25:50876 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  27 time in sec: 1521677487
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-77] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.25:50876 with auth nonce ac fb 47 ab b2 a9 88 44 
+[Thread-77] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-77] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101283}
+[Thread-77] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-77] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-77] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-77] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.25:50876
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.64:40842 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  30 time in sec: 1521677490
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-78] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.64:40842 with auth nonce 54 ed 77 57 da fc d1 4e 
+[Thread-78] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-78] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-78] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.64:40842
+[qtp729864207-70] INFO org.iot.auth.server.TrustedAuthConnectionHandler - Received AUTH_SESSION_KEY_REQ from Auth504 at 10.0.0.7:49566
+[qtp729864207-70] INFO org.iot.auth.message.AuthSessionKeyReqMessage - Received contents:  
+[qtp729864207-70] INFO org.iot.auth.message.AuthSessionKeyReqMessage - Received JSON: {"EntityName":"s503","EntityGroup":"Servers","KeyID":"50101284","TYPE":"AUTH_SESSION_KEY_REQ","CachedKeyAuthID":"-1"}
+[qtp729864207-70] INFO org.iot.auth.server.TrustedAuthConnectionHandler - Received AuthSessionKeyReqMessage: KeyID: 50101284, RequestingEntityName: s503, ReqeustingEntityGroup: Servers, CachedKeyAuthID: -1
+[qtp729864207-70] INFO org.iot.auth.server.TrustedAuthConnectionHandler - The request AUTH_SESSION_KEY_REQ was successfully handled!
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.67:33004 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  40 time in sec: 1521677500
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-79] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.67:33004 with auth nonce 42 56 c7 7f 56 ca 4b 8f 
+[Thread-79] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-79] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-79] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.67:33004
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.27:44858 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  40 time in sec: 1521677500
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-80] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.27:44858 with auth nonce 40 6b ba eb 9f 51 09 88 
+[Thread-80] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-80] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101285}
+[Thread-80] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-80] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-80] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-80] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.27:44858
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.68:40606 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  43 time in sec: 1521677503
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-81] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.68:40606 with auth nonce 73 3a c4 35 5a 77 ad 94 
+[Thread-81] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-81] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-81] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.68:40606
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.28:56516 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  44 time in sec: 1521677504
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-82] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.28:56516 with auth nonce 2c 5c b7 62 09 a5 e2 0d 
+[Thread-82] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-82] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101286}
+[Thread-82] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-82] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-82] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-82] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.28:56516
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.69:43956 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  46 time in sec: 1521677506
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-83] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.69:43956 with auth nonce 22 a7 ef 9e 5f 2d 07 22 
+[Thread-83] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-83] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-83] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.69:43956
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.28:56534 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  47 time in sec: 1521677507
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-84] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.28:56534 with auth nonce ee cc cf 06 f8 b2 45 40 
+[Thread-84] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-84] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101287}
+[Thread-84] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-84] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-84] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-84] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.28:56534
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.70:60738 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  50 time in sec: 1521677510
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-85] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.70:60738 with auth nonce e9 dd fa 59 29 67 b2 02 
+[Thread-85] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-85] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-85] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.70:60738
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.29:42274 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  50 time in sec: 1521677510
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-86] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.29:42274 with auth nonce 0f 15 57 a6 cd 67 30 7d 
+[Thread-86] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-86] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101288}
+[Thread-86] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-86] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-86] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-86] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.29:42274
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.71:48044 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  53 time in sec: 1521677513
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 1 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-87] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.71:48044 with auth nonce fb 7b 3d e5 5e a8 f4 6c 
+[Thread-87] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-87] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-87] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.71:48044
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.30:45670 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  53 time in sec: 1521677513
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-88] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.30:45670 with auth nonce 65 8e b1 f9 2d 5a c6 bc 
+[Thread-88] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-88] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101289}
+[Thread-88] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-88] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-88] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-88] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.30:45670
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.62:44632 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  24 time in sec: 1521677544
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-90] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.62:44632 with auth nonce c6 5b af 4c 23 86 8c 2b 
+[Thread-90] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-90] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-90] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.62:44632
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.24:41752 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  24 time in sec: 1521677544
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 2 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-91] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.24:41752 with auth nonce ce 44 b9 ef 52 b3 d8 aa 
+[Thread-91] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-91] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101290}
+[Thread-91] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-91] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-91] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-91] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.24:41752
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.63:50210 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  27 time in sec: 1521677547
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-92] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.63:50210 with auth nonce bd cf d7 50 c8 f4 4e 7f 
+[Thread-92] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-92] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-92] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.63:50210
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.25:51146 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  28 time in sec: 1521677548
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-93] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.25:51146 with auth nonce c2 8b ae e9 a8 b7 46 ee 
+[Thread-93] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-93] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101291}
+[Thread-93] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-93] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-93] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-93] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.25:51146
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.64:41112 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  30 time in sec: 1521677550
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-94] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.64:41112 with auth nonce a1 4f fc 00 84 90 b9 c4 
+[Thread-94] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-94] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-94] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.64:41112
+[qtp729864207-69] INFO org.iot.auth.server.TrustedAuthConnectionHandler - Received AUTH_SESSION_KEY_REQ from Auth504 at 10.0.0.7:49566
+[qtp729864207-69] INFO org.iot.auth.message.AuthSessionKeyReqMessage - Received contents:  
+[qtp729864207-69] INFO org.iot.auth.message.AuthSessionKeyReqMessage - Received JSON: {"EntityName":"s503","EntityGroup":"Servers","KeyID":"50101292","TYPE":"AUTH_SESSION_KEY_REQ","CachedKeyAuthID":"-1"}
+[qtp729864207-69] INFO org.iot.auth.server.TrustedAuthConnectionHandler - Received AuthSessionKeyReqMessage: KeyID: 50101292, RequestingEntityName: s503, ReqeustingEntityGroup: Servers, CachedKeyAuthID: -1
+[qtp729864207-69] INFO org.iot.auth.server.TrustedAuthConnectionHandler - The request AUTH_SESSION_KEY_REQ was successfully handled!
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.67:33274 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  40 time in sec: 1521677560
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-95] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.67:33274 with auth nonce b8 4e 1d 90 fb 76 58 be 
+[Thread-95] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-95] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-95] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.67:33274
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.27:45128 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  40 time in sec: 1521677560
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-96] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.27:45128 with auth nonce 46 92 d4 27 f8 01 8b 5c 
+[Thread-96] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-96] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101293}
+[Thread-96] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-96] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-96] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-96] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.27:45128
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.68:40876 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  43 time in sec: 1521677563
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-97] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.68:40876 with auth nonce 35 ae 8b f3 0a 85 50 ff 
+[Thread-97] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-97] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-97] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.68:40876
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.28:56786 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  44 time in sec: 1521677564
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-98] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.28:56786 with auth nonce d1 d4 87 38 49 f4 1e 4f 
+[Thread-98] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-98] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101294}
+[Thread-98] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-98] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-98] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-98] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.28:56786
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.69:44226 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  46 time in sec: 1521677566
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-99] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.69:44226 with auth nonce d5 0c 8a 70 33 2b 24 8d 
+[Thread-99] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-99] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-99] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.69:44226
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.28:56804 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  47 time in sec: 1521677567
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-100] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.28:56804 with auth nonce 63 76 80 b1 2f 86 07 cb 
+[Thread-100] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-100] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101295}
+[Thread-100] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-100] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-100] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-100] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.28:56804
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.70:32776 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  50 time in sec: 1521677570
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 0 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-101] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.70:32776 with auth nonce 03 c9 28 82 64 80 a2 67 
+[Thread-101] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-101] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-101] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.70:32776
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.29:42548 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  51 time in sec: 1521677571
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 1 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 1 0 2 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-102] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.29:42548 with auth nonce ee d0 25 11 24 c6 02 ff 
+[Thread-102] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-102] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101296}
+[Thread-102] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-102] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-102] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-102] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.29:42548
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.71:48314 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  53 time in sec: 1521677573
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 1 0 1 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 1 0 1 0 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-103] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.71:48314 with auth nonce 1e 13 5b 76 c3 3e 20 74 
+[Thread-103] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-103] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-103] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.71:48314
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.30:45940 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  54 time in sec: 1521677574
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-104] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.30:45940 with auth nonce 45 3e b1 37 b2 34 0d 1f 
+[Thread-104] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-104] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101297}
+[Thread-104] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-104] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-104] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-104] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.30:45940
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.62:44902 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  24 time in sec: 1521677604
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-106] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.62:44902 with auth nonce 9a d5 0f c0 c8 cc dc f6 
+[Thread-106] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-106] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-106] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.62:44902
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.24:42022 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  24 time in sec: 1521677604
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-107] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.24:42022 with auth nonce b3 2d 62 59 01 17 9e c8 
+[Thread-107] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-107] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101298}
+[Thread-107] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-107] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-107] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-107] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.24:42022
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.63:50480 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  27 time in sec: 1521677607
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-108] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.63:50480 with auth nonce d8 75 b6 97 d5 d1 4e c8 
+[Thread-108] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-108] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-108] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.63:50480
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.25:51416 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  28 time in sec: 1521677608
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-109] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.25:51416 with auth nonce 6c 28 4e fd 1e 86 3d 74 
+[Thread-109] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-109] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101299}
+[Thread-109] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-109] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-109] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-109] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.25:51416
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.64:41382 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  30 time in sec: 1521677610
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 1 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-110] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.64:41382 with auth nonce 77 63 c3 49 3a 7a 4e 40 
+[Thread-110] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-110] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-110] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.64:41382
+[qtp729864207-63] INFO org.iot.auth.server.TrustedAuthConnectionHandler - Received AUTH_SESSION_KEY_REQ from Auth504 at 10.0.0.7:49566
+[qtp729864207-63] INFO org.iot.auth.message.AuthSessionKeyReqMessage - Received contents:  
+[qtp729864207-63] INFO org.iot.auth.message.AuthSessionKeyReqMessage - Received JSON: {"EntityName":"s503","EntityGroup":"Servers","KeyID":"50101300","TYPE":"AUTH_SESSION_KEY_REQ","CachedKeyAuthID":"-1"}
+[qtp729864207-63] INFO org.iot.auth.server.TrustedAuthConnectionHandler - Received AuthSessionKeyReqMessage: KeyID: 50101300, RequestingEntityName: s503, ReqeustingEntityGroup: Servers, CachedKeyAuthID: -1
+[qtp729864207-63] INFO org.iot.auth.server.TrustedAuthConnectionHandler - The request AUTH_SESSION_KEY_REQ was successfully handled!
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.67:33544 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  40 time in sec: 1521677620
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 0 0 1 1 0 1 1 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 0 0 1 1 0 1 1 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-111] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.67:33544 with auth nonce ba ea 96 3f 2e 82 a1 c3 
+[Thread-111] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-111] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-111] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.67:33544
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.27:45398 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  41 time in sec: 1521677621
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 1 1 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 1 1 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-112] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.27:45398 with auth nonce 50 f0 66 62 3f f9 03 0e 
+[Thread-112] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-112] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101301}
+[Thread-112] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-112] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-112] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-112] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.27:45398
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.68:41146 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  43 time in sec: 1521677623
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 1 1 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 1 1 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-113] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.68:41146 with auth nonce 64 23 f6 c6 b3 e6 a4 a0 
+[Thread-113] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-113] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-113] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.68:41146
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.28:57056 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  44 time in sec: 1521677624
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 1 1 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 1 1 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-114] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.28:57056 with auth nonce 96 39 7e 53 2d b9 cc 1d 
+[Thread-114] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-114] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101302}
+[Thread-114] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-114] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-114] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-114] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.28:57056
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.69:44496 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  47 time in sec: 1521677627
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 1 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 1 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-115] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.69:44496 with auth nonce d9 61 56 ec 63 73 e9 26 
+[Thread-115] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-115] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-115] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.69:44496
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.28:57074 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  47 time in sec: 1521677627
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-116] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.28:57074 with auth nonce aa bf 43 78 24 65 94 8d 
+[Thread-116] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-116] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101303}
+[Thread-116] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-116] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-116] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-116] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.28:57074
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.70:33046 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  50 time in sec: 1521677630
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-117] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.70:33046 with auth nonce 69 6d a6 1d b2 fe 1e 5c 
+[Thread-117] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-117] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-117] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.70:33046
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.29:42814 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  50 time in sec: 1521677630
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 16 QPS: 0.26666668 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 16 QPS: 0.26666668 Max QPS: 0.26666668
+[Thread-118] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.29:42814 with auth nonce f9 10 22 35 cf ff 55 5f 
+[Thread-118] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-118] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101304}
+[Thread-118] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-118] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-118] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-118] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.29:42814
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.71:48584 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  53 time in sec: 1521677633
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-119] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.71:48584 with auth nonce 92 f4 87 de 4f 4c a5 f6 
+[Thread-119] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-119] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-119] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.71:48584
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.30:46210 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  54 time in sec: 1521677634
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-120] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.30:46210 with auth nonce bf 2a 2c f9 79 f7 c6 82 
+[Thread-120] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-120] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101305}
+[Thread-120] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-120] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-120] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-120] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.30:46210
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.62:45172 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  24 time in sec: 1521677664
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-122] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.62:45172 with auth nonce 7c 26 97 2d 0c 34 64 4c 
+[Thread-122] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-122] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-122] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.62:45172
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.24:42292 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  24 time in sec: 1521677664
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-123] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.24:42292 with auth nonce 17 6b d0 f9 22 5a bf f3 
+[Thread-123] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-123] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101306}
+[Thread-123] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-123] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-123] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-123] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.24:42292
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.63:50750 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  27 time in sec: 1521677667
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-124] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.63:50750 with auth nonce cf b8 bc 1c cd ad 9f 21 
+[Thread-124] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-124] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-124] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.63:50750
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.25:51686 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  28 time in sec: 1521677668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-125] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.25:51686 with auth nonce 7d 06 9d 00 b2 63 dc 1d 
+[Thread-125] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-125] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101307}
+[Thread-125] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-125] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-125] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-125] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.25:51686
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.64:41652 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  30 time in sec: 1521677670
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-126] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.64:41652 with auth nonce eb 62 74 71 cf 58 8b bd 
+[Thread-126] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-126] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-126] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.64:41652
+[qtp729864207-69] INFO org.iot.auth.server.TrustedAuthConnectionHandler - Received AUTH_SESSION_KEY_REQ from Auth504 at 10.0.0.7:49566
+[qtp729864207-69] INFO org.iot.auth.message.AuthSessionKeyReqMessage - Received contents:  
+[qtp729864207-69] INFO org.iot.auth.message.AuthSessionKeyReqMessage - Received JSON: {"EntityName":"s503","EntityGroup":"Servers","KeyID":"50101308","TYPE":"AUTH_SESSION_KEY_REQ","CachedKeyAuthID":"-1"}
+[qtp729864207-69] INFO org.iot.auth.server.TrustedAuthConnectionHandler - Received AuthSessionKeyReqMessage: KeyID: 50101308, RequestingEntityName: s503, ReqeustingEntityGroup: Servers, CachedKeyAuthID: -1
+[qtp729864207-69] INFO org.iot.auth.server.TrustedAuthConnectionHandler - The request AUTH_SESSION_KEY_REQ was successfully handled!
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.67:33814 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  40 time in sec: 1521677680
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-127] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.67:33814 with auth nonce 60 ba 06 4f 9b f7 87 fc 
+[Thread-127] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-127] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-127] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.67:33814
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.27:45668 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  41 time in sec: 1521677681
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-128] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.27:45668 with auth nonce a8 b5 1a 9f d9 ba 80 b5 
+[Thread-128] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-128] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101309}
+[Thread-128] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-128] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-128] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-128] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.27:45668
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.68:41416 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  43 time in sec: 1521677683
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-129] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.68:41416 with auth nonce 96 00 48 ec 0e 57 cd 28 
+[Thread-129] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-129] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-129] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.68:41416
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.28:57326 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  44 time in sec: 1521677684
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-130] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.28:57326 with auth nonce 57 f4 5a 20 f0 58 3d e3 
+[Thread-130] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-130] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101310}
+[Thread-130] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-130] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-130] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-130] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.28:57326
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.69:44766 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  47 time in sec: 1521677687
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 1 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-131] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.69:44766 with auth nonce c1 61 57 2a 17 45 ef ee 
+[Thread-131] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-131] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-131] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.69:44766
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.28:57344 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  47 time in sec: 1521677687
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  2
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 2 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-132] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.28:57344 with auth nonce b8 97 9f 4a 21 2d 6f 08 
+[Thread-132] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-132] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101311}
+[Thread-132] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-132] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-132] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-132] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.28:57344
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.70:33316 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  50 time in sec: 1521677690
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 1 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 1 0 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 14 QPS: 0.23333333 Max QPS: 0.26666668
+[Thread-133] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.70:33316 with auth nonce 85 50 1e 63 78 41 0a 39 
+[Thread-133] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-133] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-133] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.70:33316
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.29:43088 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  51 time in sec: 1521677691
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-134] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.29:43088 with auth nonce 3e 99 53 20 cd 07 c0 7a 
+[Thread-134] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-134] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101312}
+[Thread-134] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-134] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-134] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-134] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.29:43088
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.71:48854 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  53 time in sec: 1521677693
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-135] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.71:48854 with auth nonce 07 a1 bc df b8 85 ba ab 
+[Thread-135] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-135] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"group":"Servers"}
+[Thread-135] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.71:48854
+[Thread-1] INFO org.iot.auth.AuthServer - An entity connected from: /10.0.1.30:46480 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current second index:  54 time in sec: 1521677694
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/sec:  1
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Total:    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - Accepted: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 2 0 0 1 1 0 1 1 0 0 0 0 0 
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current total req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-1] INFO org.iot.auth.server.QPSCalculator - current accepted req/60sec: 15 QPS: 0.25 Max QPS: 0.26666668
+[Thread-136] INFO org.iot.auth.server.EntityTcpConnectionHandler - Sending AUTH_HELLO to entity at Port /10.0.1.30:46480 with auth nonce b8 be e5 30 7e 0a de 9b 
+[Thread-136] INFO org.iot.auth.server.EntityTcpConnectionHandler - Received session key request message encrypted with distribution key!
+[Thread-136] INFO org.iot.auth.message.SessionKeyReqMessage - Received JSON: {"keyId":50101313}
+[Thread-136] INFO org.iot.auth.server.SessionKeyReqPurpose - class java.lang.Long
+[Thread-136] INFO org.iot.auth.server.EntityTcpConnectionHandler - ID of Auth that generated this key: 501
+[Thread-136] INFO org.iot.auth.server.EntityTcpConnectionHandler - This session key was generated by me
+[Thread-136] INFO org.iot.auth.server.EntityTcpConnectionHandler - Closing connection with socket at /10.0.1.30:46480
+[Thread-5] INFO org.iot.auth.db.AuthDB - Closing Auth DB...
+[Thread-5] INFO org.iot.auth.AuthCommandLine - Shutting down Auth 501 ...
