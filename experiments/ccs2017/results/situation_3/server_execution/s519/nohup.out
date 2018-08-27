@@ -1,0 +1,442 @@
+changing working directory to: /home/hokeunkim/Development/iotauth/entity/node/example_entities
+loading from config file: /home/hokeunkim/Development/iotauth_experiments/experiments/ccs2017/expOptions/expEntity.option
+Experimental options for echoServer: { autoSendPeriod: 60000,
+  useSameSessionKeyCount: 1,
+  connectionTimeout: 50000,
+  migrationEnabled: true,
+  authFailureThreshold: 2,
+  migrationFailureThreshold: 2 }
+loading from config file: /home/hokeunkim/Development/iotauth/entity/node/example_entities/configs/Servers/s519.config
+initializing secure comm server...
+Session protocol: TCP
+current parameters: { migrationEnabled: true,
+  authFailureThreshold: 3,
+  migrationFailureThreshold: 3 }
+current parameters: { migrationEnabled: true,
+  authFailureThreshold: 2,
+  migrationFailureThreshold: 3 }
+current parameters: { migrationEnabled: true,
+  authFailureThreshold: 2,
+  migrationFailureThreshold: 2 }
+current entityInfo: { name: 's519',
+  group: 'Servers',
+  distProtocol: 'TCP',
+  usePermanentDistKey: false,
+  connectionTimeout: 50000,
+  privateKey: <Buffer 2d 2d 2d 2d 2d 42 45 47 49 4e 20 52 53 41 20 50 52 49 56 41 54 45 20 4b 45 59 2d 2d 2d 2d 2d 0a 4d 49 49 45 6f 67 49 42 41 41 4b 43 41 51 45 41 6f 4b ... > }
+Handler: listening on port 22100
+s519:Servers prompt>
+Unidentified client connected
+received session key handshake1
+switching to HANDSHAKE_1_RECEIVED state.
+session key id: 50400044
+session key NOT found! sending session key id to AuthService
+Distribution protocol: TCP
+connected to auth! from local port 36614
+Unidentified client connected
+received session key handshake1
+switching to HANDSHAKE_1_RECEIVED state.
+session key id: 50400045
+session key NOT found! sending session key id to AuthService
+Distribution protocol: TCP
+connected to auth! from local port 36628
+received auth hello!
+{ authId: 504, nonce: <Buffer d6 35 fb 35 97 02 52 b0> }
+received session key response with distribution key attached!
+auth signature verified
+replyNonce in sessionKeyResp: <Buffer 4d bf c5 cd e4 e7 e6 9c>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+updating distribution key: { cipherKeyVal: <Buffer ca b2 48 0f f7 ea b7 a7 b3 3c df c8 69 dd af cd>,
+  macKeyVal: <Buffer c7 fa 63 ea f8 f9 90 b8 f5 be 90 f1 67 ab 41 c0 34 a5 b9 ad e4 26 59 5f 2e b4 e2 58 3a 73 d8 6c>,
+  absValidity: 2018-08-27T05:31:08.319Z }
+received 1 keys
+Session key id is as expected
+server ret: [object Object]
+chosen nonce: <Buffer 5f 10 af 9d e5 b7 5f 05>
+switching to HANDSHAKE_2_SENT
+disconnected from auth
+received session key handshake3!
+{ replyNonce: <Buffer 5f 10 af 9d e5 b7 5f 05> }
+client authenticated/authorized by solving nonce!
+switching to IN_COMM
+Handler: secure connection with the client established.
+{ id: 0,
+  remoteAddress: '::ffff:10.0.1.86:59306',
+  status: 'open' }
+received secure communication!
+Received seqNum: 0
+data received from server via secure communication
+Handler: socketID: 0 data: data1
+toSend: { data: <Buffer 64 61 74 61 31>, id: 0 }
+specified socketID: 0
+Handler: Error in server - details: handshake2 timed out...
+received auth hello!
+{ authId: 504, nonce: <Buffer 60 7f 0f 44 d5 f1 69 42> }
+received session key response with distribution key attached!
+auth signature verified
+replyNonce in sessionKeyResp: <Buffer 5d 96 ff 30 f5 bb 40 f1>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+updating distribution key: { cipherKeyVal: <Buffer d5 5d 91 69 d5 fd 91 16 81 8b 2e 28 ec f7 18 a8>,
+  macKeyVal: <Buffer a1 d4 3d 7e af a5 93 9b d1 76 a4 a3 73 63 fe a1 35 7d ac b8 9b 1d 23 3a 56 43 a1 25 72 9e f2 4a>,
+  absValidity: 2018-08-27T05:31:10.072Z }
+received 1 keys
+Session key id is as expected
+server ret: [object Object]
+chosen nonce: <Buffer dc 7c d7 f2 13 70 07 63>
+switching to HANDSHAKE_2_SENT
+disconnected from auth
+received session key handshake3!
+{ replyNonce: <Buffer dc 7c d7 f2 13 70 07 63> }
+client authenticated/authorized by solving nonce!
+switching to IN_COMM
+Handler: secure connection with the client established.
+{ id: 1,
+  remoteAddress: '::ffff:10.0.1.87:49416',
+  status: 'open' }
+received secure communication!
+Received seqNum: 0
+data received from server via secure communication
+Handler: socketID: 1 data: data1
+toSend: { data: <Buffer 64 61 74 61 31>, id: 1 }
+specified socketID: 1
+Handler: Error in server - details: Auth hello timedout ...
+Unidentified client disconnected
+Handler: secure connection with the client closed.
+socket #0 closed
+Unidentified client connected
+received session key handshake1
+switching to HANDSHAKE_1_RECEIVED state.
+session key id: 50400050
+session key NOT found! sending session key id to AuthService
+Distribution protocol: TCP
+connected to auth! from local port 36884
+Unidentified client disconnected
+Handler: secure connection with the client closed.
+socket #1 closed
+Unidentified client connected
+received session key handshake1
+switching to HANDSHAKE_1_RECEIVED state.
+session key id: 50400051
+session key NOT found! sending session key id to AuthService
+Distribution protocol: TCP
+connected to auth! from local port 36898
+received auth hello!
+{ authId: 504, nonce: <Buffer 97 cb 84 88 e3 77 43 a2> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer cd 29 b5 e3 58 f2 bb 0f>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+Session key id is as expected
+server ret: [object Object]
+chosen nonce: <Buffer 0c a1 cd 05 f4 b6 47 67>
+switching to HANDSHAKE_2_SENT
+received session key handshake3!
+{ replyNonce: <Buffer 0c a1 cd 05 f4 b6 47 67> }
+client authenticated/authorized by solving nonce!
+switching to IN_COMM
+Handler: secure connection with the client established.
+{ id: 2,
+  remoteAddress: '::ffff:10.0.1.86:59576',
+  status: 'open' }
+disconnected from auth
+received secure communication!
+Received seqNum: 0
+data received from server via secure communication
+Handler: socketID: 2 data: data1
+toSend: { data: <Buffer 64 61 74 61 31>, id: 2 }
+specified socketID: 2
+Handler: Error in server - details: handshake2 timed out...
+received auth hello!
+{ authId: 504, nonce: <Buffer 39 9e b7 da 01 4c 39 cb> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer b3 30 58 54 20 73 19 b5>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+Session key id is as expected
+server ret: [object Object]
+chosen nonce: <Buffer 70 e3 b9 a3 21 de 66 ea>
+switching to HANDSHAKE_2_SENT
+disconnected from auth
+received session key handshake3!
+{ replyNonce: <Buffer 70 e3 b9 a3 21 de 66 ea> }
+client authenticated/authorized by solving nonce!
+switching to IN_COMM
+Handler: secure connection with the client established.
+{ id: 3,
+  remoteAddress: '::ffff:10.0.1.87:49686',
+  status: 'open' }
+received secure communication!
+Received seqNum: 0
+data received from server via secure communication
+Handler: socketID: 3 data: data1
+toSend: { data: <Buffer 64 61 74 61 31>, id: 3 }
+specified socketID: 3
+Handler: Error in server - details: Auth hello timedout ...
+Unidentified client disconnected
+Handler: secure connection with the client closed.
+socket #2 closed
+Unidentified client connected
+received session key handshake1
+switching to HANDSHAKE_1_RECEIVED state.
+session key id: 50400056
+session key NOT found! sending session key id to AuthService
+Distribution protocol: TCP
+connected to auth! from local port 37154
+Unidentified client disconnected
+Handler: secure connection with the client closed.
+socket #3 closed
+Unidentified client connected
+received session key handshake1
+switching to HANDSHAKE_1_RECEIVED state.
+session key id: 50400057
+session key NOT found! sending session key id to AuthService
+Distribution protocol: TCP
+connected to auth! from local port 37170
+received auth hello!
+{ authId: 504, nonce: <Buffer 40 ee 2d 31 f1 5c 72 f6> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer fc 51 00 12 03 b9 1a e9>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+Session key id is as expected
+server ret: [object Object]
+chosen nonce: <Buffer 22 28 18 ca 8a 50 c1 4f>
+switching to HANDSHAKE_2_SENT
+disconnected from auth
+received session key handshake3!
+{ replyNonce: <Buffer 22 28 18 ca 8a 50 c1 4f> }
+client authenticated/authorized by solving nonce!
+switching to IN_COMM
+Handler: secure connection with the client established.
+{ id: 4,
+  remoteAddress: '::ffff:10.0.1.86:59846',
+  status: 'open' }
+received secure communication!
+Received seqNum: 0
+data received from server via secure communication
+Handler: socketID: 4 data: data1
+toSend: { data: <Buffer 64 61 74 61 31>, id: 4 }
+specified socketID: 4
+Handler: Error in server - details: handshake2 timed out...
+received auth hello!
+{ authId: 504, nonce: <Buffer dd 1d dd 06 cd 88 98 9a> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer 38 00 f1 c8 88 f0 8f aa>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+Session key id is as expected
+server ret: [object Object]
+chosen nonce: <Buffer d0 1d 99 3b 81 be d8 5d>
+switching to HANDSHAKE_2_SENT
+received session key handshake3!
+{ replyNonce: <Buffer d0 1d 99 3b 81 be d8 5d> }
+client authenticated/authorized by solving nonce!
+switching to IN_COMM
+Handler: secure connection with the client established.
+{ id: 5,
+  remoteAddress: '::ffff:10.0.1.87:49956',
+  status: 'open' }
+disconnected from auth
+received secure communication!
+Received seqNum: 0
+data received from server via secure communication
+Handler: socketID: 5 data: data1
+toSend: { data: <Buffer 64 61 74 61 31>, id: 5 }
+specified socketID: 5
+Handler: Error in server - details: Auth hello timedout ...
+Unidentified client disconnected
+Handler: secure connection with the client closed.
+socket #4 closed
+Unidentified client connected
+received session key handshake1
+switching to HANDSHAKE_1_RECEIVED state.
+session key id: 50400062
+session key NOT found! sending session key id to AuthService
+Distribution protocol: TCP
+connected to auth! from local port 37424
+Unidentified client disconnected
+Handler: secure connection with the client closed.
+socket #5 closed
+Unidentified client connected
+received session key handshake1
+switching to HANDSHAKE_1_RECEIVED state.
+session key id: 50400063
+session key NOT found! sending session key id to AuthService
+Distribution protocol: TCP
+connected to auth! from local port 37440
+received auth hello!
+{ authId: 504, nonce: <Buffer 83 aa c8 ed f4 b7 a2 33> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer 06 69 40 6a cd 53 9e ff>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+Session key id is as expected
+server ret: [object Object]
+chosen nonce: <Buffer 65 7a 71 ab 9c cf 8b 9a>
+switching to HANDSHAKE_2_SENT
+disconnected from auth
+received session key handshake3!
+{ replyNonce: <Buffer 65 7a 71 ab 9c cf 8b 9a> }
+client authenticated/authorized by solving nonce!
+switching to IN_COMM
+Handler: secure connection with the client established.
+{ id: 6,
+  remoteAddress: '::ffff:10.0.1.86:60116',
+  status: 'open' }
+received secure communication!
+Received seqNum: 0
+data received from server via secure communication
+Handler: socketID: 6 data: data1
+toSend: { data: <Buffer 64 61 74 61 31>, id: 6 }
+specified socketID: 6
+Handler: Error in server - details: handshake2 timed out...
+received auth hello!
+{ authId: 504, nonce: <Buffer 69 f5 03 15 74 09 c2 ba> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer c5 ef d9 43 12 e2 fc 42>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+Session key id is as expected
+server ret: [object Object]
+chosen nonce: <Buffer eb 21 68 9f d1 ae 16 2a>
+switching to HANDSHAKE_2_SENT
+received session key handshake3!
+{ replyNonce: <Buffer eb 21 68 9f d1 ae 16 2a> }
+client authenticated/authorized by solving nonce!
+switching to IN_COMM
+Handler: secure connection with the client established.
+{ id: 7,
+  remoteAddress: '::ffff:10.0.1.87:50226',
+  status: 'open' }
+disconnected from auth
+received secure communication!
+Received seqNum: 0
+data received from server via secure communication
+Handler: socketID: 7 data: data1
+toSend: { data: <Buffer 64 61 74 61 31>, id: 7 }
+specified socketID: 7
+Handler: Error in server - details: Auth hello timedout ...
+Unidentified client disconnected
+Handler: secure connection with the client closed.
+socket #6 closed
+Unidentified client connected
+received session key handshake1
+switching to HANDSHAKE_1_RECEIVED state.
+session key id: 50400068
+session key NOT found! sending session key id to AuthService
+Distribution protocol: TCP
+connected to auth! from local port 37692
+Unidentified client disconnected
+Handler: secure connection with the client closed.
+socket #7 closed
+Unidentified client connected
+received session key handshake1
+switching to HANDSHAKE_1_RECEIVED state.
+session key id: 50400069
+session key NOT found! sending session key id to AuthService
+Distribution protocol: TCP
+connected to auth! from local port 37710
+received auth hello!
+{ authId: 504, nonce: <Buffer c2 96 c1 46 d9 fb bd 12> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer 2c 6a 06 16 ce 94 0e f1>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+Session key id is as expected
+server ret: [object Object]
+chosen nonce: <Buffer d0 03 19 91 43 b2 3d ad>
+switching to HANDSHAKE_2_SENT
+disconnected from auth
+received session key handshake3!
+{ replyNonce: <Buffer d0 03 19 91 43 b2 3d ad> }
+client authenticated/authorized by solving nonce!
+switching to IN_COMM
+Handler: secure connection with the client established.
+{ id: 8,
+  remoteAddress: '::ffff:10.0.1.86:60386',
+  status: 'open' }
+received secure communication!
+Received seqNum: 0
+data received from server via secure communication
+Handler: socketID: 8 data: data1
+toSend: { data: <Buffer 64 61 74 61 31>, id: 8 }
+specified socketID: 8
+Handler: Error in server - details: handshake2 timed out...
+received auth hello!
+{ authId: 504, nonce: <Buffer cf 40 29 3f 08 22 b2 94> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer f3 68 49 62 dc 33 aa 88>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+Session key id is as expected
+server ret: [object Object]
+chosen nonce: <Buffer 68 da 6d d2 9c e6 19 bf>
+switching to HANDSHAKE_2_SENT
+received session key handshake3!
+{ replyNonce: <Buffer 68 da 6d d2 9c e6 19 bf> }
+client authenticated/authorized by solving nonce!
+switching to IN_COMM
+Handler: secure connection with the client established.
+{ id: 9,
+  remoteAddress: '::ffff:10.0.1.87:50496',
+  status: 'open' }
+disconnected from auth
+received secure communication!
+Received seqNum: 0
+data received from server via secure communication
+Handler: socketID: 9 data: data1
+toSend: { data: <Buffer 64 61 74 61 31>, id: 9 }
+specified socketID: 9
+Handler: Error in server - details: Auth hello timedout ...
+Unidentified client disconnected
+Handler: secure connection with the client closed.
+socket #8 closed
+Unidentified client connected
+received session key handshake1
+switching to HANDSHAKE_1_RECEIVED state.
+session key id: 50400074
+session key NOT found! sending session key id to AuthService
+Distribution protocol: TCP
+connected to auth! from local port 37964
+received auth hello!
+{ authId: 504, nonce: <Buffer e1 d5 0d 7a ce 3c 2e 03> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer 30 04 a8 89 71 df 64 d0>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+Session key id is as expected
+server ret: [object Object]
+chosen nonce: <Buffer f6 71 62 29 ed 5f e4 05>
+switching to HANDSHAKE_2_SENT
+disconnected from auth
+received session key handshake3!
+{ replyNonce: <Buffer f6 71 62 29 ed 5f e4 05> }
+client authenticated/authorized by solving nonce!
+switching to IN_COMM
+Handler: secure connection with the client established.
+{ id: 10,
+  remoteAddress: '::ffff:10.0.1.86:60656',
+  status: 'open' }
+received secure communication!
+Received seqNum: 0
+data received from server via secure communication
+Handler: socketID: 10 data: data1
+toSend: { data: <Buffer 64 61 74 61 31>, id: 10 }
+specified socketID: 10
+Unidentified client disconnected
+Handler: secure connection with the client closed.
+socket #10 closed
+Unidentified client disconnected
+Handler: secure connection with the client closed.
+socket #9 closed
