@@ -48,7 +48,7 @@ fi
 # Check cmd line argument sanity.
 if [ -z "$NUM_AUTHS_TO_KILL" ]
 then
-  echo "Number of Auths to kill is NOT set. (Try ./start-exp.sh --help)"
+  echo "Number of Auths to kill is NOT set. (Try ./runExperiments.sh --help)"
   echo "Exiting ..."
   exit 1
 fi
@@ -62,7 +62,7 @@ fi
 
 if [ -z "$EXP_NAME" ]
 then
-  echo "Experiment's name is NOT set. (Try ./start-exp.sh --help)"
+  echo "Experiment's name is NOT set. (Try ./runExperiments.sh --help)"
   echo "Exiting ..."
   exit 1
 fi
