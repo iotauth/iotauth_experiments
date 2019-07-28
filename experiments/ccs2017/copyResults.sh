@@ -50,9 +50,10 @@ mkdir $RESULT_DIR
 cp -r $EXEC/*_execution $RESULT_DIR
 cp $EXEC/execution.log $RESULT_DIR
 
+# Currently copying captured packets (pcap) is disabled
 # copy captured packets
-mkdir $RESULT_DIR/pcap
-cp $NS3/*.pcap $RESULT_DIR/pcap
+# mkdir $RESULT_DIR/pcap
+# cp $NS3/*.pcap $RESULT_DIR/pcap
 
 # copy current configurations used for experiments
 mkdir $RESULT_DIR/configs
