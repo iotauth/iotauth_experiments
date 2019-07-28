@@ -9,6 +9,52 @@ timestamp() {
     echo $(($(date +%s%N)/1000000))
 }
 
+# Parse command line arguments:
+# -n for number of auths to kill
+while [[ $# -gt 0 ]]
+do
+  key="$1"
+
+  case $key in
+    -n|--num_auths)
+      NUM_AUTHS_TO_KILL="$2"
+      shift # past argument
+      ;;
+    -h|--help)
+      SHOW_HELP=true
+      ;;
+    *)
+      # unknown option
+      ;;
+  esac
+  shift # past argument or value
+done
+
+if [ "$SHOW_HELP" = true ] ; then
+  echo "Usage: ./start-exp.sh [options]"
+  echo
+  echo "Options:"
+  echo "  -n,--num_auths <arg>    Number of Auths to kill. Should be [1-6]."
+  echo "  -h,--help               Show this help."
+  exit 1
+fi
+
+# Check cmd line argument sanity.
+if [ -z "$NUM_AUTHS_TO_KILL" ]
+then
+  echo "Number of Auths to kill is NOT set. (Try ./start-exp.sh --help)"
+  echo "Exiting ..."
+  exit
+fi
+
+if [[ ! $NUM_AUTHS_TO_KILL =~ ^[1-6]$ ]]
+then
+  echo "Number of Auths to kill should be integer [1-6]."
+  echo "Exiting ..."
+  exit
+fi
+
+# Check if the user is root.
 if [ "$EUID" -ne 0 ]
     then echo "Please run as root. Exiting ..."
     exit
@@ -24,9 +70,9 @@ fi
 WAIT_TIME_FOR_AUTH_INIT=60s
 TIME_BEFOR_FAIL=300s
 TIME_AFTER_FAIL=1200s
-NUM_AUTHS_TO_KILL=0     # Up to 6
+# NUM_AUTHS_TO_KILL=3     # Up to 3
 AUTHS_TO_KILL=(auth504 auth402 auth501 auth403 auth503 auth401)
-#AUTHS_TO_KILL=(auth1 auth3 auth4 auth2)
+# AUTHS_TO_KILL=(auth1 auth3 auth4 auth2)
 CURRENT_DIR=`pwd`
 WAIT_TIME_BETWEEN_CLIENTS=3s #0.43s
 
