@@ -44,27 +44,27 @@ if [ -z "$NUM_AUTHS_TO_KILL" ]
 then
   echo "Number of Auths to kill is NOT set. (Try ./start-exp.sh --help)"
   echo "Exiting ..."
-  exit
+  exit 1
 fi
 
 if [[ ! $NUM_AUTHS_TO_KILL =~ ^[1-6]$ ]]
 then
   echo "Number of Auths to kill should be integer [1-6]."
   echo "Exiting ..."
-  exit
+  exit 1
 fi
 
 # Check if the user is root.
 if [ "$EUID" -ne 0 ]
     then echo "Please run as root. Exiting ..."
-    exit
+    exit 1
 fi
 
 NS3_PROC_ID=`ps -aux | grep "tap-mixed-sst" | grep -v "grep" | awk '{print $2}'`
 
 if [[ $NS3_PROC_ID != *[!\ ]* ]]; then
     echo "NS3 is not running! Please run NS3 first. Exiting ..."
-    exit
+    exit 1
 fi
 
 WAIT_TIME_FOR_AUTH_INIT=60s
