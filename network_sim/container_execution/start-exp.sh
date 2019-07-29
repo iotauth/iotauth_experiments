@@ -20,6 +20,10 @@ do
       NUM_AUTHS_TO_KILL="$2"
       shift # past argument
       ;;
+    -o|--auth_kill_order)
+      AUTH_KILL_ORDER="$2"
+      shift # past argument
+      ;;
     -h|--help)
       SHOW_HELP=true
       ;;
@@ -34,8 +38,9 @@ if [ "$SHOW_HELP" = true ] ; then
   echo "Usage: ./start-exp.sh [options]"
   echo
   echo "Options:"
-  echo "  -n,--num_auths <arg>    Number of Auths to kill. Should be [1-6]."
-  echo "  -h,--help               Show this help."
+  echo "  -n,--num_auths <arg>        Number of Auths to kill. Should be [1-6]."
+  echo "  -o,--auth_kill_order <arg>  Order of Auths to kill. Wrap around with double quotes (\")."
+  echo "  -h,--help                   Show this help."
   exit 1
 fi
 
@@ -60,6 +65,8 @@ if [ "$EUID" -ne 0 ]
     exit 1
 fi
 
+# Check if NS3 is running.
+
 NS3_PROC_ID=`ps -aux | grep "tap-mixed-sst" | grep -v "grep" | awk '{print $2}'`
 
 if [[ $NS3_PROC_ID != *[!\ ]* ]]; then
@@ -67,23 +74,51 @@ if [[ $NS3_PROC_ID != *[!\ ]* ]]; then
     exit 1
 fi
 
+# Check if the order is set.
+if [ -z "$AUTH_KILL_ORDER" ]
+then
+  echo "Order of Auths to kill is not set. Using the deafult order..."
+  AUTH_KILL_ORDER=(auth504 auth402 auth501 auth403 auth503 auth401)
+else
+  echo "Order of Auths to kill is given."
+  # Convert string into bash array.
+  AUTH_KILL_ORDER=($AUTH_KILL_ORDER)
+fi
+
+# Check if array length for AUTH_KILL_ORDER is longer than number of Auths to kill.
+if [ ${#AUTH_KILL_ORDER[@]} -lt $NUM_AUTHS_TO_KILL ]
+then
+  echo "Input Error: length of AUTH_KILL_ORDER < NUM_AUTHS_TO_KILL."
+  echo "Length of AUTH_KILL_ORDER: ${#AUTH_KILL_ORDER[@]}, NUM_AUTHS_TO_KILL: $NUM_AUTHS_TO_KILL"
+  exit 1
+fi
+
 WAIT_TIME_FOR_AUTH_INIT=60s
 TIME_BEFOR_FAIL=300s
 TIME_AFTER_FAIL=1200s
 # NUM_AUTHS_TO_KILL=3     # Up to 3
-AUTHS_TO_KILL=(auth504 auth402 auth501 auth403 auth503 auth401)
-# AUTHS_TO_KILL=(auth1 auth3 auth4 auth2)
+# AUTH_KILL_ORDER=(auth504 auth402 auth501 auth403 auth503 auth401)
+# AUTH_KILL_ORDER=(auth1 auth3 auth4 auth2)
 CURRENT_DIR=`pwd`
 WAIT_TIME_BETWEEN_CLIENTS=3s #0.43s
 
 echo "WAIT_TIME_FOR_AUTH_INIT=$WAIT_TIME_FOR_AUTH_INIT"
 echo "TIME_BEFOR_FAIL=$TIME_BEFOR_FAIL"
 echo "TIME_AFTER_FAIL=$TIME_AFTER_FAIL"
+# This is how to print a list ${LIST[*]}
 echo "NUM_AUTHS_TO_KILL=$NUM_AUTHS_TO_KILL"
-printf "AUTHS_TO_KILL="
-for ((i=0; i< $NUM_AUTHS_TO_KILL; i++)) {
-    printf "${AUTHS_TO_KILL[i]} "
-}
+
+printf "AUTH_KILL_ORDER="
+for ((i=0; i< $NUM_AUTHS_TO_KILL; i++))
+do
+  printf "${AUTH_KILL_ORDER[i]}"
+  if [ $i -ne $(($NUM_AUTHS_TO_KILL -1)) ]
+  then
+    printf ", "
+  fi
+done
+echo
+
 printf "\n"
 echo "CURRENT_DIR=$CURRENT_DIR"
 echo "WAIT_TIME_BETWEEN_CLIENTS=$WAIT_TIME_BETWEEN_CLIENTS"
@@ -114,8 +149,8 @@ echo "Now running experiemtns for $TIME_BEFOR_FAIL before failure ... from time:
 sleep $TIME_BEFOR_FAIL
 
 for ((i=0; i< $NUM_AUTHS_TO_KILL; i++)) {
-    echo "Killing ${AUTHS_TO_KILL[i]} at time: `timestamp`"
-    lxc-stop -n ${AUTHS_TO_KILL[i]}
+    echo "Killing ${AUTH_KILL_ORDER[i]} at time: `timestamp`"
+    lxc-stop -n ${AUTH_KILL_ORDER[i]}
 }
 
 echo "Now running experiemtns for $TIME_AFTER_FAIL after failure ... from time: `timestamp`"
