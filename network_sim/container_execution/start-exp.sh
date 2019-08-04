@@ -39,7 +39,8 @@ if [ "$SHOW_HELP" = true ] ; then
   echo
   echo "Options:"
   echo "  -n,--num_auths <arg>        Number of Auths to kill. Should be [1-6]."
-  echo "  -o,--auth_kill_order <arg>  Order of Auths to kill. Wrap around with double quotes (\")."
+  echo "  -o,--auth_kill_order <arg>  Order of Auths to kill. Comma separated list of auth IDs."
+  echo "                              (For example, -o 504,402,501,403,503,401)"
   echo "  -h,--help                   Show this help."
   exit 1
 fi
@@ -81,6 +82,8 @@ then
   AUTH_KILL_ORDER=(auth504 auth402 auth501 auth403 auth503 auth401)
 else
   echo "Order of Auths to kill is given."
+  # Replace comma with space
+  AUTH_KILL_ORDER="${AUTH_KILL_ORDER/,/ }"
   # Convert string into bash array.
   AUTH_KILL_ORDER=($AUTH_KILL_ORDER)
 fi
@@ -94,8 +97,8 @@ then
 fi
 
 WAIT_TIME_FOR_AUTH_INIT=60s
-TIME_BEFOR_FAIL=300s
-TIME_AFTER_FAIL=1200s
+TIME_BEFOR_FAIL=300s      # 300s
+TIME_AFTER_FAIL=1200s     # 1200s
 # NUM_AUTHS_TO_KILL=3     # Up to 3
 # AUTH_KILL_ORDER=(auth504 auth402 auth501 auth403 auth503 auth401)
 # AUTH_KILL_ORDER=(auth1 auth3 auth4 auth2)
@@ -111,6 +114,10 @@ echo "NUM_AUTHS_TO_KILL=$NUM_AUTHS_TO_KILL"
 printf "AUTH_KILL_ORDER="
 for ((i=0; i< $NUM_AUTHS_TO_KILL; i++))
 do
+  if [[ ${AUTH_KILL_ORDER[i]} != auth* ]]
+  then
+    AUTH_KILL_ORDER[$i]="auth"${AUTH_KILL_ORDER[i]}
+  fi
   printf "${AUTH_KILL_ORDER[i]}"
   if [ $i -ne $(($NUM_AUTHS_TO_KILL -1)) ]
   then

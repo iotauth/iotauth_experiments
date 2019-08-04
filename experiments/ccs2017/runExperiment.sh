@@ -17,12 +17,16 @@ do
   key="$1"
 
   case $key in
+    -e|--exp_name)
+      EXP_NAME="$2"
+      shift # past argument
+      ;;
     -n|--num_auths)
       NUM_AUTHS_TO_KILL="$2"
       shift # past argument
       ;;
-    -e|--exp_name)
-      EXP_NAME="$2"
+    -o|--auth_kill_order)
+      AUTH_KILL_ORDER="$2"
       shift # past argument
       ;;
     -h|--help)
@@ -39,9 +43,11 @@ if [ "$SHOW_HELP" = true ] ; then
   echo "Usage: ./runExperiments.sh [options]"
   echo
   echo "Options:"
-  echo "  -n,--num_auths <arg>    Number of Auths to kill. Should be [1-6]."
-  echo "  -e,--exp_name <arg>     Experiment name - prefix for the result dir."
-  echo "  -h,--help               Show this help."
+  echo "  -e,--exp_name <arg>         Experiment name - prefix for the result dir."
+  echo "  -n,--num_auths <arg>        Number of Auths to kill. Should be [1-6]."
+  echo "  -o,--auth_kill_order <arg>  Order of Auths to kill. Comma separated list of auth IDs."
+  echo "                              (For example, -o 504,402,501,403,503,401)"
+  echo "  -h,--help                   Show this help."
   exit 1
 fi
 
@@ -60,6 +66,14 @@ then
   exit 1
 fi
 
+# Check if the order is set.
+if [ -z "$AUTH_KILL_ORDER" ]
+then
+  echo "Order of Auths to kill is not set. (Try ./runExperiments.sh --help)"
+  echo "Exiting ..."
+  exit 1
+fi
+
 if [ -z "$EXP_NAME" ]
 then
   echo "Experiment's name is NOT set. (Try ./runExperiments.sh --help)"
@@ -74,7 +88,9 @@ echo "## Starting An Experiment Round ##"
 echo "##################################"
 echo
 echo "Experiment information:"
-echo "Experiment name:$EXP_NAME, Auths to kill: $NUM_AUTHS_TO_KILL"
+echo "Experiment name: $EXP_NAME"
+echo "Order of Auths to kill: $AUTH_KILL_ORDER"
+echo "Auths to kill: $NUM_AUTHS_TO_KILL"
 echo
 # Start NS3 simulator.
 
@@ -95,7 +111,7 @@ echo "Moved to EXEC directory: $EXEC"
 EXEC_START_TIMESTAMP=`timestamp`
 echo "Starting start-exp.sh script..."
 # -E option is important to pass the environment variables (e.g., $ENTITY) to sudo.
-sudo -E ./start-exp.sh -n $NUM_AUTHS_TO_KILL
+sudo -E ./start-exp.sh -n $NUM_AUTHS_TO_KILL -o $AUTH_KILL_ORDER
 
 if [ $? -ne 0  ] ; then
   echo "[Error] start-exp.sh finished with problems! exiting..." ; exit 1
