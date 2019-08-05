@@ -44,7 +44,7 @@ else
   RESULT_DIR=results/$RESULT_DIR
 fi
 
-mkdir $RESULT_DIR
+mkdir -p $RESULT_DIR
 
 # copy execution logs
 cp -r $EXEC/*_execution $RESULT_DIR

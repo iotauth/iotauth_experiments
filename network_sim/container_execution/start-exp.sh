@@ -82,8 +82,8 @@ then
   AUTH_KILL_ORDER=(auth504 auth402 auth501 auth403 auth503 auth401)
 else
   echo "Order of Auths to kill is given."
-  # Replace comma with space
-  AUTH_KILL_ORDER="${AUTH_KILL_ORDER/,/ }"
+  # Replace all commas with spaces
+  AUTH_KILL_ORDER="${AUTH_KILL_ORDER//,/ }"
   # Convert string into bash array.
   AUTH_KILL_ORDER=($AUTH_KILL_ORDER)
 fi

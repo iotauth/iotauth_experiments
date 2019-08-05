@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Script for running one round of experiment - start ns3, start Auth/thing execution, copying results.
+# Script for running multiple rounds of experiments - runs runExperiment.sh multiple times.
 # Author: Hokeun Kim
 
 # Define a timestamp function
