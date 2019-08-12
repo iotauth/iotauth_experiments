@@ -142,7 +142,7 @@ cp $CCS/expOptions/expEntity_migration_enabled.option $CCS/expOptions/expEntity.
 ############################################################
 
 ORDER_ID="order6"
-AUTH_KILL_ORDER="504,501,503,401,402,403"
+AUTH_KILL_ORDER="401,504,402,403,501,503"
 
 ### Template for None, Naive, ILP, ILP_mt_ac experiments ###
 echo $ORDER_ID
