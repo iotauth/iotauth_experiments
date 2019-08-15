@@ -41,8 +41,8 @@ function getAuthList(auths) {
     return authList;
 }
 
-// authTrusts
-function getAuthTrusts(auths) {
+// Get fully connected authTrusts
+function getFullyConnectedAuthTrusts(auths) {
     var authTrusts = [];
     for (var i = 0; i < auths.length; i++) {
         for (var j = i + 1; j < auths.length; j++) {
@@ -50,6 +50,23 @@ function getAuthTrusts(auths) {
         }
     }
     return authTrusts;
+}
+
+function getAuthToTrustedAuthsMap(authTrusts) {
+    var authToTrustedAuthsMap = {};
+    for (var i = 0; i < authTrusts.length; i++) {
+        var id1 = authTrusts[i].id1;
+        var id2 = authTrusts[i].id2;
+        if (authToTrustedAuthsMap[id1] == null) {
+            authToTrustedAuthsMap[id1] = new Set();
+        }
+        if (authToTrustedAuthsMap[id2] == null) {
+            authToTrustedAuthsMap[id2] = new Set();
+        }
+        authToTrustedAuthsMap[id1].add(id2);
+        authToTrustedAuthsMap[id2].add(id1);
+    }
+    return authToTrustedAuthsMap;
 }
 
 // authCapacity
@@ -143,7 +160,8 @@ function getPositions(auths, clients, servers) {
     return positions;
 }
 
-function populateBackupTos(entityList, auths, maxNumBackupToAuths, loopToOriginAuth) {
+// Sort by distance from Auths.
+function populateBackupTos(entityList, auths, maxNumBackupToAuths, loopToOriginAuth, authToTrustedAuthsMap, lessNaive) {
     for (var i = 0; i < entityList.length; i++) {
         var entity = entityList[i];
         //var authId = -1;
@@ -152,6 +170,10 @@ function populateBackupTos(entityList, auths, maxNumBackupToAuths, loopToOriginA
         for (var j = 0; j < auths.length; j++) {
             var auth = auths[j];
             if (assignments[entity.name] == auth.id) {
+                continue;
+            }
+            // If lessNaive is true, skip Auths that are not trusted by the original Auth.
+            if (lessNaive && !authToTrustedAuthsMap[assignments[entity.name]].has(auth.id)) {
                 continue;
             }
             var curDist = computeDistance(positions[entity.name], auth.position);
@@ -262,6 +284,7 @@ program
   .option('-o, --out [value]', 'Output \'.input\' (for graph generator), \'.json\' (for migration solver)')
   .option('-b, --backup-auths <n>', 'Maximum number of Auths that entities can backup to', parseInt)
   .option('-l, --loop-to-origin-auth', 'Loop to original Auth by adding the original Auth at the end of the backup list')
+  .option('-n, --less-naive', 'Make default back up plan less naive by considering trust between original Auth and backup-to Auths')
   .parse(process.argv);
 
 var floorPlanFile = 'floorPlans/cory5th.txt';
@@ -272,6 +295,7 @@ var graphGeneratorInputFile = 'floorPlans/cory5th.input';
 var migrationSolverInputFile = 'floorPlans/cory5th.json';
 var maxNumBackupToAuths = 2;
 var loopToOriginAuth = false;
+var lessNaive = false;
 
 if (program.in != null) {
     floorPlanFile = program.in;
@@ -295,6 +319,9 @@ if (program.backupAuths != null) {
 if (program.loopToOriginAuth != null) {
     loopToOriginAuth = true;
 }
+if (program.lessNaive != null) {
+    lessNaive = true;
+}
 
 console.log('Floor file name: ' + floorPlanFile);
 console.log('Predefined assignments file name: ' + predefinedAssignmentsFile);
@@ -304,6 +331,7 @@ console.log('Output graph generator input file (.input) name: ' + graphGenerator
 console.log('Output migration solver input file (.json) name: ' + migrationSolverInputFile);
 console.log('Maximum number of Auths that entities can backup to: ' + maxNumBackupToAuths);
 console.log('Loop to original Auth by adding the original Auth at the end of the backup list: ' + loopToOriginAuth);
+console.log('Make default back up plan less naive by considering Auth trusts: ' + lessNaive);
 
 
 var entities = extractEntitiesFromFloorPlan(floorPlanFile);
@@ -327,13 +355,14 @@ if (predefinedAuthCapacityFile != null) {
 
 var authList = getAuthList(entities.auths);
 var assignments = getAssignments(entities.auths, entities.clients, entities.servers, predefinedAssignments);
-var authTrusts = predefinedAuthTrusts == null ? getAuthTrusts(entities.auths): predefinedAuthTrusts;
+var authTrusts = predefinedAuthTrusts == null ? getFullyConnectedAuthTrusts(entities.auths): predefinedAuthTrusts;
 var authCapacity = predefinedAuthCapacity == null ? getDefaultAuthCapacity(entities.auths): predefinedAuthCapacity;
 var echoServerList = getEchoServerList(entities.servers);
 var autoClientList = getAutoClientList(entities.clients, entities.servers);
 var positions = getPositions(entities.auths, entities.clients, entities.servers);
-populateBackupTos(autoClientList, entities.auths, maxNumBackupToAuths, loopToOriginAuth);
-populateBackupTos(echoServerList, entities.auths, maxNumBackupToAuths, loopToOriginAuth);
+var authToTrustedAuthsMap = getAuthToTrustedAuthsMap(authTrusts);
+populateBackupTos(autoClientList, entities.auths, maxNumBackupToAuths, loopToOriginAuth, authToTrustedAuthsMap, lessNaive);
+populateBackupTos(echoServerList, entities.auths, maxNumBackupToAuths, loopToOriginAuth, authToTrustedAuthsMap, lessNaive);
 
 var graphGeneratorInputString = '';
 graphGeneratorInputString += 'module.authList = ' + JSON.stringify(authList,null,'\t') + ';\n\n';
