@@ -41,6 +41,23 @@ function getAuthList(auths) {
     return authList;
 }
 
+// Parse Auth Trusts string into Json.
+// Should be in a format like this:
+// 501-502,501-504,502-503,502-504,401-402,401-403,401-502,401-504,402-503,403-501
+function parseAuthTrustsString(atStr) {
+    // atStr: Auth Trust in string, atJson: Auth Trust in Json.
+    var atJson = [];
+    var atArray = atStr.split(',');
+    for (var i = 0; i < atArray.length; i++) {
+        var authTrust = atArray[i];
+        var auths = authTrust.split('-');
+        var authId1 = auths[0];
+        var authId2 = auths[1];
+        atJson.push({id1: Number(authId1), id2: Number(authId2)});
+    }
+    return atJson;
+}
+
 // Get fully connected authTrusts
 function getFullyConnectedAuthTrusts(auths) {
     var authTrusts = [];
@@ -279,7 +296,7 @@ program
   .version('0.1.0')
   .option('-i, --in [value]', 'Input floor plan file')
   .option('-a, --assignments [value]', 'File for predefined assignments between Auths and entities')
-  .option('-t, --auth-trusts [value]', 'File for predefined trusts between Auths')
+  .option('-t, --auth-trusts [value]', 'File or string for predefined trusts between Auths')
   .option('-c, --auth-capacity [value]', 'File for predefined capacity of Auths')
   .option('-o, --out [value]', 'Output \'.input\' (for graph generator), \'.json\' (for migration solver)')
   .option('-b, --backup-auths <n>', 'Maximum number of Auths that entities can backup to', parseInt)
@@ -289,7 +306,7 @@ program
 
 var floorPlanFile = 'floorPlans/cory5th.txt';
 var predefinedAssignmentsFile = null;
-var predefinedAuthTrustsFile = null;
+var predefinedAuthTrustsFileOrString = null;
 var predefinedAuthCapacityFile = null;
 var graphGeneratorInputFile = 'floorPlans/cory5th.input';
 var migrationSolverInputFile = 'floorPlans/cory5th.json';
@@ -304,7 +321,7 @@ if (program.assignments != null) {
     predefinedAssignmentsFile = program.assignments;
 }
 if (program.authTrusts != null) {
-    predefinedAuthTrustsFile = program.authTrusts;
+    predefinedAuthTrustsFileOrString = program.authTrusts;
 }
 if (program.authCapacity != null) {
     predefinedAuthCapacityFile = program.authCapacity;
@@ -325,7 +342,7 @@ if (program.lessNaive != null) {
 
 console.log('Floor file name: ' + floorPlanFile);
 console.log('Predefined assignments file name: ' + predefinedAssignmentsFile);
-console.log('Predefined Auth trusts file name: ' + predefinedAuthTrustsFile);
+console.log('Predefined Auth trusts file name or string value: ' + predefinedAuthTrustsFileOrString);
 console.log('Predefined Auth capacity file name: ' + predefinedAuthCapacityFile);
 console.log('Output graph generator input file (.input) name: ' + graphGeneratorInputFile);
 console.log('Output migration solver input file (.json) name: ' + migrationSolverInputFile);
@@ -343,9 +360,19 @@ if (predefinedAssignmentsFile != null) {
     predefinedAssignments = file.assignments;
 }
 var predefinedAuthTrusts = null;
-if (predefinedAuthTrustsFile != null) {
-    var file = require('./' + predefinedAuthTrustsFile);
-    predefinedAuthTrusts = file.authTrusts;
+if (predefinedAuthTrustsFileOrString != null) {
+    var authTrustFormat = '([0-9]|,|-)+';
+    // If the given predefined Auth trusts are in the string format
+    if (predefinedAuthTrustsFileOrString.match(authTrustFormat)[0].length == predefinedAuthTrustsFileOrString.length) {
+        console.log('Predefined Auth trusts are given in a correct string format.');
+        predefinedAuthTrusts = parseAuthTrustsString(predefinedAuthTrustsFileOrString);
+    }
+    // Otherwise, it's a file name
+    else {
+        console.log('Predefined Auth trusts are given in a file format.');
+        var file = require('./' + predefinedAuthTrustsFileOrString);
+        predefinedAuthTrusts = file.authTrusts;
+    }
 }
 var predefinedAuthCapacity = null;
 if (predefinedAuthCapacityFile != null) {
