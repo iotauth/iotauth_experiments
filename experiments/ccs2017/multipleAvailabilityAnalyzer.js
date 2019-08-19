@@ -239,6 +239,15 @@ function suffixOrderFirst(x, y) {
 }
 
 function customExpOrder(x, y) {
+    if (x.startsWith('ILP_mt_ac') && !y.startsWith('ILP_mt_ac')) {
+        return -1;
+    } else if (y.startsWith('ILP_mt_ac') && !x.startsWith('ILP_mt_ac')) {
+        return 1;
+    }
+    return normalStringOrder(x, y);
+}
+
+function suffixOrderFirstCustomExpOrder(x, y) {
     var xUnderscoreIndex = x.lastIndexOf('_');
     var yUnderscoreIndex = y.lastIndexOf('_');
     if (xUnderscoreIndex < 0 || yUnderscoreIndex < 0) {
@@ -249,9 +258,9 @@ function customExpOrder(x, y) {
     if (xSuffix == ySuffix) {
         var xPrefix = x.substring(0, xUnderscoreIndex);
         var yPrefix = y.substring(0, yUnderscoreIndex);
-        if (xPrefix == 'ILP_mt_ac') {
+        if (xPrefix == 'ILP_mt_ac' && yPrefix != 'ILP_mt_ac') {
             return -1;
-        } else if (yPrefix == 'ILP_mt_ac') {
+        } else if (yPrefix == 'ILP_mt_ac' && xPrefix != 'ILP_mt_ac') {
             return 1;
         }
         return normalStringOrder(x, y);
@@ -268,6 +277,7 @@ program
   .option('-n, --order-by-number', 'Order by the number suffix of directories - the number of Auths killed')
   .option('-c, --custom-order', 'Order by the number suffix of directories and the custom experiment order - advanced first')
   .option('-t, --trim', 'Trim results')
+  .option('-w, --wrap-average-results [value]', 'Wrap average results every the given value')
   .parse(process.argv);
 
 // get dir path with log directories
@@ -297,6 +307,11 @@ if (program.trim != null) {
     trimResults = true;
 }
 
+var wrapAverageResults = -1;
+if (program.wrapAverageResults != null) {
+    wrapAverageResults = program.wrapAverageResults;
+}
+
 // Map from exp name to availability ratio values.
 var availabilityMap = {};
 var expNames = [];
@@ -312,7 +327,10 @@ for (var i = 0; i < program.args.length; i++) {
     }
 }
 
-if (orderByCustomOrder) {
+if (orderBySuffixNumber && orderByCustomOrder) {
+    expNames.sort(suffixOrderFirstCustomExpOrder);
+}
+else if (orderByCustomOrder) {
     expNames.sort(customExpOrder);
 }
 else if (orderBySuffixNumber) {
@@ -359,10 +377,14 @@ for (var i = 0; i < maxAvailabilityListSize; i++) {
 if (outputAverage) {
     console.log();
     console.log('Availability sum - for minutes [' + availabilitySumStartMinute + ',' + availabilitySumEndMinute + ']');
-    var averageFirstLine = '\t';
-    var averageValueLine = 'Average\t';
+    var averageFirstLine = '';
+    var averageValueLine = '';
     var numAverageValues = availabilitySumEndMinute - availabilitySumStartMinute + 1;
     for (var i = 0; i < expNames.length; i++) {
+        if (wrapAverageResults > 0 && i > 0 && i % wrapAverageResults == 0) {
+            averageFirstLine += '\n';
+            averageValueLine += '\n';
+        }
         averageFirstLine += expNames[i] + '\t';
         averageValueLine += (availabilitySums[i] / numAverageValues).toFixed(precision) + '\t';
     }

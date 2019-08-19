@@ -8,11 +8,11 @@ if [ $# -eq 0 ]; then
     exit 1
 fi
 
-# Concatenate result directories.
-RESULT_DIRS=""
+# Concatenate all args including result directories.
+NODE_ARGS=""
 for i in $*; do
-    RESULT_DIRS=$RESULT_DIRS$i" "
+    NODE_ARGS=$NODE_ARGS$i" "
 done
 
 # analyze availability results
-node multipleAvailabilityAnalyzer.js -c -a -t $RESULT_DIRS
+node multipleAvailabilityAnalyzer.js $NODE_ARGS
