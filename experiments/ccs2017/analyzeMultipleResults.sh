@@ -14,9 +14,5 @@ for i in $*; do
     RESULT_DIRS=$RESULT_DIRS$i" "
 done
 
-echo "RESULT_DIRS=$RESULT_DIRS"
-
 # analyze availability results
-node multipleAvailabilityAnalyzer.js $RESULT_DIRS
-
-
+node multipleAvailabilityAnalyzer.js -c -a -t $RESULT_DIRS

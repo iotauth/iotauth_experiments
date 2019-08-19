@@ -219,30 +219,91 @@ function getAvailabilityOverMaxExpectedResponse(logDir) {
     return availabilityRatioValues;
 }
 
+// String comparison functions for sorting
+function normalStringOrder(x, y) {
+    return x == y ? 0 : (x < y ? -1 : 1);
+}
+
+function suffixOrderFirst(x, y) {
+    var xUnderscoreIndex = x.lastIndexOf('_');
+    var yUnderscoreIndex = y.lastIndexOf('_');
+    if (xUnderscoreIndex < 0 || yUnderscoreIndex < 0) {
+        return normalStringOrder(x, y);
+    }
+    var xSuffix = x.substring(xUnderscoreIndex + 1);
+    var ySuffix = y.substring(yUnderscoreIndex + 1);
+    if (xSuffix == ySuffix) {
+        return normalStringOrder(x, y);
+    }
+    return normalStringOrder(xSuffix, ySuffix);
+}
+
+function customExpOrder(x, y) {
+    var xUnderscoreIndex = x.lastIndexOf('_');
+    var yUnderscoreIndex = y.lastIndexOf('_');
+    if (xUnderscoreIndex < 0 || yUnderscoreIndex < 0) {
+        return normalStringOrder(x, y);
+    }
+    var xSuffix = x.substring(xUnderscoreIndex + 1);
+    var ySuffix = y.substring(yUnderscoreIndex + 1);
+    if (xSuffix == ySuffix) {
+        var xPrefix = x.substring(0, xUnderscoreIndex);
+        var yPrefix = y.substring(0, yUnderscoreIndex);
+        if (xPrefix == 'ILP_mt_ac') {
+            return -1;
+        } else if (yPrefix == 'ILP_mt_ac') {
+            return 1;
+        }
+        return normalStringOrder(x, y);
+    }
+    return normalStringOrder(xSuffix, ySuffix);
+}
+
 // Beginning of main program.
+
+var program = require('commander');
+program
+  .version('0.1.0')
+  .option('-a, --average', 'Output average ')
+  .option('-n, --order-by-number', 'Order by the number suffix of directories - the number of Auths killed')
+  .option('-c, --custom-order', 'Order by the number suffix of directories and the custom experiment order - advanced first')
+  .option('-t, --trim', 'Trim results')
+  .parse(process.argv);
 
 // get dir path with log directories
 var numRequiredArgs = 1;
-if (process.argv.length < (2 + numRequiredArgs)) {
+if (program.args.length < (2 + numRequiredArgs)) {
     console.error('[exec log dir] must be provided!');
     process.exit(1);
 }
-/*
-var outputFile = null;
-if (process.argv.length > (2 + numRequiredArgs) ) {
-    outputFile = process.argv[2 + numRequiredArgs];
-    console.log('Output file is given: ' + outputFile);
+
+var orderBySuffixNumber = false;
+if (program.orderByNumber != null) {
+    orderBySuffixNumber = true;
 }
-*/
 
+var orderByCustomOrder = false;
+if (program.customOrder != null) {
+    orderByCustomOrder = true;
+}
 
+var outputAverage = false;
+if (program.average != null) {
+    outputAverage = true;
+}
+
+var trimResults = false;
+if (program.trim != null) {
+    trimResults = true;
+}
 
 // Map from exp name to availability ratio values.
 var availabilityMap = {};
 var expNames = [];
 var maxAvailabilityListSize = 0;
-for (var i = 2; i < process.argv.length; i++) {
-    var execLogDir = process.argv[i];
+// 'program.args' is the args not parsed by the program. 
+for (var i = 0; i < program.args.length; i++) {
+    var execLogDir = program.args[i];
     var expName = path.basename(execLogDir);
     expNames.push(expName);
     availabilityMap[expName] = getAvailabilityOverMaxExpectedResponse(execLogDir);
@@ -250,16 +311,35 @@ for (var i = 2; i < process.argv.length; i++) {
         maxAvailabilityListSize = availabilityMap[expName].length;
     }
 }
-expNames.sort();
-var firstLine = ''
+
+if (orderByCustomOrder) {
+    expNames.sort(customExpOrder);
+}
+else if (orderBySuffixNumber) {
+    expNames.sort(suffixOrderFirst);
+}
+else {
+    expNames.sort(normalStringOrder);
+}
+
+var firstLine = 'Minute\t'
 for (var j = 0; j < expNames.length; j++) {
     var expName = expNames[j];
     firstLine += expName + '\t';
 }
 console.log(firstLine);
 var precision = 3;
+var availabilitySums = Array(expNames.length).fill(0.0);
+var availabilitySumStartMinute = 6;
+var availabilitySumEndMinute = 20;
 for (var i = 0; i < maxAvailabilityListSize; i++) {
-    var line = '';
+    var minute = i - 1;
+    var line = minute + '\t';
+    if (trimResults) {
+        if (minute < 1 || minute > 20) {
+            continue;
+        }
+    }
     for (var j = 0; j < expNames.length; j++) {
         var expName = expNames[j];
         var availabilityValues = availabilityMap[expName];
@@ -268,8 +348,25 @@ for (var i = 0; i < maxAvailabilityListSize; i++) {
             availabilityValue = availabilityValues[i].toFixed(precision);
         }
         line += availabilityValue + '\t';
+        // Sum availability values
+        if (minute >= availabilitySumStartMinute && minute <= availabilitySumEndMinute) {
+            availabilitySums[j] += availabilityValues[i];
+        }
     }
     console.log(line);
+}
+
+if (outputAverage) {
+    console.log();
+    console.log('Availability sum - for minutes [' + availabilitySumStartMinute + ',' + availabilitySumEndMinute + ']');
+    var averageFirstLine = '\t';
+    var averageValueLine = 'Average\t';
+    var numAverageValues = availabilitySumEndMinute - availabilitySumStartMinute + 1;
+    for (var i = 0; i < expNames.length; i++) {
+        averageFirstLine += expNames[i] + '\t';
+        averageValueLine += (availabilitySums[i] / numAverageValues).toFixed(precision) + '\t';
+    }
+    console.log(averageFirstLine + '\n' + averageValueLine);
 }
 
 /*
