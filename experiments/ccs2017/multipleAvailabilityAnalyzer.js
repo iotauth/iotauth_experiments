@@ -219,8 +219,13 @@ function getAvailabilityOverMaxExpectedResponse(logDir) {
     return availabilityRatioValues;
 }
 
+var reverseOrder = false;
+
 // String comparison functions for sorting
 function normalStringOrder(x, y) {
+    if (reverseOrder) {
+        return x == y ? 0 : (x < y ? 1 : -1);
+    }
     return x == y ? 0 : (x < y ? -1 : 1);
 }
 
@@ -240,9 +245,9 @@ function suffixOrderFirst(x, y) {
 
 function customExpOrder(x, y) {
     if (x.startsWith('ILP_mt_ac') && !y.startsWith('ILP_mt_ac')) {
-        return -1;
+        return reverseOrder ? 1 : -1;
     } else if (y.startsWith('ILP_mt_ac') && !x.startsWith('ILP_mt_ac')) {
-        return 1;
+        return reverseOrder ? -1 : 1;
     }
     return normalStringOrder(x, y);
 }
@@ -258,12 +263,7 @@ function suffixOrderFirstCustomExpOrder(x, y) {
     if (xSuffix == ySuffix) {
         var xPrefix = x.substring(0, xUnderscoreIndex);
         var yPrefix = y.substring(0, yUnderscoreIndex);
-        if (xPrefix == 'ILP_mt_ac' && yPrefix != 'ILP_mt_ac') {
-            return -1;
-        } else if (yPrefix == 'ILP_mt_ac' && xPrefix != 'ILP_mt_ac') {
-            return 1;
-        }
-        return normalStringOrder(x, y);
+        return customExpOrder(x, y);
     }
     return normalStringOrder(xSuffix, ySuffix);
 }
@@ -276,6 +276,7 @@ program
   .option('-a, --average', 'Output average ')
   .option('-n, --order-by-number', 'Order by the number suffix of directories - the number of Auths killed')
   .option('-c, --custom-order', 'Order by the number suffix of directories and the custom experiment order - advanced first')
+  .option('-r, --reverse-order', 'Reverse the specified order')
   .option('-t, --trim', 'Trim results')
   .option('-w, --wrap-average-results [value]', 'Wrap average results every the given value')
   .parse(process.argv);
@@ -295,6 +296,10 @@ if (program.orderByNumber != null) {
 var orderByCustomOrder = false;
 if (program.customOrder != null) {
     orderByCustomOrder = true;
+}
+
+if (program.reverseOrder != null) {
+    reverseOrder = true;
 }
 
 var outputAverage = false;
