@@ -1,0 +1,779 @@
+changing working directory to: /home/hokeunkim/Development/iotauth/entity/node/example_entities
+loading from config file: /home/hokeunkim/Development/iotauth_experiments/experiments/ccs2017/expOptions/expEntity.option
+Experimental options for autoClient: { autoSendPeriod: 60000,
+  useSameSessionKeyCount: 1,
+  connectionTimeout: 50000,
+  migrationEnabled: true,
+  authFailureThreshold: 2,
+  migrationFailureThreshold: 2 }
+loading from config file: /home/hokeunkim/Development/iotauth/entity/node/example_entities/configs/Clients/c405.config
+initializing...
+current parameters: { numKeysPerRequest: 3,
+  migrationEnabled: false,
+  authFailureThreshold: 3,
+  migrationFailureThreshold: 3 }
+current parameters: { numKeysPerRequest: 1,
+  migrationEnabled: false,
+  authFailureThreshold: 3,
+  migrationFailureThreshold: 3 }
+current parameters: { numKeysPerRequest: 1,
+  migrationEnabled: true,
+  authFailureThreshold: 3,
+  migrationFailureThreshold: 3 }
+current parameters: { numKeysPerRequest: 1,
+  migrationEnabled: true,
+  authFailureThreshold: 2,
+  migrationFailureThreshold: 3 }
+current parameters: { numKeysPerRequest: 1,
+  migrationEnabled: true,
+  authFailureThreshold: 2,
+  migrationFailureThreshold: 2 }
+current entityInfo: { name: 'c405',
+  group: 'Clients',
+  distProtocol: 'TCP',
+  usePermanentDistKey: false,
+  connectionTimeout: 50000,
+  privateKey: <Buffer 2d 2d 2d 2d 2d 42 45 47 49 4e 20 52 53 41 20 50 52 49 56 41 54 45 20 4b 45 59 2d 2d 2d 2d 2d 0a 4d 49 49 45 70 51 49 42 41 41 4b 43 41 51 45 41 76 4b ... > }
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 0 1 0 1521602501855
+connected to auth! from local port 51008
+received auth hello!
+{ authId: 401, nonce: <Buffer e3 48 84 60 7c 2b 2f 2b> }
+received session key response with distribution key attached!
+auth signature verified
+replyNonce in sessionKeyResp: <Buffer aa 9b 08 a5 1e 4a de e1>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+updating distribution key: { cipherKeyVal: <Buffer 72 86 69 a5 38 5a ac 69 31 86 70 89 88 e6 a1 b4>,
+  macKeyVal: <Buffer a1 0e 31 62 94 08 c6 7a bb 5b a2 50 be 34 05 42 31 97 0d 0c 82 50 4f a3 00 bb a4 0e 39 a4 f1 eb>,
+  absValidity: 2018-03-21T04:21:42.044Z }
+received 1 keys
+currentSessionKey: [object Object]
+Session protocol: TCP
+chosen commSessionKey: 
+{ id: 40101411,
+  cipherKeyVal: <Buffer 9d fa bf f7 67 fa 61 c8 29 13 50 b7 c3 2a 91 ae>,
+  macKeyVal: <Buffer 65 65 0b 83 8f 93 db 01 3f 8c e7 df a4 a1 76 88 ee 6b 94 ab ef 17 28 97 9d cc 2f 9d aa 66 a0 c0>,
+  absValidity: 2018-03-22T03:21:42.044Z,
+  relValidity: 7200000 }
+options
+{ serverHost: '10.0.1.10',
+  serverPort: 22100,
+  sessionKey: 
+   { id: 40101411,
+     cipherKeyVal: <Buffer 9d fa bf f7 67 fa 61 c8 29 13 50 b7 c3 2a 91 ae>,
+     macKeyVal: <Buffer 65 65 0b 83 8f 93 db 01 3f 8c e7 df a4 a1 76 88 ee 6b 94 ab ef 17 28 97 9d cc 2f 9d aa 66 a0 c0>,
+     absValidity: 2018-03-22T03:21:42.044Z,
+     relValidity: 7200000 },
+  sessionCryptoSpec: { cipher: 'AES-128-CBC', mac: 'SHA256' },
+  sessionProtocol: 'TCP',
+  handshakeTimeout: 50000 }
+chosen nonce: <Buffer b2 b9 7b f0 10 b5 19 ac>
+switching to HANDSHAKE_1_SENT
+disconnected from auth
+received session key handshake2!
+client ret: [object Object]
+server authenticated/authorized by solving nonce!
+Handler: communication initialization succeeded
+file data length: 1024
+sending at Wed Mar 21 2018 03:21:42 GMT+0000 (UTC)
+switching to IN_COMM
+received secure communication message!
+Received seqNum: 0
+Handler: data received from server via secure communication
+data1
+Resp-actual/expected/ratio/ts: 1 1 1 1521602502957
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 1 2 0.5 1521602561914
+connected to auth! from local port 51146
+received auth hello!
+{ authId: 401, nonce: <Buffer c7 f8 3e 59 fe c3 a6 2d> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer ee ff 12 a5 23 ad c5 a7>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+currentSessionKey: [object Object]
+Status: Secure connection closed before starting a new connection.
+Session protocol: TCP
+chosen commSessionKey: 
+{ id: 40101417,
+  cipherKeyVal: <Buffer 51 7a d6 08 2c 8b 7a 30 84 25 83 64 66 71 84 83>,
+  macKeyVal: <Buffer b1 59 0c cc ca b8 9a aa 5a b6 8d f0 65 29 af f5 a0 54 2b 4e a2 49 43 a5 3a 98 c4 49 e5 f1 f9 ff>,
+  absValidity: 2018-03-22T03:22:42.034Z,
+  relValidity: 7200000 }
+options
+{ serverHost: '10.0.1.10',
+  serverPort: 22100,
+  sessionKey: 
+   { id: 40101417,
+     cipherKeyVal: <Buffer 51 7a d6 08 2c 8b 7a 30 84 25 83 64 66 71 84 83>,
+     macKeyVal: <Buffer b1 59 0c cc ca b8 9a aa 5a b6 8d f0 65 29 af f5 a0 54 2b 4e a2 49 43 a5 3a 98 c4 49 e5 f1 f9 ff>,
+     absValidity: 2018-03-22T03:22:42.034Z,
+     relValidity: 7200000 },
+  sessionCryptoSpec: { cipher: 'AES-128-CBC', mac: 'SHA256' },
+  sessionProtocol: 'TCP',
+  handshakeTimeout: 50000 }
+chosen nonce: <Buffer ed d1 8b 28 ec 3d da bd>
+switching to HANDSHAKE_1_SENT
+disconnected from auth
+Handler: secure connection with the server closed.
+received session key handshake2!
+client ret: [object Object]
+server authenticated/authorized by solving nonce!
+Handler: communication initialization succeeded
+file data length: 1024
+sending at Wed Mar 21 2018 03:22:42 GMT+0000 (UTC)
+switching to IN_COMM
+received secure communication message!
+Received seqNum: 0
+Handler: data received from server via secure communication
+data1
+Resp-actual/expected/ratio/ts: 2 2 1 1521602563002
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 2 3 0.6666666666666666 1521602621969
+connected to auth! from local port 51394
+received auth hello!
+{ authId: 401, nonce: <Buffer 80 e5 30 16 11 9c 8d 45> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer 25 24 b3 d1 40 a9 4c fe>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+currentSessionKey: [object Object]
+Status: Secure connection closed before starting a new connection.
+Session protocol: TCP
+chosen commSessionKey: 
+{ id: 40101423,
+  cipherKeyVal: <Buffer 0e 8c 9b 2f 8b 79 66 41 5b 41 b8 a4 65 b3 eb 12>,
+  macKeyVal: <Buffer 38 55 2e 10 c4 a3 66 9c a1 92 18 89 39 91 e9 de 17 09 d0 ac 7f 3f 6d e3 4c 3b fc 1d 82 f2 2e 24>,
+  absValidity: 2018-03-22T03:23:42.127Z,
+  relValidity: 7200000 }
+options
+{ serverHost: '10.0.1.10',
+  serverPort: 22100,
+  sessionKey: 
+   { id: 40101423,
+     cipherKeyVal: <Buffer 0e 8c 9b 2f 8b 79 66 41 5b 41 b8 a4 65 b3 eb 12>,
+     macKeyVal: <Buffer 38 55 2e 10 c4 a3 66 9c a1 92 18 89 39 91 e9 de 17 09 d0 ac 7f 3f 6d e3 4c 3b fc 1d 82 f2 2e 24>,
+     absValidity: 2018-03-22T03:23:42.127Z,
+     relValidity: 7200000 },
+  sessionCryptoSpec: { cipher: 'AES-128-CBC', mac: 'SHA256' },
+  sessionProtocol: 'TCP',
+  handshakeTimeout: 50000 }
+chosen nonce: <Buffer 82 0d a2 e4 a9 bc a7 99>
+switching to HANDSHAKE_1_SENT
+disconnected from auth
+Handler: secure connection with the server closed.
+received session key handshake2!
+client ret: [object Object]
+server authenticated/authorized by solving nonce!
+Handler: communication initialization succeeded
+file data length: 1024
+sending at Wed Mar 21 2018 03:23:42 GMT+0000 (UTC)
+switching to IN_COMM
+received secure communication message!
+Received seqNum: 0
+Handler: data received from server via secure communication
+data1
+Resp-actual/expected/ratio/ts: 3 3 1 1521602622995
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 3 4 0.75 1521602681971
+connected to auth! from local port 51664
+received auth hello!
+{ authId: 401, nonce: <Buffer 63 be 92 3a 2d 64 4d 16> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer 0d 57 13 96 40 38 3f 50>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+currentSessionKey: [object Object]
+Status: Secure connection closed before starting a new connection.
+Session protocol: TCP
+chosen commSessionKey: 
+{ id: 40101429,
+  cipherKeyVal: <Buffer 4f 03 ad fd 6d 08 cf 59 4f 93 15 5c 29 c4 fc a1>,
+  macKeyVal: <Buffer 89 7b 48 4b 24 5a e3 51 58 e5 94 a6 a3 7f 16 47 b0 bd 70 ba c2 36 0e 46 2b 8b 63 39 9c f3 7e 29>,
+  absValidity: 2018-03-22T03:24:42.169Z,
+  relValidity: 7200000 }
+options
+{ serverHost: '10.0.1.10',
+  serverPort: 22100,
+  sessionKey: 
+   { id: 40101429,
+     cipherKeyVal: <Buffer 4f 03 ad fd 6d 08 cf 59 4f 93 15 5c 29 c4 fc a1>,
+     macKeyVal: <Buffer 89 7b 48 4b 24 5a e3 51 58 e5 94 a6 a3 7f 16 47 b0 bd 70 ba c2 36 0e 46 2b 8b 63 39 9c f3 7e 29>,
+     absValidity: 2018-03-22T03:24:42.169Z,
+     relValidity: 7200000 },
+  sessionCryptoSpec: { cipher: 'AES-128-CBC', mac: 'SHA256' },
+  sessionProtocol: 'TCP',
+  handshakeTimeout: 50000 }
+chosen nonce: <Buffer 7c d1 b7 53 83 0a c3 b7>
+switching to HANDSHAKE_1_SENT
+disconnected from auth
+Handler: secure connection with the server closed.
+received session key handshake2!
+client ret: [object Object]
+server authenticated/authorized by solving nonce!
+Handler: communication initialization succeeded
+file data length: 1024
+sending at Wed Mar 21 2018 03:24:42 GMT+0000 (UTC)
+switching to IN_COMM
+received secure communication message!
+Received seqNum: 0
+Handler: data received from server via secure communication
+data1
+Resp-actual/expected/ratio/ts: 4 4 1 1521602683219
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 4 5 0.8 1521602742029
+connected to auth! from local port 51934
+received auth hello!
+{ authId: 401, nonce: <Buffer 12 25 00 fe 5e 78 6b 2b> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer e1 6c 32 75 3c a7 41 55>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+currentSessionKey: [object Object]
+Status: Secure connection closed before starting a new connection.
+Session protocol: TCP
+chosen commSessionKey: 
+{ id: 40101435,
+  cipherKeyVal: <Buffer d1 e8 90 5f b5 c3 d2 40 58 68 3e dd 29 38 09 2a>,
+  macKeyVal: <Buffer ef 5a 27 b8 53 de 03 63 70 14 ef 81 77 59 57 90 de 24 82 3f 52 07 6c d9 81 14 e6 65 bd 0c b4 48>,
+  absValidity: 2018-03-22T03:25:42.182Z,
+  relValidity: 7200000 }
+options
+{ serverHost: '10.0.1.10',
+  serverPort: 22100,
+  sessionKey: 
+   { id: 40101435,
+     cipherKeyVal: <Buffer d1 e8 90 5f b5 c3 d2 40 58 68 3e dd 29 38 09 2a>,
+     macKeyVal: <Buffer ef 5a 27 b8 53 de 03 63 70 14 ef 81 77 59 57 90 de 24 82 3f 52 07 6c d9 81 14 e6 65 bd 0c b4 48>,
+     absValidity: 2018-03-22T03:25:42.182Z,
+     relValidity: 7200000 },
+  sessionCryptoSpec: { cipher: 'AES-128-CBC', mac: 'SHA256' },
+  sessionProtocol: 'TCP',
+  handshakeTimeout: 50000 }
+chosen nonce: <Buffer 14 3a c2 d0 cf 6e 23 80>
+switching to HANDSHAKE_1_SENT
+disconnected from auth
+Handler: secure connection with the server closed.
+received session key handshake2!
+client ret: [object Object]
+server authenticated/authorized by solving nonce!
+Handler: communication initialization succeeded
+file data length: 1024
+sending at Wed Mar 21 2018 03:25:42 GMT+0000 (UTC)
+switching to IN_COMM
+received secure communication message!
+Received seqNum: 0
+Handler: data received from server via secure communication
+data1
+Resp-actual/expected/ratio/ts: 5 5 1 1521602743170
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 5 6 0.8333333333333334 1521602802085
+connected to auth! from local port 52204
+received auth hello!
+{ authId: 401, nonce: <Buffer 99 0b ec db d2 d8 17 e6> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer c7 3f ba ac 87 04 eb c5>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+currentSessionKey: [object Object]
+Status: Secure connection closed before starting a new connection.
+Session protocol: TCP
+chosen commSessionKey: 
+{ id: 40101441,
+  cipherKeyVal: <Buffer fb d4 ce 5b 1a 5e db a5 a5 63 32 cd 31 37 5e 96>,
+  macKeyVal: <Buffer 12 67 a0 3a 69 32 93 2c 45 37 dc e9 d3 72 eb b3 c0 a8 8d 02 5d b6 a6 ce b9 6a da 18 63 80 dd 19>,
+  absValidity: 2018-03-22T03:26:42.227Z,
+  relValidity: 7200000 }
+options
+{ serverHost: '10.0.1.10',
+  serverPort: 22100,
+  sessionKey: 
+   { id: 40101441,
+     cipherKeyVal: <Buffer fb d4 ce 5b 1a 5e db a5 a5 63 32 cd 31 37 5e 96>,
+     macKeyVal: <Buffer 12 67 a0 3a 69 32 93 2c 45 37 dc e9 d3 72 eb b3 c0 a8 8d 02 5d b6 a6 ce b9 6a da 18 63 80 dd 19>,
+     absValidity: 2018-03-22T03:26:42.227Z,
+     relValidity: 7200000 },
+  sessionCryptoSpec: { cipher: 'AES-128-CBC', mac: 'SHA256' },
+  sessionProtocol: 'TCP',
+  handshakeTimeout: 50000 }
+chosen nonce: <Buffer 36 96 f8 c2 36 0f 91 ec>
+switching to HANDSHAKE_1_SENT
+disconnected from auth
+Handler: secure connection with the server closed.
+received session key handshake2!
+client ret: [object Object]
+server authenticated/authorized by solving nonce!
+Handler: communication initialization succeeded
+file data length: 1024
+sending at Wed Mar 21 2018 03:26:42 GMT+0000 (UTC)
+switching to IN_COMM
+received secure communication message!
+Received seqNum: 0
+Handler: data received from server via secure communication
+data1
+Resp-actual/expected/ratio/ts: 6 6 1 1521602802980
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 6 7 0.8571428571428571 1521602862118
+connected to auth! from local port 52474
+received auth hello!
+{ authId: 401, nonce: <Buffer 06 c6 a3 7d 38 fb 96 fe> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer d8 8a 80 7d e3 89 14 ba>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+currentSessionKey: [object Object]
+Status: Secure connection closed before starting a new connection.
+Session protocol: TCP
+chosen commSessionKey: 
+{ id: 40101447,
+  cipherKeyVal: <Buffer 12 4b d6 98 55 d9 55 e0 ce 3f 0d db b0 63 c3 1c>,
+  macKeyVal: <Buffer 64 b1 c2 ea 9b 63 18 78 22 67 e1 6f 3d 83 d2 03 32 5c 16 08 e1 25 c3 20 49 28 ed 0b ba 1e 22 f0>,
+  absValidity: 2018-03-22T03:27:42.299Z,
+  relValidity: 7200000 }
+options
+{ serverHost: '10.0.1.10',
+  serverPort: 22100,
+  sessionKey: 
+   { id: 40101447,
+     cipherKeyVal: <Buffer 12 4b d6 98 55 d9 55 e0 ce 3f 0d db b0 63 c3 1c>,
+     macKeyVal: <Buffer 64 b1 c2 ea 9b 63 18 78 22 67 e1 6f 3d 83 d2 03 32 5c 16 08 e1 25 c3 20 49 28 ed 0b ba 1e 22 f0>,
+     absValidity: 2018-03-22T03:27:42.299Z,
+     relValidity: 7200000 },
+  sessionCryptoSpec: { cipher: 'AES-128-CBC', mac: 'SHA256' },
+  sessionProtocol: 'TCP',
+  handshakeTimeout: 50000 }
+chosen nonce: <Buffer 10 ef 2a 9f ef ca a0 43>
+switching to HANDSHAKE_1_SENT
+disconnected from auth
+Handler: secure connection with the server closed.
+received session key handshake2!
+client ret: [object Object]
+server authenticated/authorized by solving nonce!
+Handler: communication initialization succeeded
+file data length: 1024
+sending at Wed Mar 21 2018 03:27:42 GMT+0000 (UTC)
+switching to IN_COMM
+received secure communication message!
+Received seqNum: 0
+Handler: data received from server via secure communication
+data1
+Resp-actual/expected/ratio/ts: 7 7 1 1521602863309
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 7 8 0.875 1521602922171
+connected to auth! from local port 52744
+received auth hello!
+{ authId: 401, nonce: <Buffer d7 74 df 27 df 81 b8 46> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer 1c ff da f3 a9 ce c9 02>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+currentSessionKey: [object Object]
+Status: Secure connection closed before starting a new connection.
+Session protocol: TCP
+chosen commSessionKey: 
+{ id: 40101453,
+  cipherKeyVal: <Buffer 90 d2 d6 bb 76 58 5a d3 fc df 9e 9d 3b 72 f0 fa>,
+  macKeyVal: <Buffer 09 af 20 9f 8d ed 08 9b c0 34 58 c3 af e6 59 47 43 5f 1a 8e 73 a4 37 72 7b 1d ee ca ee 03 5c b2>,
+  absValidity: 2018-03-22T03:28:42.313Z,
+  relValidity: 7200000 }
+options
+{ serverHost: '10.0.1.10',
+  serverPort: 22100,
+  sessionKey: 
+   { id: 40101453,
+     cipherKeyVal: <Buffer 90 d2 d6 bb 76 58 5a d3 fc df 9e 9d 3b 72 f0 fa>,
+     macKeyVal: <Buffer 09 af 20 9f 8d ed 08 9b c0 34 58 c3 af e6 59 47 43 5f 1a 8e 73 a4 37 72 7b 1d ee ca ee 03 5c b2>,
+     absValidity: 2018-03-22T03:28:42.313Z,
+     relValidity: 7200000 },
+  sessionCryptoSpec: { cipher: 'AES-128-CBC', mac: 'SHA256' },
+  sessionProtocol: 'TCP',
+  handshakeTimeout: 50000 }
+chosen nonce: <Buffer 24 63 1f 7c e2 e2 5c 31>
+switching to HANDSHAKE_1_SENT
+disconnected from auth
+Handler: secure connection with the server closed.
+received session key handshake2!
+client ret: [object Object]
+server authenticated/authorized by solving nonce!
+Handler: communication initialization succeeded
+file data length: 1024
+sending at Wed Mar 21 2018 03:28:43 GMT+0000 (UTC)
+switching to IN_COMM
+received secure communication message!
+Received seqNum: 0
+Handler: data received from server via secure communication
+data1
+Resp-actual/expected/ratio/ts: 8 8 1 1521602923322
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 8 9 0.8888888888888888 1521602982230
+connected to auth! from local port 52990
+received auth hello!
+{ authId: 401, nonce: <Buffer c1 b5 ac 0d 18 d6 39 85> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer d0 8e b0 78 9e de be b4>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+currentSessionKey: [object Object]
+Status: Secure connection closed before starting a new connection.
+Session protocol: TCP
+chosen commSessionKey: 
+{ id: 40101459,
+  cipherKeyVal: <Buffer 21 d9 e3 c5 cf af e7 5b e3 61 e4 b5 41 2c 7b 11>,
+  macKeyVal: <Buffer ac 2d ab dd cc c8 bc a8 88 b6 9f 0d 5e 70 23 81 d4 98 bb bb 55 a8 27 d9 ee be 5d bb ba 97 7a 31>,
+  absValidity: 2018-03-22T03:29:42.354Z,
+  relValidity: 7200000 }
+options
+{ serverHost: '10.0.1.10',
+  serverPort: 22100,
+  sessionKey: 
+   { id: 40101459,
+     cipherKeyVal: <Buffer 21 d9 e3 c5 cf af e7 5b e3 61 e4 b5 41 2c 7b 11>,
+     macKeyVal: <Buffer ac 2d ab dd cc c8 bc a8 88 b6 9f 0d 5e 70 23 81 d4 98 bb bb 55 a8 27 d9 ee be 5d bb ba 97 7a 31>,
+     absValidity: 2018-03-22T03:29:42.354Z,
+     relValidity: 7200000 },
+  sessionCryptoSpec: { cipher: 'AES-128-CBC', mac: 'SHA256' },
+  sessionProtocol: 'TCP',
+  handshakeTimeout: 50000 }
+chosen nonce: <Buffer c4 d3 af 3e 47 68 86 5e>
+switching to HANDSHAKE_1_SENT
+disconnected from auth
+Handler: secure connection with the server closed.
+received session key handshake2!
+client ret: [object Object]
+server authenticated/authorized by solving nonce!
+Handler: communication initialization succeeded
+file data length: 1024
+sending at Wed Mar 21 2018 03:29:43 GMT+0000 (UTC)
+switching to IN_COMM
+received secure communication message!
+Received seqNum: 0
+Handler: data received from server via secure communication
+data1
+Resp-actual/expected/ratio/ts: 9 9 1 1521602983377
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 9 10 0.9 1521603042290
+failure in connection with Auth : authFailureCount: 1
+Handler: Error in secure comm - details: Error occurred in session key request: Error: connect EHOSTUNREACH 10.0.1.1:21100
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 9 11 0.8181818181818182 1521603102300
+failure in connection with Auth : authFailureCount: 2
+failure count reached threshold (2), try migration...
+In iotAuth.js migrateToTrustedAuth: 
+In iotAuthService.js sendMigrationReqViaTCP: 
+Handler: Error in secure comm - details: Error occurred in session key request: Error: connect EHOSTUNREACH 10.0.1.1:21100
+connected to auth! from local port 59922
+received auth hello!
+{ authId: 502, nonce: <Buffer 0b ce 77 fc f6 aa 91 75> }
+more data will come. current: 1445 expected: 1485
+received migration response with signature!
+{ version: 2,
+  subject: 
+   { countryName: 'US',
+     stateOrProvinceName: 'CA',
+     localityName: 'Berkeley',
+     organizationName: 'EECS',
+     organizationalUnitName: 'Auth502',
+     commonName: '10.0.1.5' },
+  issuer: 
+   { countryName: 'US',
+     stateOrProvinceName: 'CA',
+     localityName: 'Berkeley',
+     organizationName: 'EECS',
+     organizationalUnitName: 'Auth401',
+     commonName: '10.0.0.1' },
+  serial: '0162469261A3',
+  notBefore: 2018-03-21T03:18:41.000Z,
+  notAfter: 2018-03-22T03:20:21.000Z,
+  subjectHash: '9638ffe3',
+  signatureAlgorithm: 'sha256WithRSAEncryption',
+  fingerPrint: '4C:EC:5C:20:C7:CD:EF:0F:EB:B9:84:94:B4:A5:18:CE:39:84:EB:51',
+  publicKey: 
+   { algorithm: 'rsaEncryption',
+     e: '65537',
+     n: 'FF6CB5202497CC77AF28EFDE774858E4FEF04355E5228E378962DF4235BE3683DAF9E38A7E22621D66B3B50166D897E97BF911F9E8FC09D686961AA39679014E5DDD27EA0F02DE853A41537DB5E37F33395E249F355C0D074419572E9856D1D598CAB2CD6951013DDCB0A163B943DFCD2694BE18B9B3892695B3052EBD9115D447293C83AF24A008794B842E4F0A6C2A8D0189612A600AA40A592603E43713C0ECCA681024E5EC429FAD09484B824919DF59C8BD488E0D372D2A3D8B99B6068E24BBBDA8F0BCDDBA806010E4A7181736DF08D4D1CFC16E26507C360EDCBFF1B5F4288CE304DE62E9696665C5108489AD7232658356998FF47C4F7E8A04225423',
+     bitSize: 2048 },
+  altNames: [],
+  extensions: { subjectAlternativeName: 'IP Address:10.0.1.5' } }
+disconnected from auth
+null
+true
+Certificate of new Auth is verified!
+Subject information matches Auth ID!
+Signature of new Auth is verified.
+Auth nonce is verified
+migration completed!
+new Auth info: !
+{ id: 502,
+  host: '10.0.1.5',
+  port: 21100,
+  publicKey: '-----BEGIN CERTIFICATE-----\nMIIDVTCCAj2gAwIBAgIGAWJGkmGjMA0GCSqGSIb3DQEBCwUAMGExCzAJBgNVBAYT\nAlVTMQswCQYDVQQIDAJDQTERMA8GA1UEBwwIQmVya2VsZXkxDTALBgNVBAoMBEVF\nQ1MxEDAOBgNVBAsMB0F1dGg0MDExETAPBgNVBAMMCDEwLjAuMC4xMB4XDTE4MDMy\nMTAzMTg0MVoXDTE4MDMyMjAzMjAyMVowYTELMAkGA1UEBhMCVVMxCzAJBgNVBAgM\nAkNBMREwDwYDVQQHDAhCZXJrZWxleTENMAsGA1UECgwERUVDUzEQMA4GA1UECwwH\nQXV0aDUwMjERMA8GA1UEAwwIMTAuMC4xLjUwggEiMA0GCSqGSIb3DQEBAQUAA4IB\nDwAwggEKAoIBAQD/bLUgJJfMd68o7953SFjk/vBDVeUijjeJYt9CNb42g9r544p+\nImIdZrO1AWbYl+l7+RH56PwJ1oaWGqOWeQFOXd0n6g8C3oU6QVN9teN/MzleJJ81\nXA0HRBlXLphW0dWYyrLNaVEBPdywoWO5Q9/NJpS+GLmziSaVswUuvZEV1EcpPIOv\nJKAIeUuELk8KbCqNAYlhKmAKpApZJgPkNxPA7MpoECTl7EKfrQlIS4JJGd9ZyL1I\njg03LSo9i5m2Bo4ku72o8LzduoBgEOSnGBc23wjU0c/BbiZQfDYO3L/xtfQojOME\n3mLpaWZlxRCEia1yMmWDVpmP9HxPfooEIlQjAgMBAAGjEzARMA8GA1UdEQQIMAaH\nBAoAAQUwDQYJKoZIhvcNAQELBQADggEBAFnTVXEOlJGyhqLSdf0h2VrhzhIl4BSI\nYRm7gHmUB4kNQkRPveYyqn0shzv1cNkLsWnuULxIRMyAvKuj1IarOIurGtcsGwv9\nwLZiR4jTzTxbX3aRXWw8rX2jnbgkF+AaLZna31Grij4TktPtdjoW18/G6Tk3TQTh\nLf7qmQCf/MrfMFeOZWeeO2Rnzb1KP/oy/8WSfFczH0HW1qsvniRax0d8G05Vi0U1\nq++i3ZkmUY3EeLWVd2FK7NoBdHLkr3iPTuckLDP/E88fnHwGnPhR5iHLpoWrw1Dp\njyaJdLdnwD0HMQlPMMKCR/3IX6/DK9hOcJGEfTAW5OhTDB5INQJ/Y1k=\n-----END CERTIFICATE-----' }
+received migration response, for next round of migration, rotate migration info index from: 0
+to: 1
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 9 12 0.75 1521603162311
+connected to auth! from local port 60080
+received auth hello!
+{ authId: 502, nonce: <Buffer 00 b7 e1 dd 61 dd 20 67> }
+received session key response with distribution key attached!
+auth signature verified
+replyNonce in sessionKeyResp: <Buffer a2 74 42 38 2a e5 78 5e>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+updating distribution key: { cipherKeyVal: <Buffer f4 df bd 7a 8d ef 0e 87 cd 85 7b eb 6b 3a 35 a9>,
+  macKeyVal: <Buffer 4a f9 7a 29 02 48 23 db e8 cf 57 b6 51 2c 36 33 f0 8a be 1c 01 4d df 1f e8 63 f2 6b 0b 87 31 67>,
+  absValidity: 2018-03-21T04:32:50.053Z }
+received 1 keys
+currentSessionKey: [object Object]
+Status: Secure connection closed before starting a new connection.
+Session protocol: TCP
+chosen commSessionKey: 
+{ id: 50201404,
+  cipherKeyVal: <Buffer ad a5 71 93 0d dd 20 d9 a7 9d 16 22 9e 23 b6 33>,
+  macKeyVal: <Buffer 10 b9 1b 4b f8 e8 5a 66 90 0d 85 fc 77 e0 c5 47 2d 84 ea 16 a7 b5 10 04 1b 98 e4 3e 06 90 fc bd>,
+  absValidity: 2018-03-22T03:32:50.053Z,
+  relValidity: 7200000 }
+options
+{ serverHost: '10.0.1.10',
+  serverPort: 22100,
+  sessionKey: 
+   { id: 50201404,
+     cipherKeyVal: <Buffer ad a5 71 93 0d dd 20 d9 a7 9d 16 22 9e 23 b6 33>,
+     macKeyVal: <Buffer 10 b9 1b 4b f8 e8 5a 66 90 0d 85 fc 77 e0 c5 47 2d 84 ea 16 a7 b5 10 04 1b 98 e4 3e 06 90 fc bd>,
+     absValidity: 2018-03-22T03:32:50.053Z,
+     relValidity: 7200000 },
+  sessionCryptoSpec: { cipher: 'AES-128-CBC', mac: 'SHA256' },
+  sessionProtocol: 'TCP',
+  handshakeTimeout: 50000 }
+disconnected from auth
+chosen nonce: <Buffer c5 39 a0 7f c5 91 d0 a9>
+switching to HANDSHAKE_1_SENT
+Handler: secure connection with the server closed.
+Handler: Error in secure comm - details: Comm init failed: handshake1 timed out ...
+Handler: Error in secure comm - details: Comm init failed: disconnected from server during communication initialization.10.0.1.10:undefined
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 9 13 0.6923076923076923 1521603222312
+connected to auth! from local port 60256
+received auth hello!
+{ authId: 502, nonce: <Buffer b6 ae 31 7d ec 33 b1 d9> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer d0 62 aa bf 4e c8 60 d3>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+currentSessionKey: [object Object]
+Status: Secure connection closed before starting a new connection.
+Session protocol: TCP
+chosen commSessionKey: 
+{ id: 50201414,
+  cipherKeyVal: <Buffer 6f 29 a9 80 5e f2 72 2e 32 c1 25 fb 6b 7f b8 4c>,
+  macKeyVal: <Buffer 23 9d c1 fc 32 74 22 f8 55 27 53 b2 a6 b6 96 52 b0 d6 fa 69 57 2e 93 86 f5 07 83 b9 48 be 6f 5b>,
+  absValidity: 2018-03-22T03:33:54.035Z,
+  relValidity: 7200000 }
+options
+{ serverHost: '10.0.1.10',
+  serverPort: 22100,
+  sessionKey: 
+   { id: 50201414,
+     cipherKeyVal: <Buffer 6f 29 a9 80 5e f2 72 2e 32 c1 25 fb 6b 7f b8 4c>,
+     macKeyVal: <Buffer 23 9d c1 fc 32 74 22 f8 55 27 53 b2 a6 b6 96 52 b0 d6 fa 69 57 2e 93 86 f5 07 83 b9 48 be 6f 5b>,
+     absValidity: 2018-03-22T03:33:54.035Z,
+     relValidity: 7200000 },
+  sessionCryptoSpec: { cipher: 'AES-128-CBC', mac: 'SHA256' },
+  sessionProtocol: 'TCP',
+  handshakeTimeout: 50000 }
+chosen nonce: <Buffer 08 ec ab 82 5e 4e 98 8b>
+switching to HANDSHAKE_1_SENT
+disconnected from auth
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 9 14 0.6428571428571429 1521603282358
+connected to auth! from local port 60430
+Handler: Error in secure comm - details: Comm init failed: handshake1 timed out ...
+Handler: Error in secure comm - details: Comm init failed: disconnected from server during communication initialization.10.0.1.10:undefined
+received auth hello!
+{ authId: 502, nonce: <Buffer 5a 9b e3 ae 22 30 62 08> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer 77 81 68 82 cd 4b 90 f2>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+currentSessionKey: [object Object]
+Status: Secure connection closed before starting a new connection.
+Session protocol: TCP
+chosen commSessionKey: 
+{ id: 50201430,
+  cipherKeyVal: <Buffer 08 b3 e9 73 aa c0 04 84 9d 94 5b ae 5b 67 db 7b>,
+  macKeyVal: <Buffer 1a 7b 22 e4 27 52 71 99 27 45 cb 7d 76 2a c7 6a cb da a5 6c 6d a3 fc 93 2a 40 3f 1a 0f c5 56 08>,
+  absValidity: 2018-03-22T03:34:54.028Z,
+  relValidity: 7200000 }
+options
+{ serverHost: '10.0.1.10',
+  serverPort: 22100,
+  sessionKey: 
+   { id: 50201430,
+     cipherKeyVal: <Buffer 08 b3 e9 73 aa c0 04 84 9d 94 5b ae 5b 67 db 7b>,
+     macKeyVal: <Buffer 1a 7b 22 e4 27 52 71 99 27 45 cb 7d 76 2a c7 6a cb da a5 6c 6d a3 fc 93 2a 40 3f 1a 0f c5 56 08>,
+     absValidity: 2018-03-22T03:34:54.028Z,
+     relValidity: 7200000 },
+  sessionCryptoSpec: { cipher: 'AES-128-CBC', mac: 'SHA256' },
+  sessionProtocol: 'TCP',
+  handshakeTimeout: 50000 }
+chosen nonce: <Buffer 76 7a d6 f5 44 4a 24 bb>
+switching to HANDSHAKE_1_SENT
+disconnected from auth
+received session key handshake2!
+client ret: [object Object]
+server authenticated/authorized by solving nonce!
+Handler: communication initialization succeeded
+file data length: 1024
+sending at Wed Mar 21 2018 03:34:58 GMT+0000 (UTC)
+switching to IN_COMM
+received secure communication message!
+Received seqNum: 0
+Handler: data received from server via secure communication
+data1
+Resp-actual/expected/ratio/ts: 10 14 0.7142857142857143 1521603298425
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 10 15 0.6666666666666666 1521603342402
+connected to auth! from local port 60618
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 10 16 0.625 1521603402411
+connected to auth! from local port 60776
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 10 17 0.5882352941176471 1521603462421
+connected to auth! from local port 60926
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 10 18 0.5555555555555556 1521603522429
+connected to auth! from local port 32848
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 10 19 0.5263157894736842 1521603582439
+connected to auth! from local port 32998
+received auth hello!
+{ authId: 502, nonce: <Buffer 31 8b a0 07 20 1f 38 9a> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer 40 b1 cb cd a6 0e 3b a6>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+currentSessionKey: [object Object]
+Status: Secure connection closed before starting a new connection.
+Session protocol: TCP
+chosen commSessionKey: 
+{ id: 50201504,
+  cipherKeyVal: <Buffer ec 9c c6 c8 12 bd 45 45 6e ca cd 85 6d 77 24 45>,
+  macKeyVal: <Buffer 8c b0 1a ac 1e 51 a4 2e 98 be 2d bd 3e 5f f1 c9 01 b9 67 99 e9 b0 e1 b7 e2 93 d1 6c 03 3c 3a 85>,
+  absValidity: 2018-03-22T03:39:50.270Z,
+  relValidity: 7200000 }
+options
+{ serverHost: '10.0.1.10',
+  serverPort: 22100,
+  sessionKey: 
+   { id: 50201504,
+     cipherKeyVal: <Buffer ec 9c c6 c8 12 bd 45 45 6e ca cd 85 6d 77 24 45>,
+     macKeyVal: <Buffer 8c b0 1a ac 1e 51 a4 2e 98 be 2d bd 3e 5f f1 c9 01 b9 67 99 e9 b0 e1 b7 e2 93 d1 6c 03 3c 3a 85>,
+     absValidity: 2018-03-22T03:39:50.270Z,
+     relValidity: 7200000 },
+  sessionCryptoSpec: { cipher: 'AES-128-CBC', mac: 'SHA256' },
+  sessionProtocol: 'TCP',
+  handshakeTimeout: 50000 }
+disconnected from auth
+chosen nonce: <Buffer 0c b5 07 90 d2 ac 30 56>
+switching to HANDSHAKE_1_SENT
+Handler: secure connection with the server closed.
+received session key handshake2!
+client ret: [object Object]
+server authenticated/authorized by solving nonce!
+Handler: communication initialization succeeded
+file data length: 1024
+sending at Wed Mar 21 2018 03:39:58 GMT+0000 (UTC)
+switching to IN_COMM
+received secure communication message!
+Received seqNum: 0
+Handler: data received from server via secure communication
+data1
+Resp-actual/expected/ratio/ts: 11 19 0.5789473684210527 1521603599252
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 11 20 0.55 1521603642483
+connected to auth! from local port 33158
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 11 21 0.5238095238095238 1521603702494
+connected to auth! from local port 33312
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 11 22 0.5 1521603762502
+connected to auth! from local port 33458
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 11 23 0.4782608695652174 1521603822513
+connected to auth! from local port 33610
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 11 24 0.4583333333333333 1521603882514
+connected to auth! from local port 33760
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 11 25 0.44 1521603942524
+connected to auth! from local port 33908
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 11 26 0.4230769230769231 1521604002534
+connected to auth! from local port 34050
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 11 27 0.4074074074074074 1521604062541
+connected to auth! from local port 34194
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 11 28 0.39285714285714285 1521604122552
+connected to auth! from local port 34350
+Handler: Error in secure comm - details: Auth hello timedout ...
+Distribution protocol: TCP
+Resp-actual/expected/ratio/ts: 11 29 0.3793103448275862 1521604182557
+connected to auth! from local port 34494
+received auth hello!
+{ authId: 502, nonce: <Buffer 1f 5f 30 f2 d7 3c a3 15> }
+received session key response encrypted with distribution key
+replyNonce in sessionKeyResp: <Buffer ba 07 54 3d ac 7b 50 62>
+auth nonce verified
+handleSessionKeyResp: session key request succeeded! authFailureCount: 0
+received 1 keys
+currentSessionKey: [object Object]
+Status: Secure connection closed before starting a new connection.
+Session protocol: TCP
+chosen commSessionKey: 
+{ id: 50201653,
+  cipherKeyVal: <Buffer a3 9a 81 85 52 46 6e 07 02 04 f9 06 3e 88 76 09>,
+  macKeyVal: <Buffer 52 c1 12 a9 20 2e a6 6f f6 0c ab 82 96 22 1c bc fb df 97 9b da 78 e2 7f e8 32 73 95 0a d0 1f 9a>,
+  absValidity: 2018-03-22T03:50:02.536Z,
+  relValidity: 7200000 }
+options
+{ serverHost: '10.0.1.10',
+  serverPort: 22100,
+  sessionKey: 
+   { id: 50201653,
+     cipherKeyVal: <Buffer a3 9a 81 85 52 46 6e 07 02 04 f9 06 3e 88 76 09>,
+     macKeyVal: <Buffer 52 c1 12 a9 20 2e a6 6f f6 0c ab 82 96 22 1c bc fb df 97 9b da 78 e2 7f e8 32 73 95 0a d0 1f 9a>,
+     absValidity: 2018-03-22T03:50:02.536Z,
+     relValidity: 7200000 },
+  sessionCryptoSpec: { cipher: 'AES-128-CBC', mac: 'SHA256' },
+  sessionProtocol: 'TCP',
+  handshakeTimeout: 50000 }
+disconnected from auth
+chosen nonce: <Buffer ce f0 f9 03 61 e8 13 66>
+switching to HANDSHAKE_1_SENT
+Handler: secure connection with the server closed.
