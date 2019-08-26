@@ -246,4 +246,10 @@
       ./cleanAll.sh
       ./generateAll.sh -g $CONF/cory45.graph      
         
+* To analyze multiple results (example commands)
+
+      cd $CCS
+      ./analyzeMultipleResults.sh -t -c -a -w 6 -n results_for_acm_tiot/trust1/order3/*
+      ./analyzeMultipleResults.sh -t -c -a -w 6 results_for_acm_tiot/trust1/order6/*
+      
 * The rest is the same for the smaller-scale experiments
