@@ -44,17 +44,18 @@ function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-function addNetworkConfig(networkConfigs, bridgeName, addr) {
-    networkConfigs += 'lxc.network.type = veth\n';
-    networkConfigs += 'lxc.network.link = ' + bridgeName + '\n';
-    networkConfigs += 'lxc.network.ipv4 = ' + addr + '/24\n';
-    networkConfigs += 'lxc.network.flags = up\n';
+function addNetworkConfig(networkConfigs, bridgeName, addr, iswifi) {
+    networkConfigs += 'lxc.net.' + iswifi + '.type = veth\n';
+    networkConfigs += 'lxc.net.' + iswifi + '.link = ' + bridgeName + '\n';
+    networkConfigs += 'lxc.net.' + iswifi + '.ipv4.address = ' + addr + '/24\n';
+    networkConfigs += 'lxc.net.' + iswifi + '.flags = up\n';
     return networkConfigs;
 }
 
 function generateLxcConfigs(devList) {
     var templateStr = fs.readFileSync('templates/lxc.conf.template', 'utf-8');
     for (var i = 0; i < devList.length; i++) {
+        var iswifi = 0
         var dev = devList[i];
         var devName = dev.name;
         var bridgeName = getBridgeName(devName);
@@ -62,12 +63,14 @@ function generateLxcConfigs(devList) {
         lxcConfStr = lxcConfStr.replace(new RegExp('CONTAINER_NAME', 'g'), getContainerName(devName));
         
         var networkConfigs = '';
-        networkConfigs = addNetworkConfig(networkConfigs, bridgeName, dev.addr);
+        networkConfigs = addNetworkConfig(networkConfigs, bridgeName, dev.addr, iswifi);
         if (dev.wifi) {
+            iswifi = 1
             networkConfigs += '\n';
-            networkConfigs = addNetworkConfig(networkConfigs, bridgeName + 'wifi', dev.wifi);
+            networkConfigs = addNetworkConfig(networkConfigs, bridgeName + 'wifi', dev.wifi, iswifi);
         }
-
+        networkConfigs += "lxc.idmap = u 0 100000 65536\n";
+        networkConfigs += "lxc.idmap = g 0 100000 65536\n";
         lxcConfStr = lxcConfStr.replace('NET_CONF', networkConfigs);
         fs.writeFileSync(getLxcConfFileName(devName), lxcConfStr, 'utf-8');
     }
