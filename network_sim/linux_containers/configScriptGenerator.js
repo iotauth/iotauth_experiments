@@ -62,13 +62,18 @@ function addNetworkConfig(networkConfigs, bridgeName, addr, index) {
 
 function generateLxcConfigs(devList) {
     var templateStr = fs.readFileSync('templates/lxc.conf.template', 'utf-8');
+    var currentWorkingDir = process.cwd(); // Get the current working directory
+
     for (var i = 0; i < devList.length; i++) {
         var dev = devList[i];
         var devName = dev.name;
         var bridgeName = getBridgeName(devName);
+
+        // Replace placeholders in the template
         var lxcConfStr = templateStr.replace(new RegExp('BRIDGE_NAME', 'g'), bridgeName);
         lxcConfStr = lxcConfStr.replace(new RegExp('CONTAINER_NAME', 'g'), getContainerName(devName));
-        
+        lxcConfStr = lxcConfStr.replace(new RegExp('PWD', 'g'), currentWorkingDir); // Replace PWD with the current working directory
+
         var networkConfigs = '';
         networkConfigs = addNetworkConfig(networkConfigs, bridgeName, dev.addr, 0);
         if (dev.wifi) {
@@ -85,13 +90,13 @@ function addTapBridgeCommands(commands, bridgeName, tapName) {
     // for setup script
     commands.addBridge += 'brctl addbr ' + bridgeName + '\n';
     commands.createTap += 'tunctl -t ' + tapName + '\n';
-    commands.setTapPersistent += 'ifconfig ' + tapName + ' 0.0.0.0 promisc up\n';
-    commands.addBridgeToTap += 'brctl addif ' + bridgeName + ' ' + tapName + '\nifconfig ' + bridgeName + ' up\n';
+    commands.setTapPersistent += 'ip link set ' + tapName + ' up\nip link set ' + tapName + ' promisc on\n';
+    commands.addBridgeToTap += 'brctl addif ' + bridgeName + ' ' + tapName + '\nip link set ' + bridgeName + ' up\n';
     // for teardown script
-    commands.bridgeDown += 'ifconfig ' + bridgeName + ' down\n';
+    commands.bridgeDown += 'ip link set ' + bridgeName + ' down\n';
     commands.removeBridgeFromTap += 'brctl delif ' + bridgeName + ' ' + tapName + '\n';
     commands.deleteBridge += 'brctl delbr ' + bridgeName + '\n';
-    commands.tapDown += 'ifconfig ' + tapName + ' down\n';
+    commands.tapDown += 'ip link set ' + tapName + ' down\n';
     commands.setTapNonPersistent += 'tunctl -d ' + tapName + '\n';
     return commands;
 }
