@@ -21,7 +21,7 @@
 "use strict";
 
 var fs = require('fs');
-var JSON2 = require('JSON2');
+var JSON2 = JSON;
 
 
 // get devList file
