@@ -291,7 +291,8 @@ function extractEntitiesFromFloorPlan(floorPlanFile) {
 }
 // take a look at iotauth/examples/configs/defaultGraphGenerator.js
 
-var program = require('commander');
+const { Command } = require('commander');
+const program = new Command();
 program
   .version('0.1.0')
   .option('-i, --in [value]', 'Input floor plan file')
@@ -314,29 +315,30 @@ var maxNumBackupToAuths = 2;
 var loopToOriginAuth = false;
 var lessNaive = false;
 
-if (program.in != null) {
-    floorPlanFile = program.in;
+const options = program.opts();
+if (options.in != null) {
+    floorPlanFile = options.in;
 }
-if (program.assignments != null) {
-    predefinedAssignmentsFile = program.assignments;
+if (options.assignments != null) {
+    predefinedAssignmentsFile = options.assignments;
 }
-if (program.authTrusts != null) {
-    predefinedAuthTrustsFileOrString = program.authTrusts;
+if (options.authTrusts != null) {
+    predefinedAuthTrustsFileOrString = options.authTrusts;
 }
-if (program.authCapacity != null) {
-    predefinedAuthCapacityFile = program.authCapacity;
+if (options.authCapacity != null) {
+    predefinedAuthCapacityFile = options.authCapacity;
 }
-if (program.out != null) {
-    graphGeneratorInputFile = program.out + '.input';
-    migrationSolverInputFile = program.out + '.json';
+if (options.out != null) {
+    graphGeneratorInputFile = options.out + '.input';
+    migrationSolverInputFile = options.out + '.json';
 }
-if (program.backupAuths != null) {
-    maxNumBackupToAuths = program.backupAuths;
+if (options.backupAuths != null) {
+    maxNumBackupToAuths = options.backupAuths;
 }
-if (program.loopToOriginAuth != null) {
+if (options.loopToOriginAuth != null) {
     loopToOriginAuth = true;
 }
-if (program.lessNaive != null) {
+if (options.lessNaive != null) {
     lessNaive = true;
 }
 
