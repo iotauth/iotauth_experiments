@@ -219,7 +219,8 @@ var graph = {
 	authList: authList,
 	authTrusts: authTrusts,
 	assignments: assignments,
-	entityList: entityList
+	entityList: entityList,
+	filesharingLists: []
 }
 
 fs.writeFileSync(outputGraphFileName, 
