@@ -138,6 +138,14 @@ function populateEchoServers() {
 			maxSessionKeysPerRequest: 1,
 			netName: 'Servers',
 			credentialPrefix: echoServer.name + '.Server',
+			distributionCryptoSpec: {
+                                cipher: "AES-128-CBC",
+                                mac: "SHA256"
+                        },
+                        sessionCryptoSpec: {
+                                cipher: "AES-128-CBC",
+                                mac: "SHA256"
+                        },
 			backupToAuthIds: echoServer.backupTo == null ? [] : echoServer.backupTo
 		}
 		serverHostPortMap[entity.name] = {host: entity.host, port: entity.port};
@@ -168,6 +176,14 @@ function populateAutoClients() {
 			maxSessionKeysPerRequest: 5,
 			netName: 'Clients',
 			credentialPrefix: autoClient.name + '.Client',
+			distributionCryptoSpec: {
+                                cipher: "AES-128-CBC",
+                                mac: "SHA256"
+                        },
+                        sessionCryptoSpec: {
+                                cipher: "AES-128-CBC",
+                                mac: "SHA256"
+                        },
 			backupToAuthIds: autoClient.backupTo == null ? [] : autoClient.backupTo
 		}
 		var targetServerInfoList = [];
