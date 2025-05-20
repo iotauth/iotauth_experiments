@@ -57,6 +57,8 @@
   * This takes coordinates for entities (**$CCS/floorPlans/cory5th.txt**), predefined Auth-entity assignments (**$CCS/floorPlans/cory5thAssignments.json**), predefined Auth trusts (**$CCS/floorPlans/cory5thAuthTrusts.json**), and predefined Auth capacity (**$CCS/floorPlans/cory5thAuthCapacity.json**).
 
         cd $CCS
+        # Install required packages
+        ./initConfigs.sh 
         # for help
         node floorPlanToInput.js --help
         # for generating floor plan with predefined assignments and Auth trusts
