@@ -68,6 +68,7 @@
   * Internally uses *expGraphGenerator.js* and *graphInput.js*
   
         cd $CONF
+        # Initialize config files and install required packages
         ./initConfigs.sh 
         # for help
         ./generateAll.sh --help
