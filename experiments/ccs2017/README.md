@@ -7,6 +7,10 @@
 **$IOT/examples (iotauth/examples)**
 
 * This directory is for scripts to generate credentials, config files, and Auth databases using *.graph* file generated in $CONF.
+
+**$ENTITY ($IOT/entity/node/example_entities)**
+
+* This directory includes
   
 **$LXC (iotauth_experiments/network_sim/linux_containers)**
 
