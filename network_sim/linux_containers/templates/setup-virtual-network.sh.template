@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Cleanup existing resources (bridges and TAP devices)
+CLEANUP_COMMANDS
+
 # run this after using 'chroot /'
 
 # add bridges
@@ -16,9 +19,7 @@ brctl show
 
 # create containers using lxc-create (lxc: linux container)
 # if you use -t none, it may crash (use -t for template, -d for distribution, -r for release, -a for architecture)
-# do this in $NS3/src/tap-bridge/examples
 CREATE_CONTAINER_COMMANDS
 
 # see if containers are created correctly
 lxc-ls
-
