@@ -31,6 +31,7 @@
 **Environment variable details**
 
       export IOT=$DEV/iotauth
+      export ENTITY=$IOT/entity/node/example_entities
 
       export EXP=$DEV/iotauth_experiments
       export CONF=$EXP/expConfigs
