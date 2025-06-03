@@ -38,7 +38,7 @@
 
 **$MOUNT_DIR**
 
-* This directory indeicate 
+* This directory indeicates the host path mounted into each linux container, providing access to experiment files. It can be set to $REPO_ROOT to expose the entire repository.
 
 **Environment variable details**
 
