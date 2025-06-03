@@ -54,7 +54,11 @@ function addNetworkConfig(networkConfigs, bridgeName, addr, index) {
 
 function generateLxcConfigs(devList) {
     var templateStr = fs.readFileSync('templates/lxc.conf.template', 'utf-8');
-    var currentWorkingDir = process.cwd(); // Get the current working directory
+    var mountDir = process.env.MOUNT_DIR; // Read MOUNT_DIR from environment variables set by the user
+    if (!mountDir){
+        console.error("MOUNT_DIR is not set.");
+        process.exit(1);
+    }
 
     for (var i = 0; i < devList.length; i++) {
         var dev = devList[i];
@@ -64,7 +68,7 @@ function generateLxcConfigs(devList) {
         // Replace placeholders in the template
         var lxcConfStr = templateStr.replace(new RegExp('BRIDGE_NAME', 'g'), bridgeName);
         lxcConfStr = lxcConfStr.replace(new RegExp('CONTAINER_NAME', 'g'), getContainerName(devName));
-        lxcConfStr = lxcConfStr.replace(new RegExp('PWD', 'g'), currentWorkingDir); // Replace PWD with the current working directory
+        lxcConfStr = lxcConfStr.replace(new RegExp('MOUNT_DIR', 'g'), mountDir); 
 
         var networkConfigs = '';
         networkConfigs = addNetworkConfig(networkConfigs, bridgeName, dev.addr, 0);
