@@ -2,7 +2,7 @@
 
 **$REPO_ROOT**
 
-* This directory contains all 
+* This directory serves as the root of the repository and contains all necessary components for the experiment. It includes `iotauth`, `iotauth_experiments`, and `ns3`.
 
 **$CONF (iotauth_experiments/expConfigs)**
 
