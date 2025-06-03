@@ -2,7 +2,7 @@
 
 **$REPO_ROOT**
 
-* This directory serves as the root of the repository and contains all necessary components for the experiment. It includes `iotauth`, `iotauth_experiments`, and `ns3`.
+* This directory serves as the root of the relevant repositories and contains all the necessary components for the experiments. It must include `iotauth`, `iotauth_experiments`, and `ns3`.
 
 **$CONF (iotauth_experiments/expConfigs)**
 
@@ -38,7 +38,7 @@
 
 **$MOUNT_DIR**
 
-* This directory indeicates the host path mounted into each linux container, providing access to experiment files. It can be set to $REPO_ROOT to expose the entire repository.
+* This directory specifies the host path mounted into each linux container, providing access to experimental files. It can be set to $REPO_ROOT to mount all the necessary repositories.
 
 **Environment variable details**
 
