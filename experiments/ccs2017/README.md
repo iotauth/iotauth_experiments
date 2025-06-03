@@ -1,5 +1,9 @@
 # Important directories and enviroment variables
 
+**$REPO_ROOT**
+
+* This directory contains all 
+
 **$CONF (iotauth_experiments/expConfigs)**
 
 * This directory includes scripts for generating the *ns3Exp.graph*, *devList.txt*, and *commCosts.txt* files using *.input* file which describes Auths and thing, including a list of Auths, a list of things (clients & servers), assignemts (Auth - thing registration), trust relationships between Auths, communication costs, and migration plans.
@@ -32,8 +36,14 @@
 
 * Current directory. This directory includes options for exepriments under $CCS/expOptions and contains scripts for copying logs and packet captures (pcap) to $CCS/results directory and scripts for analyzing the results, including availability and expected energy consumption.
 
+**$MOUNT_DIR**
+
+* This directory indeicate 
+
 **Environment variable details**
 
+      export REPO_ROOT=
+      
       export IOT=$REPO_ROOT/iotauth
       export ENTITY=$IOT/entity/node/example_entities
 
@@ -47,6 +57,7 @@
       export NETSIM=$REPO_ROOT/iotauth_experiments/network_sim
       export LXC=$NETSIM/linux_containers
       export EXEC=$NETSIM/container_execution
+      export MOUNT_DIR=$REPO_ROOT
 
 # Experiment flow
 
