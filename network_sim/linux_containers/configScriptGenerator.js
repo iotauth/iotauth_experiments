@@ -44,28 +44,41 @@ function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-function addNetworkConfig(networkConfigs, bridgeName, addr) {
-    networkConfigs += 'lxc.network.type = veth\n';
-    networkConfigs += 'lxc.network.link = ' + bridgeName + '\n';
-    networkConfigs += 'lxc.network.ipv4 = ' + addr + '/24\n';
-    networkConfigs += 'lxc.network.flags = up\n';
+// function addNetworkConfig(networkConfigs, bridgeName, addr) {
+//     networkConfigs += 'lxc.network.type = veth\n';
+//     networkConfigs += 'lxc.network.link = ' + bridgeName + '\n';
+//     networkConfigs += 'lxc.network.ipv4 = ' + addr + '/24\n';
+//     networkConfigs += 'lxc.network.flags = up\n';
+//     return networkConfigs;
+// }
+
+function addNetworkConfig(networkConfigs, bridgeName, addr, index) {
+    networkConfigs += `lxc.net.${index}.type = veth\n`;
+    networkConfigs += `lxc.net.${index}.link = ${bridgeName}\n`;
+    networkConfigs += `lxc.net.${index}.ipv4.address = ${addr}/24\n`;
+    networkConfigs += `lxc.net.${index}.flags = up\n`;
     return networkConfigs;
 }
 
 function generateLxcConfigs(devList) {
     var templateStr = fs.readFileSync('templates/lxc.conf.template', 'utf-8');
+    var currentWorkingDir = process.cwd(); // Get the current working directory
+
     for (var i = 0; i < devList.length; i++) {
         var dev = devList[i];
         var devName = dev.name;
         var bridgeName = getBridgeName(devName);
+
+        // Replace placeholders in the template
         var lxcConfStr = templateStr.replace(new RegExp('BRIDGE_NAME', 'g'), bridgeName);
         lxcConfStr = lxcConfStr.replace(new RegExp('CONTAINER_NAME', 'g'), getContainerName(devName));
-        
+        lxcConfStr = lxcConfStr.replace(new RegExp('PWD', 'g'), currentWorkingDir); // Replace PWD with the current working directory
+
         var networkConfigs = '';
-        networkConfigs = addNetworkConfig(networkConfigs, bridgeName, dev.addr);
+        networkConfigs = addNetworkConfig(networkConfigs, bridgeName, dev.addr, 0);
         if (dev.wifi) {
             networkConfigs += '\n';
-            networkConfigs = addNetworkConfig(networkConfigs, bridgeName + 'wifi', dev.wifi);
+            networkConfigs = addNetworkConfig(networkConfigs, bridgeName + 'wifi', dev.wifi, 1);
         }
 
         lxcConfStr = lxcConfStr.replace('NET_CONF', networkConfigs);
@@ -77,26 +90,33 @@ function addTapBridgeCommands(commands, bridgeName, tapName) {
     // for setup script
     commands.addBridge += 'brctl addbr ' + bridgeName + '\n';
     commands.createTap += 'tunctl -t ' + tapName + '\n';
-    commands.setTapPersistent += 'ifconfig ' + tapName + ' 0.0.0.0 promisc up\n';
-    commands.addBridgeToTap += 'brctl addif ' + bridgeName + ' ' + tapName + '\nifconfig ' + bridgeName + ' up\n';
+    commands.setTapPersistent += 'ip link set ' + tapName + ' up\nip link set ' + tapName + ' promisc on\n';
+    commands.addBridgeToTap += 'brctl addif ' + bridgeName + ' ' + tapName + '\nip link set ' + bridgeName + ' up\n';
     // for teardown script
-    commands.bridgeDown += 'ifconfig ' + bridgeName + ' down\n';
+    commands.bridgeDown += 'ip link set ' + bridgeName + ' down\n';
     commands.removeBridgeFromTap += 'brctl delif ' + bridgeName + ' ' + tapName + '\n';
     commands.deleteBridge += 'brctl delbr ' + bridgeName + '\n';
-    commands.tapDown += 'ifconfig ' + tapName + ' down\n';
+    commands.tapDown += 'ip link set ' + tapName + ' down\n';
     commands.setTapNonPersistent += 'tunctl -d ' + tapName + '\n';
     return commands;
 }
 
 function addContainerCommands(commands, containerName, lxcConfFileName) {
     // for setup script
-    commands.createContainer += 'lxc-create -n ' + containerName + ' -f ' + lxcConfFileName + ' -t download -- -d ubuntu -r xenial -a amd64\n';
+    commands.createContainer += 'lxc-create -n ' + containerName + ' -f ' + lxcConfFileName + ' -t download -- -d ubuntu -r jammy -a amd64\n';
     // for start script
     commands.startContainer += 'lxc-start -n ' + containerName + ' -d\n';
     // for stop script
     commands.stopContainer += 'lxc-stop -n ' + containerName + '\n';
     // for teardown script
     commands.destroyContainer += 'lxc-destroy -n ' + containerName + '\n';
+    return commands;
+}
+
+function addCleanupCommands(commands, bridgeName, tapName) {
+    // Cleanup commands for setup script
+    commands.cleanup += `if ip link show ${bridgeName} > /dev/null 2>&1; then ip link set ${bridgeName} down; brctl delbr ${bridgeName}; fi\n`;
+    commands.cleanup += `if ip link show ${tapName} > /dev/null 2>&1; then ip link delete ${tapName}; fi\n`;
     return commands;
 }
 
@@ -109,6 +129,7 @@ function generateSetupScript(devList) {
     
     var commands = {
         // for setup script
+        cleanup: '',
         addBridge: '',
         createTap: '',
         setTapPersistent: '',
@@ -130,23 +151,24 @@ function generateSetupScript(devList) {
         setTapNonPersistent: ''
     };
     
-        
     for (var i = 0; i < devList.length; i++) {
         var dev = devList[i];
         var devName = dev.name;
         var containerName = getContainerName(devName);
         var bridgeName = getBridgeName(devName);
         var tapName = getTapName(devName);
-        var lxcConfFileName = getLxcConfFileName(devName);
+        commands = addCleanupCommands(commands, bridgeName, tapName);
         commands = addTapBridgeCommands(commands, bridgeName, tapName);
         if (dev.wifi) {
+            commands = addCleanupCommands(commands, bridgeName + 'wifi', tapName + 'wifi');
             commands = addTapBridgeCommands(commands, bridgeName + 'wifi', tapName + 'wifi');
         }
-        commands = addContainerCommands(commands, containerName, lxcConfFileName);
+        commands = addContainerCommands(commands, containerName, getLxcConfFileName(devName));
     }
     
     // generating setup script
     var setupScript = fs.readFileSync('templates/' + setupScriptFileName + '.template', 'utf-8');
+    setupScript = setupScript.replace('CLEANUP_COMMANDS', commands.cleanup);
     setupScript = setupScript.replace('ADD_BRIDGE_COMMANDS', commands.addBridge);
     setupScript = setupScript.replace('CREATE_TAP_COMMANDS', commands.createTap);
     setupScript = setupScript.replace('ADD_BRIDGE_TO_TAP_COMMANDS', commands.addBridgeToTap);
