@@ -42,7 +42,7 @@
 
 **Environment variable details**
 
-      export REPO_ROOT=
+      export REPO_ROOT=/home/user
       
       export IOT=$REPO_ROOT/iotauth
       export ENTITY=$IOT/entity/node/example_entities
