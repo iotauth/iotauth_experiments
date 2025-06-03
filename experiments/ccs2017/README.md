@@ -34,17 +34,17 @@
 
 **Environment variable details**
 
-      export IOT=$DEV/iotauth
+      export IOT=$REPO_ROOT/iotauth
       export ENTITY=$IOT/entity/node/example_entities
 
-      export EXP=$DEV/iotauth_experiments
+      export EXP=$REPO_ROOT/iotauth_experiments
       export CONF=$EXP/expConfigs
       export CCS=$EXP/experiments/ccs2017
 
-      export NS3=$DEV/bake/source/ns-3.26
+      export NS3=$REPO_ROOT/bake/source/ns-3.26
       export TAP=$NS3/src/tap-bridge/examples
 
-      export NETSIM=$DEV/iotauth_experiments/network_sim
+      export NETSIM=$REPO_ROOT/iotauth_experiments/network_sim
       export LXC=$NETSIM/linux_containers
       export EXEC=$NETSIM/container_execution
 
