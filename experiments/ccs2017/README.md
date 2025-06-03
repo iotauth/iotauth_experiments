@@ -10,7 +10,7 @@
 
 **$ENTITY ($IOT/entity/node/example_entities)**
 
-* This directory includes
+* This directory includes example entities and their scripts used in experiments. They are launched in LXC containers during experiments using the $EXEC scripts.
   
 **$LXC (iotauth_experiments/network_sim/linux_containers)**
 
