@@ -44,14 +44,6 @@ function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-// function addNetworkConfig(networkConfigs, bridgeName, addr) {
-//     networkConfigs += 'lxc.network.type = veth\n';
-//     networkConfigs += 'lxc.network.link = ' + bridgeName + '\n';
-//     networkConfigs += 'lxc.network.ipv4 = ' + addr + '/24\n';
-//     networkConfigs += 'lxc.network.flags = up\n';
-//     return networkConfigs;
-// }
-
 function addNetworkConfig(networkConfigs, bridgeName, addr, index) {
     networkConfigs += `lxc.net.${index}.type = veth\n`;
     networkConfigs += `lxc.net.${index}.link = ${bridgeName}\n`;
