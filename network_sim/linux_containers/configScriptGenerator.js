@@ -54,11 +54,12 @@ function addNetworkConfig(networkConfigs, bridgeName, addr, index) {
 
 function generateLxcConfigs(devList) {
     var templateStr = fs.readFileSync('templates/lxc.conf.template', 'utf-8');
-    var hostMountDir = process.env.MOUNT_DIR; // Read MOUNT_DIR from environment variables set by the user
+    var hostMountDir = process.env.MOUNT_DIR; // Read the host mount directory from the MOUNT_DIR environment variable
     if (!hostMountDir){
         console.error("MOUNT_DIR is not set.");
         process.exit(1);
     }
+    // Generate container mount point by removing leading slash
     const containerMountPoint = hostMountDir.startsWith('/') ? hostMountDir.slice(1) : hostMountDir;
 
     for (var i = 0; i < devList.length; i++) {
