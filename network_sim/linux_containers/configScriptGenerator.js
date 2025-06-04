@@ -59,6 +59,7 @@ function generateLxcConfigs(devList) {
         console.error("MOUNT_DIR is not set.");
         process.exit(1);
     }
+    const mountPoint = mountDir.startsWith('/') ? mountDir.slice(1) : mountDir;
 
     for (var i = 0; i < devList.length; i++) {
         var dev = devList[i];
@@ -69,6 +70,7 @@ function generateLxcConfigs(devList) {
         var lxcConfStr = templateStr.replace(new RegExp('BRIDGE_NAME', 'g'), bridgeName);
         lxcConfStr = lxcConfStr.replace(new RegExp('CONTAINER_NAME', 'g'), getContainerName(devName));
         lxcConfStr = lxcConfStr.replace(new RegExp('MOUNT_DIR', 'g'), mountDir); 
+        lxcConfStr = lxcConfStr.replace(new RegExp('MOUNT_POINT', 'g'), mountPoint);
 
         var networkConfigs = '';
         networkConfigs = addNetworkConfig(networkConfigs, bridgeName, dev.addr, 0);
