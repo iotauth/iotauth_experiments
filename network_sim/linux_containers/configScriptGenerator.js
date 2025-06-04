@@ -54,11 +54,13 @@ function addNetworkConfig(networkConfigs, bridgeName, addr, index) {
 
 function generateLxcConfigs(devList) {
     var templateStr = fs.readFileSync('templates/lxc.conf.template', 'utf-8');
-    var mountDir = process.env.MOUNT_DIR; // Read MOUNT_DIR from environment variables set by the user
-    if (!mountDir){
+    var hostMountDir = process.env.MOUNT_DIR; // Read the host mount path from the MOUNT_DIR environment variable for the LXC mount entry
+    if (!hostMountDir){
         console.error("MOUNT_DIR is not set.");
         process.exit(1);
     }
+    // Generate a container mount path by removing the leading slash from the host path
+    const containerMountPoint = hostMountDir.startsWith('/') ? hostMountDir.slice(1) : hostMountDir;
 
     for (var i = 0; i < devList.length; i++) {
         var dev = devList[i];
@@ -68,7 +70,8 @@ function generateLxcConfigs(devList) {
         // Replace placeholders in the template
         var lxcConfStr = templateStr.replace(new RegExp('BRIDGE_NAME', 'g'), bridgeName);
         lxcConfStr = lxcConfStr.replace(new RegExp('CONTAINER_NAME', 'g'), getContainerName(devName));
-        lxcConfStr = lxcConfStr.replace(new RegExp('MOUNT_DIR', 'g'), mountDir); 
+        lxcConfStr = lxcConfStr.replace(new RegExp('HOST_MOUNT_DIR', 'g'), hostMountDir); 
+        lxcConfStr = lxcConfStr.replace(new RegExp('CONTAINER_MOUNT_POINT', 'g'), containerMountPoint);
 
         var networkConfigs = '';
         networkConfigs = addNetworkConfig(networkConfigs, bridgeName, dev.addr, 0);
