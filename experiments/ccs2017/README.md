@@ -18,7 +18,7 @@
 
 **$AUTH ($IOT/auth/auth-server)**
 
-* This direcotry includes neccsary files to execute auth 
+* This direcotry includes the neccsary files to execute the Auths. 
   
 **$LXC (iotauth_experiments/network_sim/linux_containers)**
 
