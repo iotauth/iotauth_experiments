@@ -15,6 +15,10 @@
 **$ENTITY ($IOT/entity/node/example_entities)**
 
 * This directory includes example entities and their scripts used in experiments. They are launched in LXC containers during experiments using the $EXEC scripts.
+
+**$AUTH ($IOT/auth/auth-server)**
+
+* This direcotry includes neccsary files to execute auth 
   
 **$LXC (iotauth_experiments/network_sim/linux_containers)**
 
@@ -46,6 +50,7 @@
       
       export IOT=$REPO_ROOT/iotauth
       export ENTITY=$IOT/entity/node/example_entities
+      export AUTH=$IOT/auth/auth-server
 
       export EXP=$REPO_ROOT/iotauth_experiments
       export CONF=$EXP/expConfigs
@@ -143,7 +148,8 @@
   * Emulates failure of an Auth
   * Change owners of created log files
       
-        sudo chroot /
+        # Use -E to inherit environmental variables
+        sudo -E chroot /
         cd $EXEC
         ./start-exp.sh
         
