@@ -112,7 +112,7 @@
   ```
   cd $IOT/examples
   ./cleanAll.sh
-  # Use 'asdf' as the password when creating the Auth.
+  # Use 'asdf' as the password when creating the Auths.
   ./generateAll.sh -g $CONF/ns3Exp.graph
   ```
 
