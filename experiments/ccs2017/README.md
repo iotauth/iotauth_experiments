@@ -104,6 +104,8 @@
     ```
 
 * To generate Auths and entities using graph
+  The Auth password is hardcoded as `asdf` in the source code for this experiment.
+  Use `asdf` as the password when creating the Auth. 
   ```
   cd $IOT/examples
   ./cleanAll.sh
