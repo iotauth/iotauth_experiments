@@ -123,7 +123,7 @@
     make
     ```
 
-* To set linux containers (LXCs). **generateAll.sh** will generate **tapConfigs.txt** that is used for ns3 simulation. The setup takes some time. See [LXC README.md](https://github.com/iotauth/iotauth_experiments/blob/master/network_sim/linux_containers/README.md) for more details. Do not forget to teardown LXCs with "./teardown-virtual-network.sh" before you create a new set of LXCs. (If not, it will cause problems because of the LXCs that are already there). 
+* To set linux containers (LXCs). **generateAll.sh** will generate **tapConfigs.txt** that is used for ns3 simulation. The setup takes some time. See [LXC README.md](https://github.com/iotauth/iotauth_experiments/blob/master/network_sim/linux_containers/README.md) for more details. Do not forget to teardown LXCs with "./teardown-virtual-network.sh" before you create a new set of LXCs. (If not, it will cause problems because of the LXCs that are already there).
   ```
   cd $LXC
   # Clean up existing LXCs
