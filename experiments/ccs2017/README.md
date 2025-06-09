@@ -45,7 +45,7 @@
 * This directory specifies the host path mounted into each linux container, providing access to experimental files. It can be set to $REPO_ROOT to mount all the necessary repositories.
 
 **Environment variable details**
-
+  ```
   export REPO_ROOT=/home/user
   
   export IOT=$REPO_ROOT/iotauth
@@ -63,6 +63,7 @@
   export LXC=$NETSIM/linux_containers
   export EXEC=$NETSIM/container_execution
   export MOUNT_DIR=$REPO_ROOT
+  ```
 
 # Experiment flow
 
@@ -76,7 +77,7 @@
 * Generating an input for graph (**ns3Exp.input** as default, can be changed, others are **$CCS/floorPlans/cory5th.input**)
 
   * This takes coordinates for entities (**$CCS/floorPlans/cory5th.txt**), predefined Auth-entity assignments (**$CCS/floorPlans/cory5thAssignments.json**), predefined Auth trusts (**$CCS/floorPlans/cory5thAuthTrusts.json**), and predefined Auth capacity (**$CCS/floorPlans/cory5thAuthCapacity.json**).
-
+    ```
     cd $CCS
     # Install required packages
     ./initConfigs.sh 
@@ -84,12 +85,13 @@
     node floorPlanToInput.js --help
     # for generating floor plan with predefined assignments and Auth trusts
     node floorPlanToInput.js -a floorPlans/cory5thAssignments.json -t floorPlans/cory5thAuthTrusts.json -c floorPlans/cory5thAuthCapacity.json -o floorPlans/cory5th -b 3
+    ```
 
 * Experiment graph generation (**ns3Exp.graph** as default, can be changed)
 
   * This also generates **commCosts.txt** (communication costs between Auths and things) and **devList.txt** (a list of device information - name, address, type, position)
   * Internally uses *expGraphGenerator.js* and *graphInput.js*
-  
+    ```
     cd $CONF
     # Install required packages
     ./initConfigs.sh 
@@ -99,20 +101,23 @@
     ./generateAll.sh 
     # With a given floor plan
     ./generateAll.sh -i $CCS/floorPlans/cory5th.input -o cory5th.graph
+    ```
 
 * To generate Auths and entities using graph
-
+  ```
   cd $IOT/examples
   ./cleanAll.sh
   ./generateAll.sh -g $CONF/ns3Exp.graph
+  ```
 
   * Run `make` if you have not built Auth jar before.
-
+    ```
     cd $AUTH
     make
+    ```
 
 * To set linux containers (LXCs). **generateAll.sh** will generate **tapConfigs.txt** that is used for ns3 simulation. The setup takes some time. See [LXC README.md](https://github.com/iotauth/iotauth_experiments/blob/master/network_sim/linux_containers/README.md) for more details. Do not forget to teardown LXCs with "./teardown-virtual-network.sh" before you create a new set of LXCs. (If not, it will cause problems because of the LXCs that are already there).
-
+  ```
   cd $LXC
   # Clean up existing LXCs
   sudo ./teardown-virtual-network.sh
@@ -125,19 +130,22 @@
 
   # Set up LXCs
   sudo ./setup-virtual-network.sh
+  ```
 
 * To see current linux containers,
-
+  ```
   sudo lxc-ls
+  ```
 
 * To setup ns3 network simulation environment (build is optional)
 
   * **IMPORTANT**: Before the first build of ns3, configure it to include examples and tests, enable sudo, and optimize the build. Examples include modules for simulation, **tap-matrix-sst** and **tap-mixed-sst**.
-
+    ```
     ./waf configure --build-profile=optimized --enable-examples --enable-tests --enable-sudo
+    ```
 
   * To edit the simulator source code, see inside **$TAP** (**$NS3/src/tap-bridge/examples**) and look into simulation files (e.g., **tap-matrix-sst.cc**, **tap-mixed-sst.cc**)
-  
+    ```
     cd $NS3
     ./waf build
     
@@ -146,44 +154,50 @@
     
     # To use positions in x,y,z coordinates for wifi connections
     ./waf --run tap-mixed-sst --command-template="%s $LXC/tapConfigs.txt"
+    ```
 
 * To run linux containers (LXCs) for experiments
 
   * Initializes Auths, servers, and clients
   * Emulates failure of an Auth
   * Change owners of created log files
-  
+    ```
     # Use -E to inherit environmental variables
     sudo -E chroot /
     cd $EXEC
     ./start-exp.sh
+    ```
     
   * To stop the experiment while it is still in progress
-    
+    ```
     ./stop-all.sh
+    ```
     
   * To clean created logs, etc.
-    
+    ```
     ./cleanAll.sh
+    ```
     
 * To analyze results
   
   * Copy results (logs and pcap files) to a directory that will be created under $CCS/results/YYMMDD-HHMMSS, (this also copies config files used for the experiments under $CCS/results/YYMMDD-HHMMSS/configs to use them in analysis such as the given communication costs, addresses of communication targets, and names devices and TAPs. **NOTE: Don't run this analysis as a super user (root)!!**
-  
+    ```
     exit
     cd $CCS
     ./copyResults.sh
+    ```
 
   * Analyze results for the given directory (e.g., results/YYMMDD-HHMMSS). Creates a directory called under results/YYMMDD-HHMMSS/analysis for storing analysis results (currently availability.txt and packet.txt)
-  
+    ```
     ./analyzeResult.sh [RESULT_DIR]
+    ```
 
 # Further details of experiments
 
 * Details for running experiments
     
   * To run Auths and servers background
-
+    ```
     sudo chroot /
     cd $EXEC
     cd auth_execution
@@ -193,9 +207,10 @@
     cd server_execution
     ./cleanAll.sh
     ./start-servers.sh
+    ```
 
   * To run clients
-
+    ```
     sudo chroot /
     lxc-start -n t2
     lxc-attach -n t2
@@ -221,34 +236,38 @@
     lxc-attach -n t8
     cd $ENTITY
     node autoClient.js configs/Clients/t8.config 
+    ```
 
   * To simulate failure of an Auth
-
+    ```
     sudo lxc-stop -n auth1
-
+    ```
 
 # Experiment procedure for extended experiments for Cory 3rd, 4th and 5th floors (Cory345)
 
 * Generating an input for graph (**ns3Exp.input** as default, can be changed, others are **$CCS/floorPlans/cory345.input**)
 
   * This takes coordinates for entities (**$CCS/floorPlans/cory345.txt**), predefined Auth-entity assignments (**$CCS/floorPlans/cory345Assignments.json**), predefined Auth trusts (**$CCS/floorPlans/cory345AuthTrusts.json**), predefined Auth capacity (**$CCS/floorPlans/cory345AuthCapacity.json**).
-  
+    ```
     cd $CCS
     # for help
     node floorPlanToInput.js --help
     # for generating floor plan with predefined assignments and Auth trusts
     node floorPlanToInput.js -i floorPlans/cory345/cory345.txt -a floorPlans/cory345/cory345Assignments.json -t floorPlans/cory345/cory345AuthTrusts.json -c floorPlans/cory345/cory345AuthCapacity.json -o floorPlans/cory345/cory345 -b 9 -l
+    ```
 
 * To generate graph file and devList.txt, commCost.txt
-
+  ```
   cd $CONF
   ./generateAll.sh -i $CCS/floorPlans/cory345/cory345.input -o cory345.graph
+  ```
 
 * To generate example Auths and servers and clients
-
+  ```
   cd $IOT/examples
   ./cleanAll.sh
   ./generateAll.sh -g $CONF/cory345.graph
+  ```
 
 * The rest is the same for the smaller-scale experiments
 
@@ -258,16 +277,18 @@
 * Generating an input for graph
 
   * This takes entity coordinates, Auth-entity assignments, Auth trusts, and Auth capacity for Cory 4th and 5th floors.
-
+    ```
     node floorPlanToInput.js -i floorPlans/cory45/cory45.txt -a floorPlans/cory45/cory45Assignments.json -t floorPlans/cory45/cory45AuthTrusts.json -c floorPlans/cory45/cory45AuthCapacity.json -o floorPlans/cory45/cory45 -b 6 -l
+    ```
   
 * To generate graph file and devList.txt, commCost.txt
-
+  ```
   cd $CONF
   ./generateAll.sh -i $CCS/floorPlans/cory45/cory45.input -o cory45.graph
+  ```
 
 * To integrate migration plans into graph file
-
+  ```
   cd $CONF
 
   node integrateMigrationPlan.js -g cory45.graph -m $IOT/auth/migration-solver/results/cory45_plan_ILP.json -o cory45_ILP.graph
@@ -277,17 +298,20 @@
   node integrateMigrationPlan.js -g cory45.graph -m $IOT/auth/migration-solver/results/cory45_plan_ILP_ac.json -o cory45_ILP_ac.graph
 
   node integrateMigrationPlan.js -g cory45.graph -m $IOT/auth/migration-solver/results/cory45_plan_ILP_mt_ac.json -o cory45_ILP_mt_ac.graph
+  ```
 
 * To generate example Auths and servers and clients
-
+  ```
   cd $IOT/examples
   ./cleanAll.sh
-  ./generateAll.sh -g $CONF/cory45.graph  
+  ./generateAll.sh -g $CONF/cory45.graph
+  ```
     
 * To analyze multiple results (example commands)
-
+  ```
   cd $CCS
   ./analyzeMultipleResults.sh -t -c -a -w 6 -n results_for_acm_tiot/trust1/order3/*
   ./analyzeMultipleResults.sh -t -c -a -w 6 results_for_acm_tiot/trust1/order6/*
+  ```
   
 * The rest is the same for the smaller-scale experiments
