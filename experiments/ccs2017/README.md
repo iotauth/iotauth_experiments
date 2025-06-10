@@ -77,6 +77,7 @@
 * Generating an input for graph (**ns3Exp.input** as default, can be changed, others are **$CCS/floorPlans/cory5th.input**)
 
   * This takes coordinates for entities (**$CCS/floorPlans/cory5th.txt**), predefined Auth-entity assignments (**$CCS/floorPlans/cory5thAssignments.json**), predefined Auth trusts (**$CCS/floorPlans/cory5thAuthTrusts.json**), and predefined Auth capacity (**$CCS/floorPlans/cory5thAuthCapacity.json**).
+    
     ```
     cd $CCS
     # Install required packages
@@ -91,6 +92,7 @@
 
   * This also generates **commCosts.txt** (communication costs between Auths and things) and **devList.txt** (a list of device information - name, address, type, position)
   * Internally uses *expGraphGenerator.js* and *graphInput.js*
+    
     ```
     cd $CONF
     # Install required packages
@@ -103,14 +105,19 @@
     ./generateAll.sh -i $CCS/floorPlans/cory5th.input -o cory5th.graph
     ```
 
-* To generate Auths and entities using graph
+* To generate Auths and entities using graph.
+
+  The Auth password is hardcoded as `asdf` in the source code for this experiment.
+  
   ```
   cd $IOT/examples
   ./cleanAll.sh
+  # Use 'asdf' as the password when creating the Auths.
   ./generateAll.sh -g $CONF/ns3Exp.graph
   ```
 
   * Run `make` if you have not built Auth jar before.
+  
     ```
     cd $AUTH
     make
@@ -248,6 +255,7 @@
 * Generating an input for graph (**ns3Exp.input** as default, can be changed, others are **$CCS/floorPlans/cory345.input**)
 
   * This takes coordinates for entities (**$CCS/floorPlans/cory345.txt**), predefined Auth-entity assignments (**$CCS/floorPlans/cory345Assignments.json**), predefined Auth trusts (**$CCS/floorPlans/cory345AuthTrusts.json**), predefined Auth capacity (**$CCS/floorPlans/cory345AuthCapacity.json**).
+  
     ```
     cd $CCS
     # for help
@@ -277,6 +285,7 @@
 * Generating an input for graph
 
   * This takes entity coordinates, Auth-entity assignments, Auth trusts, and Auth capacity for Cory 4th and 5th floors.
+  
     ```
     node floorPlanToInput.js -i floorPlans/cory45/cory45.txt -a floorPlans/cory45/cory45Assignments.json -t floorPlans/cory45/cory45AuthTrusts.json -c floorPlans/cory45/cory45AuthCapacity.json -o floorPlans/cory45/cory45 -b 6 -l
     ```
