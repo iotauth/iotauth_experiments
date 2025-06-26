@@ -324,3 +324,35 @@
   ```
   
 * The rest is the same for the smaller-scale experiments
+
+
+# Error handling: Cannot run multiple LXC containers simultaneously.
+
+* If you are unable to run more than around 10-14 LXC containers simultaneously, update the following configuration files and reboot.
+
+* Update `/etc/security/limits.conf` as following
+  ```
+  *               soft    nofile          1048576
+  *               hard    nofile          1048576
+  root            soft    nofile          1048576
+  root            hard    nofile          1048576
+  *               soft    memlock         unlimited
+  *               hard    memlock         unlimited
+  ```
+
+* Modify `/etc/sysctl.conf` as following
+  ```
+  fs.inotify.max_queued_events=1048576
+  fs.inotify.max_user_instances=104576
+  fs.inotify.max_user_watches=104576
+  vm.max_map_count=262144
+  kernel.dmesg_restrict=1
+  net.ipv4.neigh.default.gc_thresh3=8192
+  net.ipv6.neigh.default.gc_thresh3=8192
+  kernel.keys.maxkeys=2000
+  ```
+
+* After modifying these files, restart the system to apply the changes.
+  ```
+  reboot
+  ```
