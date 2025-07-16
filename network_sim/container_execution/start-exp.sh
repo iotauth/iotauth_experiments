@@ -151,7 +151,7 @@ cd client_execution
 ./start-clients.sh $WAIT_TIME_BETWEEN_CLIENTS
 cd ..
 
-echo "Now running experiemtns for $TIME_BEFOR_FAIL before failure ... from time: `timestamp`"
+echo "Now running experiments for $TIME_BEFOR_FAIL before failure ... from time: `timestamp`"
 
 sleep $TIME_BEFOR_FAIL
 
@@ -160,7 +160,7 @@ for ((i=0; i< $NUM_AUTHS_TO_KILL; i++)) {
     lxc-stop -n ${AUTH_KILL_ORDER[i]}
 }
 
-echo "Now running experiemtns for $TIME_AFTER_FAIL after failure ... from time: `timestamp`"
+echo "Now running experiments for $TIME_AFTER_FAIL after failure ... from time: `timestamp`"
 
 sleep $TIME_AFTER_FAIL
 
