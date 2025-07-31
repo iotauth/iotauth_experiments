@@ -23,4 +23,4 @@ This is a repository for experiments of SST (Secure Swarm Toolkit).
 ---
 This repository includes modified source code of an open-source library. Users must use the provided source codes with caution at their own risk.
 
-*Last updated on March 7, 2017*
+*Last updated on July 30, 2025*
