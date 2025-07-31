@@ -11,8 +11,9 @@ This is a repository for experiments of SST (Secure Swarm Toolkit).
 
 # Contributors
 ---
-- [Hokeun Kim](https://people.eecs.berkeley.edu/~hokeunkim/)
+- [Hokeun Kim](https://hokeun.github.io/)
 - [Eunsuk Kang](https://eskang.github.io/)
+- [Sunyoung Kim](https://github.com/sunnykim638)
 
 # External libraries
 ---
