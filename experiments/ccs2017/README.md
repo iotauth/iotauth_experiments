@@ -1,4 +1,4 @@
-# Important directories and enviroment variables
+# Important directories and environment variables
 
 **$REPO_ROOT**
 
@@ -18,11 +18,11 @@
 
 **$AUTH ($IOT/auth/auth-server)**
 
-* This direcotry includes the neccsary files to execute the Auths. 
+* This directory includes the necessary files to execute the Auths. 
   
 **$LXC (iotauth_experiments/network_sim/linux_containers)**
 
-* This directory includes scripts for generating other scripts to set up, start, stop, and teardown linux containers (LXC, para-virtualmachines). The generation script uses *devList.txt* and *commCosts.txt* files. See [LXC README.md](https://github.com/iotauth/iotauth_experiments/blob/master/network_sim/linux_containers/README.md) for more details.
+* This directory includes scripts for generating other scripts to set up, start, stop, and teardown linux containers (LXC, para-virtual machines). The generation script uses *devList.txt* and *commCosts.txt* files. See [LXC README.md](https://github.com/iotauth/iotauth_experiments/blob/master/network_sim/linux_containers/README.md) for more details.
   
 **$NS3 (bake/source/ns-3.26)**
 
@@ -34,11 +34,11 @@
 
 **$EXEC (iotauth_experiments/network_sim/container_execution)**
 
-* This directory is for actually executing linux containers (LXCs) for Auths, servers, and clinets. As a result of LXC execution, the execution logs are stored in subdirectories *auth_execution* for Auth logs, *server_execution* for server logs, and *client_execution* for client logs.
+* This directory is for actually executing linux containers (LXCs) for Auths, servers, and clients. As a result of LXC execution, the execution logs are stored in subdirectories *auth_execution* for Auth logs, *server_execution* for server logs, and *client_execution* for client logs.
 
 **$CCS (iotauth_experiments/experiments/ccs2017)**
 
-* Current directory. This directory includes options for exepriments under $CCS/expOptions and contains scripts for copying logs and packet captures (pcap) to $CCS/results directory and scripts for analyzing the results, including availability and expected energy consumption.
+* Current directory. This directory includes options for experiments under $CCS/expOptions and contains scripts for copying logs and packet captures (pcap) to $CCS/results directory and scripts for analyzing the results, including availability and expected energy consumption.
 
 **$MOUNT_DIR**
 
@@ -187,7 +187,7 @@
     
 * To analyze results
   
-  * Copy results (logs and pcap files) to a directory that will be created under $CCS/results/YYMMDD-HHMMSS, (this also copies config files used for the experiments under $CCS/results/YYMMDD-HHMMSS/configs to use them in analysis such as the given communication costs, addresses of communication targets, and names devices and TAPs. **NOTE: Don't run this analysis as a super user (root)!!**
+  * Copy results (logs and pcap files) to a directory that will be created under $CCS/results/YYMMDD-HHMMSS, (this also copies config files used for the experiments under $CCS/results/YYMMDD-HHMMSS/configs to use them in analysis such as the given communication costs, addresses of communication targets, and names of devices and TAPs. **NOTE: Don't run this analysis as a super user (root)!!**
     ```
     exit
     cd $CCS
@@ -203,7 +203,7 @@
 
 * Details for running experiments
     
-  * To run Auths and servers background
+  * To run Auths and servers in the background
     ```
     sudo chroot /
     cd $EXEC
