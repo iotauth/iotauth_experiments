@@ -30,7 +30,7 @@
 
 **$TAP ($NS3/src/tap-bridge/examples)**
 
-* This directory includes SST simulation models using tap bridges. Currently used simulation models are *tap-matrix-sst.cc* and *tap-mixed-sst.cc*. Other files include *comm-cost.h* for CommCost class and *tap-csma-sst.cc* which was used for experimenting wired connections for Auths.
+* This directory includes SST simulation models using tap bridges. Currently used simulation models are *tap-matrix-sst.cc* and *tap-mixed-sst.cc*. Other files include *comm-cost.h* for the CommCost class and *tap-csma-sst.cc*, which was used for experimenting with wired connections for Auths.
 
 **$EXEC (iotauth_experiments/network_sim/container_execution)**
 
@@ -116,14 +116,14 @@
   ./generateAll.sh -g $CONF/ns3Exp.graph
   ```
 
-  * Run `make` if you have not built Auth jar before.
+  * Run `make` if you have not built the Auth jar before.
   
     ```
     cd $AUTH
     make
     ```
 
-* To set linux containers (LXCs). **generateAll.sh** will generate **tapConfigs.txt** that is used for ns3 simulation. The setup takes some time. See [LXC README.md](https://github.com/iotauth/iotauth_experiments/blob/master/network_sim/linux_containers/README.md) for more details. Do not forget to teardown LXCs with "./teardown-virtual-network.sh" before you create a new set of LXCs. (If not, it will cause problems because of the LXCs that are already there).
+* To set linux containers (LXCs). **generateAll.sh** will generate **tapConfigs.txt** that is used for ns3 simulation. The setup takes some time. See [LXC README.md](https://github.com/iotauth/iotauth_experiments/blob/master/network_sim/linux_containers/README.md) for more details. Do not forget to teardown LXCs with "./teardown-virtual-network.sh" before you create a new set of LXCs. (If not, it will cause problems because of the previous LXCs).
   ```
   cd $LXC
   # Clean up existing LXCs
@@ -142,6 +142,11 @@
 * To see current linux containers,
   ```
   sudo lxc-ls
+  ```
+  If you get this error `sudo: lxc-ls: command not found`, follow the steps below:
+  ```
+  sudo apt update
+  sudo apt install lxc lxc-utils
   ```
 
 * To setup ns3 network simulation environment (build is optional)
@@ -245,7 +250,7 @@
     node autoClient.js configs/Clients/t8.config 
     ```
 
-  * To simulate failure of an Auth
+  * To simulate the failure of an Auth
     ```
     sudo lxc-stop -n auth1
     ```
